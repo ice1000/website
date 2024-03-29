@@ -8,7 +8,9 @@
   authors: ("Tesla Zhang",),
   language: "en",
   summary: [
-    #prefix-chapter("index.typ")[About]
+    #prefix-chapter("index.typ")[About],
+    = Miscellaneous
+    #prefix-chapter("typst-test.typ")[Typesetting Experiments],
   ]
 )
 
