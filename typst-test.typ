@@ -1,5 +1,7 @@
 #import "@preview/ctheorems:1.1.2": *
 
+The purpose of this page is to test some random things.
+
 #show: thmrules.with(qed-symbol: $square$)
 
 #let definition = thmbox("definition", "Definition", inset: (x: 1.2em, top: 1em))
