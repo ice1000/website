@@ -9,6 +9,7 @@
   language: "en",
   summary: [
     #prefix-chapter("index.typ")[About],
+    #prefix-chapter("resume.typ")[Resume],
     = Miscellaneous
     #prefix-chapter("typst-test.typ")[Typesetting Experiments],
   ]
