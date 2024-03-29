@@ -8,7 +8,7 @@ on:
 permissions:
   pages: write
   id-token: write
-  contents: read
+  contents: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -40,14 +40,18 @@ jobs:
           sudo cp typst-book-x86_64-unknown-linux-gnu/bin/typst-book /usr/bin/typst-book
       - name: Build Book
         run: |
-          typst-book build --font-path assets/fonts --path-to-root / -w . -d ./dist .
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload `/github-pages` sub directory
-          path: './dist'
+          typst-book build --font-path assets/fonts -w . -d ./dist .
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          cp CNAME dist/
+          cd dist
+          git init
+          git config user.email "no-reply@github.com"
+          git config user.name "owo-bot"
+          git add *
+          git commit -m "GitHub Actions Automated Deploy"
+          git remote add origin "https://owo-bot:$GH_TOKEN@github.com/ice1000/ice1000.github.io.git"
+          git branch -M main
+          git push -f -u origin main
