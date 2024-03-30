@@ -35,3 +35,26 @@ $ & "+-"β_2\
 $ & "+-"η\
   & (Γ, x:A_1 + A_2 ⊢ C : X)/
     (Γ, x:A_1 + A_2 ⊢ "case" x {y. [1·y slash x]C | z. [2·z slash x]C} ≡ C : X) $
+
+$
+   L = integral^2_0 norm(v(t)) med d t = lr([sqrt(-(10t sin t^2 ) + ( 10t cos t^2) + (24 t )) ]^2_0,size: #5em) \
+$
+
+$ lr({ A mid(|) integral }) quad
+  lr(size: #1em, { A mid(|) integral }) quad
+  lr(size: #(1em+20%), { A mid(|) integral }) "wrong" \
+  lr(] A mid(|) integral ]) quad
+  lr(size: #1em, ] A mid(|) integral ]) quad
+  lr(size: #(1em+20%), ] A mid(|) integral ]) "ok" \
+  lr(( A mid(|) integral ]) quad
+  lr(size: #1em, ( A mid(|) integral ]) quad
+  lr(size: #(1em+20%), ( A mid(|) integral ]) "wrong"
+$
+
+#import "@preview/finite:0.3.0": *
+#let A2 = (
+  "1": ("2": ("a", "b"), "3": "a"),
+  "2": ("3": "a"),
+  "3": ("1": "b", "2": "b"),
+)
+#automaton(A2, layout: layout.circular)
