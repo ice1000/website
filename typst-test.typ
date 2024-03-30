@@ -1,4 +1,6 @@
 #import "@preview/ctheorems:1.1.2": *
+#import "/book.typ": book-page
+#show: book-page.with(title: "Tesla Zhang")
 
 The purpose of this page is to test some random things.
 
