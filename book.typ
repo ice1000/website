@@ -8,8 +8,9 @@
   language: "en",
   summary: [
     #prefix-chapter("index.typ")[About],
-    #prefix-chapter("resume.typ")[Resume],
+    #prefix-chapter("lnl-modal/report.typ")[LNL Cxl Modal Logic],
     = Miscellaneous
+    #prefix-chapter("resume.typ")[Industry Resume],
     #prefix-chapter("typst-test.typ")[Typesetting Experiments],
   ]
 )
