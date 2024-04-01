@@ -18,11 +18,14 @@ We assume readers to know some less formal terminologies, such as introduction r
 
 // Terminal object
 #definition("Unit")[
-We say a type theory has _unit type_ if it has a type $top$ where the following rules hold:
+We say a type theory has _unit type_ if it has the following constructions:
 
 + $Γ ⊢ top$ the _formation rule_,
++ $Γ ⊢ ★ : top$ the _introduction rule_;
+
+such that the following rules are derivable:
+
 + $Γ ⊢ top[σ] ≡ top$ the fact that unit is preserved nu substitution action,
-+ $Γ ⊢ ★ : top$ the _introduction rule_,
 + $ (Γ ⊢ a : top)/(Γ ⊢ a ≡ ★ : top)
   $
   The $η$-law.
@@ -39,18 +42,21 @@ The boolean type cannot be used to define a unit type, as it has two distinct te
 ]
 #lemma[
 The projection of a unit type, $Γ,x:top ⊢ π_top : Γ$ is a context isomorphism.]
-#proof[The inverse is given by the identity substitution extended with $★$, the introduction of $top$.]
+#proof[The inverse is given by the identity substitution extended with the introduction of $top$: $ Γ ⊢ (id_Γ,★) : (Γ,x:top) $]
 In fact, this can be used alternatively to define a unit type.
 
 // Initial object
 #definition("Empty")[
-We say a type theory has _empty type_ if it has a type $bot$ where the following rules hold:
+We say a type theory has _empty type_ if it has the following constructions:
 
 + $Γ ⊢ mybot$ the _formation rule_,
-+ $Γ ⊢ mybot[σ] ≡ mybot$ the fact that empty is preserved nu substitution action,
 + $ (Γ ⊢ a : mybot)/(Γ ⊢ elim_mybot (a) : A)
   $
-  The _elimination rule_,
+  The _elimination rule_;
+
+such that the following rules are derivable:
+
++ $Γ ⊢ mybot[σ] ≡ mybot$ the fact that empty is preserved nu substitution action,
 + $ (Γ, x:mybot ⊢ u: A)/(Γ, x: mybot ⊢ u ≡ elim_mybot (x) : A)
   $
   The $η$-law.
@@ -70,30 +76,50 @@ In other words, for all $Γ ⊢$ and $Δ ⊢$, we have a context isomorphism bet
 
 // Cartesian product
 #definition("Product")[
-We say a type theory has _product type_ if it has a type former $A × B$ where the following rules hold:
+We say a type theory has _product type_ if it has the following constructions:
 
-$ Γ ⊢ A × B #h(2em)
-  (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a, b⟩ : A × B) \
-  (Γ ⊢ p : A × B)/(Γ ⊢ p.1 : A)
-  #h(2em)
-  (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.1 ≡ a : A) \
-  (Γ ⊢ p : A × B)/(Γ ⊢ p.2 : A)
-  #h(2em)
-  (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.2 ≡ b : B) \
-  (Γ ⊢ p : A × B)/(Γ ⊢ p ≡ ⟨p.1, p.2⟩ : A × B)
++ $Γ ⊢ A × B$ the _formation rule_,
++ $ (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a, b⟩ : A × B)
   $
+  The _introduction rule_,
++ $ (Γ ⊢ p : A × B)/(Γ ⊢ p.1 : A)
+    #h(2em)
+    (Γ ⊢ p : A × B)/(Γ ⊢ p.2 : A)
+  $
+  The _elimination rules_;
+
+such that the following rules are derivable:
+
++ $ (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.1 ≡ a : A) \
+    #h(2em)
+    (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.2 ≡ b : B) \
+  $
+  The $β$-rules,
++ $ (Γ ⊢ p : A × B)/(Γ ⊢ p ≡ ⟨p.1, p.2⟩ : A × B)
+  $
+  The $η$-law.
 ]
 
 // Cartesian coproduct
 #definition("Sum")[
-We say a type theory has _sum type_ if it has a type former $A + B$ where the following rules hold:
+We say a type theory has _sum type_ if it has the following constructions:
 
-$ Γ ⊢ A + B #h(2em)
-  (Γ ⊢ a:A)/(Γ ⊢ inl(a) : A + B) #h(2em)
-  (Γ ⊢ b:B)/(Γ ⊢ inr(b) : A + B) \
-  (Γ ⊢ s : A + B #h(2em) Γ, x:A ⊢ u : C #h(2em) Γ, y:B ⊢ v : C)/(Γ ⊢ elim_+(s, x. u, y. v) : C) \
-  (Γ ⊢ a:A)/(Γ ⊢ elim_+(inl(a), x. u, y. v) ≡ u[a slash x] : C) \
-  (Γ ⊢ b:B)/(Γ ⊢ elim_+(inr(b), x. u, y. v) ≡ v[b slash y] : C)
++ $Γ ⊢ A + B$ the _formation rule_,
++ $ (Γ ⊢ a:A)/(Γ ⊢ inl(a) : A + B) \ (Γ ⊢ b:B)/(Γ ⊢ inr(b) : A + B)
   $
-  TODO
+  The _introduction rules_,
++ $ (Γ ⊢ s : A + B #h(2em) Γ, x:A ⊢ u : C #h(2em) Γ, y:B ⊢ v : C)/
+    (Γ ⊢ elim_+(s, x. u, y. v) : C)
+  $
+  The _elimination rule_;
+
+such that the following rules are derivable:
+
++ $ (Γ ⊢ a:A)/(Γ ⊢ elim_+(inl(a), x. u, y. v) ≡ u[a slash x] : C) \
+    (Γ ⊢ b:B)/(Γ ⊢ elim_+(inr(b), x. u, y. v) ≡ v[b slash y] : C)
+    $
+  The $β$-rules,
++ $ (Γ, x:A+B ⊢ u : C)/(Γ, x:A+B ⊢ u ≡ elim_+(x, y. u[inl(x) slash y], y. u[inr(x) slash y]) : C)
+  $
+  The $η$-law.
 ]
