@@ -75,8 +75,8 @@ $ (·) ⊢ #h(2em) (Γ⊢A)/(Γ,x:A⊢) $
 // Base-change functors
 #definition("Substitution action")[
 For a substitution object $Γ ⊢ σ : Δ$, we define the _action_ of substitution on types and terms as follows:
-$ (Γ ⊢ A)/(Γ ⊢ A[σ]) #h(2em) (Γ ⊢ a : A)/(Γ ⊢ a[σ] : A[σ]) \
-  (Γ ⊢ A ≡ B)/(Γ ⊢ A[σ] ≡ B[σ]) #h(2em) (Γ ⊢ a ≡ b : A)/(Γ ⊢ a[σ] ≡ b[σ] : A[σ]) $
+$ (Δ ⊢ A)/(Γ ⊢ A[σ]) #h(2em) (Δ ⊢ a : A)/(Γ ⊢ a[σ] : A[σ]) \
+  (Δ ⊢ A ≡ B)/(Γ ⊢ A[σ] ≡ B[σ]) #h(2em) (Δ ⊢ a ≡ b : A)/(Γ ⊢ a[σ] ≡ b[σ] : A[σ]) $
 ]
 
 In PFPL, $A[σ]$ is denoted $hat(σ)(A)$.
@@ -93,15 +93,37 @@ So, contexts are telescopic lists of types, and substitutions are telescopic lis
 We assume substitution to behave nicely,
 which decomposes to the following laws:
 
+// Identity morphism
 #definition("Identity substitution")[
-For any context $Γ$, we denote $Γ ⊢ id_Γ : Γ$ to be the substitution object formed by the following rules:
+For any context $Γ$, we denote $Γ ⊢ id_Γ : Γ$ to be the substitution object satisfying the following rules:
 
 $ (·)⊢id_((·)) : (·) #h(2em) (Γ ⊢ id_Γ : Γ)/(Γ,x:A⊢id_(Γ,x:A) : (Γ,x:A)) $
 so that $Γ ⊢ A[id_Γ] ≡ A$ and $Γ ⊢ a[id_Γ] ≡ a$.
 ]
 
-#definition("Composition of substitutions")[
-For any substitution objects $Γ ⊢ σ : Δ$ and $Δ ⊢ τ : Θ$, we denote $Γ ⊢ (τ;σ) : Θ$ to be the substitution object formed by the following rules:
+// Composition of morphisms
+#construction("Composition of substitutions")[
+For any substitution objects $Γ ⊢ σ : Δ$ and $Δ ⊢ τ : Θ$, we denote $Γ ⊢ (τ;σ) : Θ$ to be the substitution object formed by induction on $τ$:
+
++ $τ = (·)$, which implies $Θ = (·)$, we define $(·;σ) = σ$.
++ $τ = (τ',a)$, which implies $Θ = (Θ',x:A)$, we define $((τ',a);σ) = ((τ';σ),a[σ])$.
+]
+
+#lemma[Composition of substitutions is associative: $ (τ;σ);ρ = τ;(σ;ρ) $]
+#lemma[Composition of substitutions commutes with substitution action: $ A[τ;σ] = A[σ][τ] #h(2em) a[τ;σ] = a[σ][τ] $]
+Note that the order is reversed.
+
+// Display maps
+#definition("Projection")[
+For any type $Γ⊢A$, we denote $Γ,x:A ⊢π_A : Γ$ to be the substitution object such that for every $Γ⊢a:A$, we have:
+$ Γ ⊢ (π_A;(id_Γ,a)) ≡ (id_(Γ,x:A)) : Γ $
+]
+#construction("Weakening")[
+We may induce a substitution action by any projection,
+which we refer to as _weakening_:
+$ (Γ⊢A #h(2em) Γ⊢B)/(Γ,x:A⊢B[π_A]) #h(2em)
+  (Γ⊢b:B)/(Γ,x:A⊢b[π_A] : B[π_A])
+ $
 ]
 
 #definition("Containment")[
@@ -119,7 +141,7 @@ We assume the following rule:
 $ (x:A ∈_n Γ)/(Γ ⊢ x:A) $
 such that substitution acts on variables as follows:
 $ (x:A ∈_0 Γ)/(Γ ⊢ x[σ,a] ≡ a : A[σ]) \
-  (x:A ∈_(n+1) (Γ,y:B) #h(2em) Γ ⊢ x[σ] : A')/(Γ, y:B ⊢ x[σ,a] ≡ x[σ]:A')
+  (x:A ∈_(n+1) (Γ,y:B) #h(2em) Γ ⊢ x[σ] : A')/
+  (Γ, y:B ⊢ x[σ,b] ≡ x[π_B;σ]:A'[π_B])
  $
 ]
-// TODO: insert a weakening here
