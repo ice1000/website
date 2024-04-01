@@ -73,6 +73,10 @@ and by the $η$-law.]
 #lemma[For every context extended by $mybot$, there is a context isomorphism among each pair of them.
 
 In other words, for all $Γ ⊢$ and $Δ ⊢$, we have a context isomorphism between $Γ, x:mybot ⊢$ and $Δ, x:mybot ⊢$.]
+#proof[
+The isomorphism $Γ, x:mybot ⊢ σ : (Δ,x:mybot)$ is given by a list of $elim_mybot (x)$,
+whose inverse is given alike.
+]
 
 // Cartesian product
 #definition("Product")[
@@ -91,8 +95,7 @@ We say a type theory has _product type_ if it has the following constructions:
 such that the following rules are derivable:
 
 + $ (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.1 ≡ a : A) \
-    #h(2em)
-    (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.2 ≡ b : B) \
+    (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.2 ≡ b : B)
   $
   The $β$-rules,
 + $ (Γ ⊢ p : A × B)/(Γ ⊢ p ≡ ⟨p.1, p.2⟩ : A × B)
@@ -108,7 +111,7 @@ We say a type theory has _sum type_ if it has the following constructions:
 + $ (Γ ⊢ a:A)/(Γ ⊢ inl(a) : A + B) \ (Γ ⊢ b:B)/(Γ ⊢ inr(b) : A + B)
   $
   The _introduction rules_,
-+ $ (Γ ⊢ s : A + B #h(2em) Γ, x:A ⊢ u : C #h(2em) Γ, y:B ⊢ v : C)/
++ $ (Γ ⊢ s : A + B \ Γ, x:A ⊢ u : C #h(2em) Γ, y:B ⊢ v : C)/
     (Γ ⊢ elim_+(s, x. u, y. v) : C)
   $
   The _elimination rule_;
@@ -119,7 +122,11 @@ such that the following rules are derivable:
     (Γ ⊢ b:B)/(Γ ⊢ elim_+(inr(b), x. u, y. v) ≡ v[b slash y] : C)
     $
   The $β$-rules,
-+ $ (Γ, x:A+B ⊢ u : C)/(Γ, x:A+B ⊢ u ≡ elim_+(x, y. u[inl(x) slash y], y. u[inr(x) slash y]) : C)
++ $ (Γ, x:A+B ⊢ u : C \
+     u_1 := u[inl(y) slash x] #h(2em)
+     u_2 := u[inr(y) slash x]
+    )/
+    (Γ, x:A+B ⊢ u ≡ elim_+(x, y. u_1, y. u_2) : C)
   $
   The $η$-law.
 ]

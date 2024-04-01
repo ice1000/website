@@ -13,6 +13,7 @@
     #chapter("dtt-dev/intro.typ")[Introduction],
     #chapter("dtt-dev/subst.typ")[Subst Calculus],
     #chapter("dtt-dev/struct-1.typ")[Structures - I],
+    #chapter(none)[Compilers],
     = Miscellaneous
     #prefix-chapter("resume.typ")[Industry Resume],
     #prefix-chapter("typst-test.typ")[Typesetting Experiments],
