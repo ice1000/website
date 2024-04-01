@@ -5,6 +5,7 @@
 #let lemma = thmbox("lemma", "Lemma", fill: rgb("#eeffee"))
 #let definition = thmbox("definition", "Definition", fill: rgb("#DFF9FF"))
 #let proof = thmproof("proof", "Proof")
+#let example = thmbox("example", "Example").with(fill: rgb("#f7f7fd"))
 #let mybot = box(sym.bot)
 
 #import "/book.typ": book-page
@@ -12,7 +13,7 @@
 
 = Dependent Theory of Types
 
-This is a series of development on some meta-level dependent type theory,
+This is a series of extremely syntax-minded development on some meta-level dependent type theory,
 which I wish to convey an interesting perspective.
 
 The type theory I consider here is not designed to be implementable (i.e. have decidable type checking) or practical, but rather intended to be a reasoning framework about constructions.
@@ -42,7 +43,7 @@ A _type theory_ is given by a set of rules for forming judgments inductively acc
 We assume the readers to be familiar with the above notions of type theories.
 Additionally, we assume readers to know some less formal terminologies, such as introduction rules, elimination rules, term formers, $β$-rules, $η$-laws, etc., which are common in type theory literature.
 
-= Structures in type theories
+= Structures inside type theories
 
 // Terminal object
 #definition("Unit")[
@@ -52,6 +53,12 @@ $ Γ ⊢ top #h(2em)
   Γ ⊢ ★ : top #h(2em)
   (Γ ⊢ a : top)/(Γ ⊢ a ≡ ★ : top)
   $
+]
+
+In any type theory, as long as we can assign $top$ and $★$ to an existing construction is considered a type theory with unit type.
+
+#example[
+The boolean type cannot be used to define a unit type, as it has two distinct terms, so the third rule does not hold.
 ]
 
 // Initial object
@@ -64,4 +71,9 @@ $ Γ ⊢ mybot #h(2em)
   $
 ]
 
+// Cartesian product
+#definition("Product")[
+We say a type theory has _product type_ if it has a type former $A × B$ where the following rules hold:
 
+TODO
+]
