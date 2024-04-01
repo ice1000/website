@@ -1,36 +1,18 @@
 #import "config.typ": *
 #import "/book.typ": book-page
 #show: thmrules.with(qed-symbol: $square$)
-#show: book-page.with(title: "Inside structures")
+#show: book-page.with(title: "DTT")
 
 #show math.equation: it => {
   show "∈": math.scripts
   it
 }
 
-= Dependent Theory of Types
+= Introduction
 
-This is a series of extremely syntax-minded development on some meta-level dependent type theory,
-which I wish to convey an interesting perspective.
-Experienced readers will immediately know what I'm trying to do in this development, but I will not spoil it here.
+The goal of this chapter is to defined a _substitution calculus_, which a dependent type theory with a well-behaved substitution operation.
 
-The type theory I consider here is not designed to be implementable (i.e. have decidable type checking)
-or practical, but rather intended to be a reasoning framework about constructions.
-I will also try to avoid set theoretic terminologies as much as possible,
-and restrict the prerequisites to only mathematical maturity.
-
-In the whole development, I will assume nameless representation of variables, and treat them informally as if they are named.
-
-For readers who are unfamiliar with logic, here are two notions that will be used frequently:
-
-#definition("Derivable")[
-A _derivable_ judgment in a type theory is a judgment one may derive using the typing rules.
-]
-#definition("Admissible")[
-An _admissible_ rule in a type theory is a rule that can be proved at the meta level by doing case analysis on the premises.
-]
-
-== Judgments
+= Judgments
 
 // CwF
 #definition("Judgment schema")[
@@ -63,7 +45,7 @@ The judgments come with _presuppositions_ that are always assumed:
 
 For expert readers: unless explicitly stated otherwise, the type theory we consider will be structural type theories without modalities or type universes -- so that all type formers are well-behaved and simple.
 
-== Contexts and Substitutions
+= Contexts and Substitutions
 
 // Context comprehension
 #definition("Context")[
@@ -113,7 +95,13 @@ For any substitution objects $Γ ⊢ σ : Δ$ and $Δ ⊢ τ : Θ$, we denote $�
 #lemma[Composition of substitutions commutes with substitution action: $ A[τ;σ] = A[σ][τ] #h(2em) a[τ;σ] = a[σ][τ] $]
 Note that the order is reversed.
 
-== Variables
+For equality of substitutions, we intend to equate them according to their actions. In other words, two substitutions are equal if they act the same way on types and terms.
+#definition("Substitution extensionality")[
+If for every $Γ ⊢ A$, $Γ ⊢ A[σ] ≡ A[τ]$, and for every $Γ ⊢ a : A$, $Γ ⊢ a[σ] ≡ a[τ]$, then:
+$ Γ ⊢ σ ≡ τ : Δ $
+]
+
+= Variables
 
 // Display maps
 #definition("Projection")[
@@ -151,7 +139,3 @@ $ (x:A ∈_0 Γ)/(Γ ⊢ x[σ,a] ≡ a : A[σ]) \
 ]
 Intuitively, a variable picks the $n$-th element in a substitution.
 However, expressing this operation using typing rules is not trivial.
-
-== Conclusion
-
-We have defined a _substitution calculus_, which a dependent type theory with a well-behaved substitution operation.

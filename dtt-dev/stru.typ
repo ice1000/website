@@ -3,6 +3,15 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: book-page.with(title: "Inside structures")
 
+#show math.equation: it => {
+  show "★": math.class.with("unary")
+  it
+}
+
+= Introduction
+
+The goal of this chapter is to defined strucures inside dependent type theories.
+
 We assume readers to know some less formal terminologies, such as introduction rules, elimination rules, term formers, $β$-rules, $η$-laws, etc., which are common in type theory literature.
 
 = Structures inside type theories
@@ -12,12 +21,15 @@ We assume readers to know some less formal terminologies, such as introduction r
 We say a type theory has _unit type_ if it has a type $top$ where the following rules hold:
 
 $ Γ ⊢ top #h(2em)
+  Γ ⊢ top[σ] ≡ top \
   Γ ⊢ ★ : top #h(2em)
   (Γ ⊢ a : top)/(Γ ⊢ a ≡ ★ : top)
   $
 ]
+#lemma[$ Γ ⊢ ★[σ] ≡ ★ : top $]
+#proof[Because $Γ ⊢ ★[σ] : top$, and by the last rule.]
 
-In any type theory, as long as we can assign $top$ and $★$ to an existing construction is considered a type theory with unit type.
+In any type theory, as long as we can assign $top$ and $★$ to an existing construction, we consider this type theory to have unit type.
 
 #example[
 The boolean type cannot be used to define a unit type, as it has two distinct terms, so the third rule does not hold.
@@ -47,4 +59,15 @@ $ Γ ⊢ A × B #h(2em)
   (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.2 ≡ b : B) \
   (Γ ⊢ p : A × B)/(Γ ⊢ p ≡ ⟨p.1, p.2⟩ : A × B)
   $
+]
+
+// Cartesian coproduct
+#definition("Sum")[
+We say a type theory has _sum type_ if it has a type former $A + B$ where the following rules hold:
+
+$ Γ ⊢ A + B #h(2em)
+  (Γ ⊢ a:A)/(Γ ⊢ inl(a) : A + B) #h(2em)
+  (Γ ⊢ b:B)/(Γ ⊢ inr(b) : A + B)
+  $
+  TODO
 ]
