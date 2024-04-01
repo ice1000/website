@@ -25,7 +25,7 @@ We say a type theory has _unit type_ if it has the following constructions:
 
 such that the following rules are derivable:
 
-+ $Γ ⊢ top[σ] ≡ top$ the fact that unit is preserved nu substitution action,
++ $Γ ⊢ top[σ] ≡ top$ the fact that unit is preserved by substitution action,
 + $ (Γ ⊢ a : top)/(Γ ⊢ a ≡ ★ : top)
   $
   The $η$-law.
@@ -56,7 +56,7 @@ We say a type theory has _empty type_ if it has the following constructions:
 
 such that the following rules are derivable:
 
-+ $Γ ⊢ mybot[σ] ≡ mybot$ the fact that empty is preserved nu substitution action,
++ $Γ ⊢ mybot[σ] ≡ mybot$ the fact that empty is preserved by substitution action,
 + $ (Γ, x:mybot ⊢ u: A)/(Γ, x: mybot ⊢ u ≡ elim_mybot (x) : A)
   $
   The $η$-law.
@@ -94,6 +94,7 @@ We say a type theory has _product type_ if it has the following constructions:
 
 such that the following rules are derivable:
 
++ $Γ ⊢ (A × B)[σ] ≡ A[σ] × B[σ]$ the fact that product is preserved by substitution action,
 + $ (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.1 ≡ a : A) \
     (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.2 ≡ b : B)
   $
@@ -118,6 +119,7 @@ We say a type theory has _sum type_ if it has the following constructions:
 
 such that the following rules are derivable:
 
++ $Γ ⊢ (A + B)[σ] ≡ A[σ] + B[σ]$ the fact that sum is preserved by substitution action,
 + $ (Γ ⊢ a:A)/(Γ ⊢ elim_+(inl(a), x. u, y. v) ≡ u[a slash x] : C) \
     (Γ ⊢ b:B)/(Γ ⊢ elim_+(inr(b), x. u, y. v) ≡ v[b slash y] : C)
     $

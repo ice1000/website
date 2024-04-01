@@ -4,9 +4,10 @@
 = Tesla (Yinsen) Zhang
 
 I am a first-year Ph.D. student in the #link("https://www.csd.cs.cmu.edu")[Computer Science Department] at CMU,
-advised by Professor #link("https://www.cs.cmu.edu/~balzers")[Stephanie Balzer], working on session type theories.
+advised by Professor #link("https://www.cs.cmu.edu/~balzers")[Stephanie Balzer], working on session type theories,
+their applications and metatheories.
 
-My personal interest includes implementing type checkers for dependent type theories,
+My personal interests include implementing type checkers for dependent type theories,
 making fancy programming language tools,
 and thinking about type theories from a categorical point of view.
 
