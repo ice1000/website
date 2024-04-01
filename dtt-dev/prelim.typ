@@ -113,11 +113,15 @@ For any substitution objects $Γ ⊢ σ : Δ$ and $Δ ⊢ τ : Θ$, we denote $�
 #lemma[Composition of substitutions commutes with substitution action: $ A[τ;σ] = A[σ][τ] #h(2em) a[τ;σ] = a[σ][τ] $]
 Note that the order is reversed.
 
+== Variables
+
 // Display maps
 #definition("Projection")[
 For any type $Γ⊢A$, we denote $Γ,x:A ⊢π_A : Γ$ to be the substitution object such that for every $Γ⊢a:A$, we have:
 $ Γ ⊢ (π_A;(id_Γ,a)) ≡ (id_(Γ,x:A)) : Γ $
 ]
+Intuitively, $π_A$ is the substitution object that simply deletes the last variable from the context, and acts as the identity substitution otherwise.
+
 #construction("Weakening")[
 We may induce a substitution action by any projection,
 which we refer to as _weakening_:
@@ -145,3 +149,9 @@ $ (x:A ∈_0 Γ)/(Γ ⊢ x[σ,a] ≡ a : A[σ]) \
   (Γ, y:B ⊢ x[σ,b] ≡ x[π_B;σ]:A'[π_B])
  $
 ]
+Intuitively, a variable picks the $n$-th element in a substitution.
+However, expressing this operation using typing rules is not trivial.
+
+== Conclusion
+
+We have defined a _substitution calculus_, which a dependent type theory with a well-behaved substitution operation.
