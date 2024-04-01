@@ -11,3 +11,4 @@
 
 #let inl(x) = $sans("inl")(#x)$
 #let inr(x) = $sans("inr")(#x)$
+#let wk(x) = $sans("wk")(#x)$

@@ -26,13 +26,15 @@ $ Γ ⊢ top #h(2em)
   (Γ ⊢ a : top)/(Γ ⊢ a ≡ ★ : top)
   $
 ]
+Conventionally, we will refer to the first one as the formation rule, the second last as the introduction rule,
+and the last one as the $η$-law.
 #lemma[$ Γ ⊢ ★[σ] ≡ ★ : top $]
-#proof[Because $Γ ⊢ ★[σ] : top$, and by the last rule.]
+#proof[Because $Γ ⊢ ★[σ] : top$, and by the $η$-law.]
 
 In any type theory, as long as we can assign $top$ and $★$ to an existing construction, we consider this type theory to have unit type.
 
 #example[
-The boolean type cannot be used to define a unit type, as it has two distinct terms, so the third rule does not hold.
+The boolean type cannot be used to define a unit type, as it has two distinct terms, so the $η$-law does not hold.
 ]
 
 // Initial object
