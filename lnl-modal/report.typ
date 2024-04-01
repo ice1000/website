@@ -23,17 +23,24 @@
 }
 
 // Good box
-#let gbox(content) = box(stroke: black, inset: 4pt, baseline: 4pt, content)
+#let gbox(content) = box(stroke: black, inset: 5pt, baseline: 4pt, content)
 
-/*
-Originally, contextual modal type theory (Nanevski at al, ToCL 2008) was developed for two main
+This document is the miniproject project for the course
+Substructural Logics (15-836, #link("https://www.cs.cmu.edu/~fp/courses/15836-f23")).
+
+/* = Project description
+
+This section is adapted from the miniproject description from the course
+Substructural Logics (15-836, #link("https://www.cs.cmu.edu/~fp/courses/15836-f23")).
+
+Originally, contextual modal type theory @08nanevski_contextual_modal_type_theory was developed for two main
 purposes: support metaprogramming with open code, and capture the concept of metavariable
-type-theoretically. It generalized the constructor quote $M : □A$ ($M$ is a closed term of type $A$)
-from modal logic to $box (Γ. M)$ ($M$ may only depend on the variables in context $Γ$).
+type-theoretically. It generalized the constructor $bold("quote") M : □A$ ($M$ is a closed term of type $A$)
+from modal logic to $bold("box") (Γ. M)$ ($M$ may only depend on the variables in context $Γ$).
 
 Actually, we have already been using metavariables without internalizing them into the type
-system because all top level definitions, written as $p (x : A) (y1 : A1) ... (yn : An) = P (x, y1, ..., yn)$
-essentially give $p$ a contextual type $[y1 : A1, ..., yn : An](x : A)$. That is, in #smallcaps("MPass") and #smallcaps("Sax"), process variables are metavariables.
+system because all top level definitions, written as $p (x : A) (y_1 : A_1) ... (y_n : A_n) = P (x, y_1, ..., y_n)$
+essentially give $p$ a contextual type $[y_1 : A_1, ..., y_n : A_n](x : A)$. That is, in #smallcaps("MPass") and #smallcaps("Sax"), process variables are metavariables.
 
 1. First, in a mixed linear/nonlinear logic: What is the right decomposition of $[∆]A$ (which
 requires a generalization of $↓$ or $↑$ or both)?
@@ -281,7 +288,7 @@ and with the upshift rules replaced by
 $ #prooftree(
   axiom($Γ_S; Ψ_L ⊢ A_L$),
   rule($Γ_S ⊢ ↑ Ψ_L ] A_L$, label: $↑ R$)
-) #h(3em) #prooftree(
+)\ #prooftree(
   axiom($Γ_S, ↑ Ψ_L ]A_L; Δ'_L ⊢ Ψ_L$),
   axiom($Γ_S, ↑ Ψ_L ]A_L; Δ_L,A_L ⊢ C_L$),
   rule($Γ_S, ↑ Ψ_L ]A_L; Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑L$)
@@ -325,13 +332,13 @@ has these properties.
       axiom($Γ_S ⊢ A_S$),
       axiom($Γ_S,A_S ⊢ C_S$),
       rule($Γ_S ⊢ C_S$, n: 2, label: cutSS)
-    ) #h(3em) #prooftree(
+    ) \
+    #prooftree(
       axiom($Γ_S ⊢ A_S$),
       axiom($Γ_S,A_S;Δ_L ⊢ C_L$),
       rule($Γ_S;Δ_L ⊢ C_L$, n: 2, label: cutSL)
-    ) $
-
-    $ #prooftree(
+    ) \
+    #prooftree(
       axiom($Γ_S;Δ'_L ⊢ A_L$),
       axiom($Γ_S;Δ_L,A_L ⊢ C_L$),
       rule($Γ_S;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: cutLL)
