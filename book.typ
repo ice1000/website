@@ -10,7 +10,8 @@
     #prefix-chapter("index.typ")[About],
     #prefix-chapter("lnl-modal/report.typ")[LNL Cxl Modal Logic],
     = Dependent Theory of Types
-    #chapter("dtt-dev/limits.typ")[Finite Limits],
+    #chapter("dtt-dev/prelim.typ")[Introduction],
+    #chapter("dtt-dev/stru.typ")[Inside structures],
     = Miscellaneous
     #prefix-chapter("resume.typ")[Industry Resume],
     #prefix-chapter("typst-test.typ")[Typesetting Experiments],
