@@ -84,7 +84,8 @@ and we use the abstracted rules which usually leads to lighter notations, shorte
 #definition("Product")[
 We say a type theory has _product types_ if it has the following constructions:
 
-+ $Γ ⊢ A × B$ the _formation rule_,
++ $ (Γ⊢A #h(2em) Γ⊢B)/(Γ ⊢ A × B) $
+  The _formation rule_,
 + $ (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a, b⟩ : A × B)
   $
   The _introduction rule_,

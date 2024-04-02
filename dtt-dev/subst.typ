@@ -42,14 +42,15 @@ The judgments come with _presuppositions_ that are always assumed:
 When we write down a rule that derives a judgment, we implicitly assume that the presuppositions are in the premises.
 ] <def_presup>
 
-For expert readers: unless explicitly stated otherwise, the type theory we consider will be structural type theories without modalities or type universes -- so that all type formers are well-behaved and simple.
+// For expert readers: unless explicitly stated otherwise, the type theory we consider will be structural type theories without modalities or type universes -- so that all type formers are well-behaved and simple.
 
 #definition[We assume judgmental equality to be _reflexive_:
 $ Γ ⊢ A ≡ A #h(2em) Γ ⊢ a ≡ a : A $
-]
+] <def_refl_jeq>
 
 #definition[We assume judgmental equality to be _substitutive_.]
 This is very hard to spell out formally in a general setting, but it basically means that we can substitute equal terms in any judgment.
+We provide two example special cases of this principle to illustrate its meaning:
 
 #corollary[
 We assume the equality judgments to be symmetric, and transitive:
@@ -58,11 +59,18 @@ $ (Γ ⊢ A ≡ B)/(Γ ⊢ B ≡ A) #h(2em) (Γ ⊢ a ≡ b : A)/(Γ ⊢ b ≡ a
   (Γ ⊢ a ≡ b : A #h(2em) Γ ⊢ b ≡ c : A)/(Γ ⊢ a ≡ c : A)
  $
 ]
+#proof[
+- Symmetry: $Γ ⊢ A ≡ B$ so we can replace $B$ with $A$, and the goal becomes $Γ ⊢ A ≡ A$,
+  which holds by @def_refl_jeq. The one for terms is similar.
+- Transitivity: $Γ ⊢ A ≡ B$, so we can replace $B$ with $A$ so the other premise becomes $Γ ⊢ A ≡ C$,
+  which is equal to the goal.
+]
 
 #corollary[
 Typing of terms is up to judgmental equality of types:
-$ (Γ ⊢ A ≡ B #h(2em) Γ ⊢ a:A)/(Γ ⊢ a:B) $
+$ (Γ ⊢ A ≡ B #h(2em) Γ ⊢ a:B)/(Γ ⊢ a:A) $
 ] <def_typing_jeq>
+#proof[$Γ ⊢ A ≡ B$ so we can replace $B$ with $A$ in the premise, which makes it equal to the goal.]
 
 Furthermore, we assume all the congruence rules (i.e. all functions are pure) for the equality judgments, which are omitted everywhere for brevity.
 
@@ -115,6 +123,7 @@ For any substitution objects $Γ ⊢ σ : Δ$ and $Δ ⊢ τ : Θ$, we denote $�
 ]
 
 #lemma[Composition of substitutions is associative: $ (τ;σ);ρ ≡ τ;(σ;ρ) $]
+#lemma[Composition of substitutions is unital: $ (id;σ) ≡ σ #h(3em) (σ;id) ≡ σ $]
 #lemma[Composition of substitutions commutes with substitution action: $ A[τ;σ] ≡ A[σ][τ] #h(2em) a[τ;σ] ≡ a[σ][τ] $]
 Note that the order of composition of substitutions is reversed when applying them as actions.
 
@@ -192,3 +201,8 @@ However, what we _can_ say, is that the identity substitution defined by variabl
 
 In this chapter, we have postulated the basic structures needed for a well-behaved _substitution calculus_, aka a _dependent type theory_,
 which will be used as the foundational framework for the rest of the development.
+
+As a side remark, an alternative to presuppositions @def_presup is to use rules like these:
+$ (Γ ⊢ a : A)/(Γ ⊢ A) $
+It is up to preference and formalism to choose between the two styles.
+We use presuppositions to avoid proving a reason to use the above style.

@@ -5,7 +5,8 @@
 #definition("Sum")[
 We say a type theory has _sum type_ if it has the following constructions:
 
-+ $Γ ⊢ A + B$ the _formation rule_,
++ $ (Γ⊢A #h(2em) Γ⊢B)/(Γ ⊢ A + B) $
+  The _formation rule_,
 + $ (Γ ⊢ a:A)/(Γ ⊢ inl(a) : A + B) \ (Γ ⊢ b:B)/(Γ ⊢ inr(b) : A + B)
   $
   The _introduction rules_,
