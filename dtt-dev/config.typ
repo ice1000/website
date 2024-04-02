@@ -16,7 +16,9 @@
 #let elim = $sans("elim")$
 #let refl = $sans("refl")$
 
-#import "/book.typ": cross-link
+#import "/book.typ": cross-link as lib-cross-link
+
+#let cross-link(path, reference: none, content) = lib-cross-link("/dtt-dev/" + path + ".typ", reference: reference, content)
 
 #let dtt(title: "DTT", body) = {
   import "/book.typ": book-page

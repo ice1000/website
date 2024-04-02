@@ -147,7 +147,7 @@ such that the following rules hold:
 ]
 
 Before stating any properties of extensional equality, observe that in the $η$-law, we do not have a premise $Γ ⊢ p : a =_A b$.
-This is because we have #cross-link("/dtt-dev/subst.typ", reference: <def_presup>)[_presuppositions_], implying that this is already assumed when we _state_ the conclusion.
+This is because we have #cross-link("subst", reference: <def_presup>)[_presuppositions_], implying that this is already assumed when we _state_ the conclusion.
 
 #lemma("Uniqueness")[The following judgment is _derivable_:
 $ (Γ ⊢ p : a =_A b #h(2em) Γ ⊢ q : a =_A b)/
@@ -161,7 +161,7 @@ By $η$-law, both $p$ and $q$ are equal to $refl_a$.
 
 #lemma[Having _extensional equality type_ and any closed term $· ⊢ a:A$ implies having a _unit type_.]
 #proof[Let $top := (a =_A a)$ and $★ := refl_a$.
-In case of open context we apply #cross-link("/dtt-dev/subst.typ", reference: <cons_weakening>)[weakening].]
+In case of open context we apply #cross-link("subst", reference: <cons_weakening>)[weakening].]
 
 = Conclusion
 

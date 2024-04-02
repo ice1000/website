@@ -1,6 +1,7 @@
 #import "config.typ": *
 #import "@preview/fletcher:0.4.3" as fletcher: diagram, node, edge
 #show: dtt.with(title: "Outside structures")
+#set quote(block: true)
 
 = Introduction
 
@@ -11,13 +12,13 @@ we first need to make it explicit that what data give rise to a type theory, and
 
 = Conventions
 
-We consider a type theory to be a #cross-link("/dtt-dev/subst.typ")[substitution calculus] plus a set of postulated rules,
+We consider a type theory to be a #cross-link("subst")[substitution calculus] plus a set of postulated rules,
 denoted using caligraphic letters or bold font words, e.g. $cal(A), cal(B)$, or $bold("TT")$.
 
 In the presence of multiple type theories, we write $Γ ⊢^cal(A) ...$ to mean that this judgment happens in type theory $cal(A)$.
 
-Recall in #cross-link("/dtt-dev/struct-1.typ")[last chapter] we have introduced a couple of _structures_ of type theories, defined to be having some data and the ability to derive some rules.
-When postulating rules, we might just say "$cal(A)$ has #cross-link("/dtt-dev/struct-1.typ", reference: <def_product>)[product type]" to say that we are postulating all the rules needed by product type in $cal(A)$.
+Recall in #cross-link("struct-1")[last chapter] we have introduced a couple of _structures_ of type theories, defined to be having some data and the ability to derive some rules.
+When postulating rules, we might just say "$cal(A)$ has #cross-link("struct-1", reference: <def_product>)[product type]" to say that we are postulating all the rules needed by product type in $cal(A)$.
 
 The following are some example definitions of type theories:
 
@@ -69,36 +70,37 @@ For every type theory $cal(A)$, there exists a compiler from $cal(A)$ to the uni
 For every type theory $cal(A)$, there exists a compiler from the empty type theory $bold(0)$ to $cal(A)$, because there is nothing to compile.
 ]
 
-= Structures as compilers
+= Structures, revisited
 
-We start the section by observing the following fact.
+We start the section by a reflection on the definition of #cross-link("struct-1", reference: <def_unit>)[having a unit type].
+For a type theory to have a unit type, the following needs to be true:
 
-#text(fill: red)[Warning: the rest of the section is still under construction,
-things might be completely wrong]
+For every context $Γ$,
++ there is a type $Γ ⊢ top$,
++ there is a distinguished term $Γ ⊢ ★ : top$
+  such that every term of this type is equal to it,
++ and this whole thing is preserved by substitution.
 
-#lemma[
-To say a type theory $cal(A)$ has a unit type, it suffice to construct a compiler from the unit type theory $bold(1)$ to $cal(A)$.
-] <lem_unit_compile>
-#proof[
-It suffice to choose an assignment of $Γ ⊢^cal(A) top$ and $Γ ⊢^cal(A) ★ : top$ such that the rules are satisfied.
+For product types, we can rephrase its definition in a similar way,
+but with the presence of rule premises, they are more complicated:
 
-Suppose the unit type in $bold(1)$ consists of $Γ ⊢^bold(1) top$ and $Γ ⊢^bold(1) ★ : top$, then by the provided compiler, their compilation results give rise to the desired data and judgmental equalities. Let 
-]
+For every context $Γ$ and types $Γ ⊢ A$ and $Γ ⊢ B$,
++ there is a type $Γ ⊢ A × B$,
++ for every pair of terms $Γ ⊢ t : A$ and $Γ ⊢ u : B$, there is a term $Γ ⊢ ⟨t, u⟩ : A × B$
+  such that every term of this type can be written as such a
+  pair,
++ and this whole thing is preserved by substitution.
 
-#lemma[
-To say a type theory $cal(A)$ has an empty type, it suffice to construct a compiler from a type theory with only the empty type to $cal(A)$.
-]
-#proof[Similar to @lem_unit_compile.]
+Note that the fact that all terms can be written as such a pair is known as all terms _factor through_ the introduction rule.
+Similarly for the empty type, all terms in contexts where $mybot$ is present _factor through_ the elimination rule.
 
-We can even do the same for product types, but that will be slightly harder,
-and also motivates the use of derivability in the definition of a compiler @def_compiler.
+There seems to be a lot of things in common:
 
-#lemma[
-To say a type theory $cal(A)$ has product types, it suffice to construct a compiler from the type theory with only products $bold("FP")$ to $cal(A)$.
-]
-#proof[
-It suffice to choose an assignment of $Γ ⊢^bold("FP") A × B$, its introduction and elimination.
+For every context $Γ$ and types $Γ ⊢ 🤔$,
++ there is a type $Γ ⊢ ✨$,
++ for every tuple of terms $Γ ⊢ ... : 🤔$, there is a term $Γ ⊢ ... : ✨$
+  such that every term of this type factor through its introduction,
++ and this whole thing is preserved by substitution.
 
-TODO
-]
 
+Can we generalize this?
