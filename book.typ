@@ -12,18 +12,18 @@
     = Dependent Theory of Types
     #chapter("dtt-dev/intro.typ")[Introduction],
     #chapter("dtt-dev/subst.typ")[Subst Calculus],
-    #chapter("dtt-dev/struct-1.typ")[Structures - I],
+    #chapter("dtt-dev/struct-1.typ")[Structures I],
     #chapter("dtt-dev/functor.typ")[Compilers],
     // Plan: limits
-    #chapter(none)[Structures - II],
+    #chapter(none)[Structures, revisted],
     // Plan: pi, sigma (maybe local colimits?)
-    #chapter(none)[Structures - III],
+    #chapter(none)[Structures II],
     // Plan: type 2-theory
-    #chapter(none)[Dependent Theory of Types],
+    #chapter(none)[Theory of Types],
     // Plan: modalities
-    #chapter(none)[Structures - IV],
+    #chapter(none)[Modalities],
     // Plan: substructural type theories
-    #chapter(none)[Structures - V],
+    #chapter(none)[Substructural],
     #chapter("dtt-dev/wip.typ")[WIP Definitions],
     = Miscellaneous
     #prefix-chapter("resume.typ")[Industry Resume],

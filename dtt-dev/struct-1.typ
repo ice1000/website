@@ -122,7 +122,7 @@ $ Γ ⊢ ⟨a,b⟩[σ] ≡ ⟨a[σ], b[σ]⟩ : A[σ] × B[σ] $] <lem_subst_pro
 #proof[
 Let $u := ⟨a,b⟩[σ]$. By @lem_product_ext, the goal is equivalently $u.1 ≡ a[σ]$ and $u.2 ≡ b[σ]$.
 
-Since projection is preserved by substitution, we have $⟨a,b⟩[σ].1 ≡ ⟨a,b⟩.1[σ] ≡ a[σ]$, hence $u.1 ≡ a[σ]$, likewise $u.1 ≡ b[σ]$.
+Since projection is preserved by substitution, we have $(⟨a,b⟩[σ]).1 ≡ (⟨a,b⟩.1)[σ] ≡ a[σ]$, hence $u.1 ≡ a[σ]$, likewise $u.2 ≡ b[σ]$.
 ]
 
 = Dependently-typed connective
