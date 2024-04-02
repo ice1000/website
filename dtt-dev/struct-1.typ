@@ -1,35 +1,28 @@
 #import "config.typ": *
-#import "/book.typ": book-page
-#show: thmrules.with(qed-symbol: $square$)
-#show: book-page.with(title: "Inside structures")
-
-#show math.equation: it => {
-  show "★": math.class.with("unary")
-  it
-}
+#show: dtt.with(title: "Inside structures")
 
 = Introduction
 
-The goal of this chapter is to defined strucures inside dependent type theories.
+The goal of this chapter is to defined some simple strucures inside dependent type theories.
 
 We assume readers to know some less formal terminologies, such as introduction rules, elimination rules, term formers, $β$-rules, $η$-laws, etc., which are common in type theory literature.
 
-= Structures inside type theories
+= Nullary connectives
 
 // Terminal object
 #definition("Unit")[
-We say a type theory has _unit type_ if it has the following constructions:
+We say a type theory has a _unit type_ if it has the following constructions:
 
 + $Γ ⊢ top$ the _formation rule_,
 + $Γ ⊢ ★ : top$ the _introduction rule_;
 
-such that the following rules are derivable:
+such that the following rules hold:
 
 + $Γ ⊢ top[σ] ≡ top$ the fact that unit is preserved by substitution action,
 + $ (Γ ⊢ a : top)/(Γ ⊢ a ≡ ★ : top)
   $
   The $η$-law.
-]
+] <def_unit>
 
 #lemma[The introduction of unit type is preserved by substitution:
 $ Γ ⊢ ★[σ] ≡ ★ : top $] <lem_subst_unit>
@@ -54,7 +47,7 @@ We say a type theory has _empty type_ if it has the following constructions:
   $
   The _elimination rule_;
 
-such that the following rules are derivable:
+such that the following rules hold:
 
 + $Γ ⊢ mybot[σ] ≡ mybot$ the fact that empty is preserved by substitution action,
 + $ (Γ, x:mybot ⊢ u: A)/(Γ, x: mybot ⊢ u ≡ elim_mybot (x) : A)
@@ -78,9 +71,18 @@ The isomorphism $Γ, x:mybot ⊢ σ : (Δ,x:mybot)$ is given by a list of $elim_
 whose inverse is given alike.
 ]
 
+Before proceeding further, we briefly describe the intended way to use these definitions.
+
+There might be a type theory that does not directly define a unit type, but as long as it can provide the data and prove the equations needed by @def_unit, we can say it has a unit type, and may start using the rules of unit type in the type theory.
+
+This is a form of _abstraction_, where we care only about how types are intended to be used, not how they are implemented,
+and we use the abstracted rules which usually leads to lighter notations, shorter theorems and proofs, more efficient communications, and more general results.
+
+= Binary connectives
+
 // Cartesian product
 #definition("Product")[
-We say a type theory has _product type_ if it has the following constructions:
+We say a type theory has _product types_ if it has the following constructions:
 
 + $Γ ⊢ A × B$ the _formation rule_,
 + $ (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a, b⟩ : A × B)
@@ -92,9 +94,11 @@ We say a type theory has _product type_ if it has the following constructions:
   $
   The _elimination rules_;
 
-such that the following rules are derivable:
+such that the following rules hold:
 
-+ $Γ ⊢ (A × B)[σ] ≡ A[σ] × B[σ]$ the fact that product is preserved by substitution action,
++ $Γ ⊢ (A × B)[σ] ≡ A[σ] × B[σ]$ the fact that product is preserved by substitution,
++ $Γ ⊢ p.1[σ] ≡ p[σ].1 : A$ and $Γ ⊢ p.2[σ] ≡ p[σ].2 : B$,
+  the fact that projections are preserved by substitution,
 + $ (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.1 ≡ a : A) \
     (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.2 ≡ b : B)
   $
@@ -102,33 +106,64 @@ such that the following rules are derivable:
 + $ (Γ ⊢ p : A × B)/(Γ ⊢ p ≡ ⟨p.1, p.2⟩ : A × B)
   $
   The $η$-law.
+] <def_product>
+
+#lemma("Product extensionality")[
+The following rule is derivable:
+$ (Γ ⊢ a.1 ≡ b.1 : A #h(2em) Γ ⊢ a.2 ≡ b.2 : B)/
+  (Γ ⊢ a ≡ b : A × B)
+  $
+] <lem_product_ext>
+#proof[By $η$-law, what we need to show is equivalently $⟨a.1, a.2⟩ ≡ ⟨b.1, b.2⟩$ and by congruence of equality.]
+
+// Beck--Chevalley condition
+#lemma[The introduction of product type is preserved by substitution:
+$ Γ ⊢ ⟨a,b⟩[σ] ≡ ⟨a[σ], b[σ]⟩ : A[σ] × B[σ] $] <lem_subst_product>
+#proof[
+Let $u := ⟨a,b⟩[σ]$. By @lem_product_ext, the goal is equivalently $u.1 ≡ a[σ]$ and $u.2 ≡ b[σ]$.
+
+Since projection is preserved by substitution, we have $⟨a,b⟩[σ].1 ≡ ⟨a,b⟩.1[σ] ≡ a[σ]$, hence $u.1 ≡ a[σ]$, likewise $u.1 ≡ b[σ]$.
 ]
 
-// Cartesian coproduct
-#definition("Sum")[
-We say a type theory has _sum type_ if it has the following constructions:
+= Dependently-typed connective
 
-+ $Γ ⊢ A + B$ the _formation rule_,
-+ $ (Γ ⊢ a:A)/(Γ ⊢ inl(a) : A + B) \ (Γ ⊢ b:B)/(Γ ⊢ inr(b) : A + B)
-  $
-  The _introduction rules_,
-+ $ (Γ ⊢ s : A + B \ Γ, x:A ⊢ u : C #h(2em) Γ, y:B ⊢ v : C)/
-    (Γ ⊢ elim_+(s, x. u, y. v) : C)
-  $
-  The _elimination rule_;
+Before diving into more complicated dependently-typed structures, we first introduce a very simple type -- the extensional equality type.
 
-such that the following rules are derivable:
+// Equalizers
+#definition("Equality")[
+We say a type theory has _extensional equality type_ if it has the following constructions:
 
-+ $Γ ⊢ (A + B)[σ] ≡ A[σ] + B[σ]$ the fact that sum is preserved by substitution action,
-+ $ (Γ ⊢ a:A)/(Γ ⊢ elim_+(inl(a), x. u, y. v) ≡ u[a slash x] : C) \
-    (Γ ⊢ b:B)/(Γ ⊢ elim_+(inr(b), x. u, y. v) ≡ v[b slash y] : C)
-    $
-  The $β$-rules,
-+ $ (Γ, x:A+B ⊢ u : C \
-     u_1 := u[inl(y) slash x] #h(2em)
-     u_2 := u[inr(y) slash x]
-    )/
-    (Γ, x:A+B ⊢ u ≡ elim_+(x, y. u_1, y. u_2) : C)
-  $
-  The $η$-law.
++ $ (Γ ⊢ A #h(2em) Γ ⊢ a:A #h(2em) Γ ⊢ b:A)/
+    (Γ ⊢ a =_A b) $ the _formation rule_,
++ $Γ ⊢ refl_a : a =_A a$ the _introduction rule_;
+
+such that the following rules hold:
+
++ $Γ ⊢ (a =_A b)[σ] ≡ (a[σ] =_(A[σ]) b[σ])$ the fact that equality type is preserved by substitution,
++ $ (Γ ⊢ p : a =_A b)/(Γ ⊢ a ≡ b : A) $
+  The _elimination rule_, also known as _equality reflection_,
++ $Γ ⊢ (p ≡ refl_a) : (a =_A a)$ the $η$-law.
 ]
+
+Before stating any properties of extensional equality, observe that in the $η$-law, we do not have a premise $Γ ⊢ p : a =_A b$.
+This is because we have #cross-link("/dtt-dev/subst.typ", reference: <def_presup>)[_presuppositions_], implying that this is already assumed when we _state_ the conclusion.
+
+#lemma("Uniqueness")[The following judgment is _derivable_:
+$ (Γ ⊢ p : a =_A b #h(2em) Γ ⊢ q : a =_A b)/
+  (Γ ⊢ p ≡ q : a =_A b)
+  $] <lem_uniqueness>
+#proof[
+By elimination of equality, we know $Γ ⊢ a ≡ b : A$, hence it suffice to show:
+$ Γ ⊢ p ≡ q : a =_A a $
+By $η$-law, both $p$ and $q$ are equal to $refl_a$.
+]
+
+#lemma[Having _extensional equality type_ and any closed term $· ⊢ a:A$ implies having a _unit type_.]
+#proof[Let $top := (a =_A a)$ and $★ := refl_a$.
+In case of open context we apply #cross-link("/dtt-dev/subst.typ", reference: <cons_weakening>)[weakening].]
+
+= Conclusion
+
+In this chapter, we have defined some simply-typed structures inside dependent type theories, including unit type, empty type, product type, and extensional equality type.
+
+In the next chapter, we will seek to generalize some of these structures into a more general construction.

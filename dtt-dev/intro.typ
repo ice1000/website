@@ -1,7 +1,5 @@
 #import "config.typ": *
-#import "/book.typ": book-page
-#show: thmrules.with(qed-symbol: $square$)
-#show: book-page.with(title: "DTT")
+#show: dtt.with(title: "DTT")
 
 = Dependent Theory of Types
 

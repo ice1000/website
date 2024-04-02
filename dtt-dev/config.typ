@@ -13,3 +13,22 @@
 #let inr(x) = $sans("inr")(#x)$
 #let wk(x) = $sans("wk")(#x)$
 #let elim = $sans("elim")$
+#let refl = $sans("refl")$
+
+#import "/book.typ": cross-link
+
+#let dtt(title: "DTT", body) = {
+  import "/book.typ": book-page
+  show: thmrules.with(qed-symbol: $square$)
+  show: book-page.with(title: title)
+
+  show math.equation: it => {
+    show "★": math.class.with("unary")
+    show "∈": math.scripts
+    show "⊢": math.scripts
+    show "=": math.scripts
+    it
+  }
+
+  body
+}
