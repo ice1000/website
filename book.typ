@@ -14,8 +14,7 @@
     #chapter("dtt-dev/subst.typ")[Subst Calculus],
     #chapter("dtt-dev/struct-1.typ")[Structures I],
     #chapter("dtt-dev/functor.typ")[Compilers],
-    // Plan: limits
-    #chapter(none)[Structures, revisted],
+    #chapter("dtt-dev/struct-2.typ")[Structures, revisted],
     // Plan: pi, sigma (maybe local colimits?)
     #chapter(none)[Structures II],
     // Plan: type 2-theory

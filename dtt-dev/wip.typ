@@ -30,3 +30,28 @@ such that the following rules are derivable:
   $
   The $η$-law.
 ]
+
+So, we _weaken_ $b$ to be:
+$ Γ,A,B[π_A] ⊢ b[π_B[π_A]] :B[π_(B[π_A]);π_A] $
+And turn $a$ into a substitution:
+$ Γ,B,A[π_B] ⊢ (id_(Γ,B),a[π_(A[π_B])]) : Γ,B,A[π_B] $
+Let's denote $a' := id_(Γ,B),a[π_(A[π_B])]$.
+Then I apply the substitution. Let $σ := ex(B,A);a';π_B[π_A]$, then:
+$ b[σ] : B[σ;π_A] $
+by definition of projections, we know that
+$ σ;π_A = ex(B,A);a';π_(B[π_A]);π_A ≡ id_(Γ,A) $
+therefore
+
+We assemble the above into the following definition:
+
+#definition[In a type theory and a context $Γ$,
+we say two types $Γ⊢A$, $Γ⊢B$ to be _equivalent_ if we have the following terms:
+
+$ Γ,x:A ⊢ b:B[π_A] #h(3em) Γ,x:B ⊢ a:A[π_B] $
+
+such that the following equalities are derivable:
+
+TODO
+// $ Γ,x:A ⊢ a[b slash x] ≡ x : A[π_A] $
+]
+

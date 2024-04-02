@@ -37,8 +37,8 @@ A _compiler_ from type theory $cal(A)$ to type theory $cal(B)$, denoted $cal(F):
 is a pair of functions, called _translations_, both denoted $[| - |]_cal(F)$,
 where for input $A$, it produces output $[| A |]_cal(F)$:
 
-- A mapping from types $Γ ⊢^cal(A) A$ into the types in $cal(B)$, denoted $[| Γ |]_cal(F) ⊢^cal(B) [| A |]_cal(F)$, where $[|Γ|]_cal(F)$ is iterated translation of types inside $Γ$,
-- A mapping from terms $Γ ⊢^cal(A) t : A$ into terms in $cal(B)$, denoted $[| Γ |]_cal(F) ⊢^cal(B) [| t |]_cal(F) : [| A |]_cal(F)$;
+- A mapping from types $Γ ⊢^cal(A) A$ into the types in $cal(B)$, such that $[| Γ |]_cal(F) ⊢^cal(B) [| A |]_cal(F)$ is derivable, where $[|Γ|]_cal(F)$ is iterated translation of types inside $Γ$,
+- A mapping from terms $Γ ⊢^cal(A) t : A$ into terms in $cal(B)$, such that $[| Γ |]_cal(F) ⊢^cal(B) [| t |]_cal(F) : [| A |]_cal(F)$ is derivable;
 
 such that:
 
@@ -70,37 +70,50 @@ For every type theory $cal(A)$, there exists a compiler from $cal(A)$ to the uni
 For every type theory $cal(A)$, there exists a compiler from the empty type theory $bold(0)$ to $cal(A)$, because there is nothing to compile.
 ]
 
-= Structures, revisited
+Normally, the rules term and type formers are always postulated, not proved to be admissible,
+since we have in mind that typing derivations are in correspondence with proof terms, a canonical representation of its _derivation_ -- directly indicates the existence of a derivation.
 
-We start the section by a reflection on the definition of #cross-link("struct-1", reference: <def_unit>)[having a unit type].
-For a type theory to have a unit type, the following needs to be true:
+In the definition of a compiler, we require that the translated judgments are derivable,
+not admissible, and the rationale is due to the following construction we wish to be well-defined:
 
-For every context $Γ$,
-+ there is a type $Γ ⊢ top$,
-+ there is a distinguished term $Γ ⊢ ★ : top$
-  such that every term of this type is equal to it,
-+ and this whole thing is preserved by substitution.
+#construction("Composition")[
+If $cal(F):cal(A) → cal(B)$ and $cal(G):cal(B) → cal(C)$ are compilers,
+then the _composition_ of them, denoted $cal(G) ∘ cal(F):cal(A) → cal(C)$, is a compiler,
+defined as follows:
 
-For product types, we can rephrase its definition in a similar way,
-but with the presence of rule premises, they are more complicated:
+1. For $Γ ⊢^cal(A) A$, define $[| A |]_(cal(G) ∘ cal(F)) = [| [| A |]_cal(F) |]_cal(G)$,
+2. For $Γ ⊢^cal(A) t : A$, define $[| t |]_(cal(G) ∘ cal(F)) = [| [| t |]_cal(F) |]_cal(G)$.
 
-For every context $Γ$ and types $Γ ⊢ A$ and $Γ ⊢ B$,
-+ there is a type $Γ ⊢ A × B$,
-+ for every pair of terms $Γ ⊢ t : A$ and $Γ ⊢ u : B$, there is a term $Γ ⊢ ⟨t, u⟩ : A × B$
-  such that every term of this type can be written as such a
-  pair,
-+ and this whole thing is preserved by substitution.
+The judgmental equalities hold immediately.
+]
 
-Note that the fact that all terms can be written as such a pair is known as all terms _factor through_ the introduction rule.
-Similarly for the empty type, all terms in contexts where $mybot$ is present _factor through_ the elimination rule.
+If we only require the judgmental equalities to be admissible, they wouldn't be further preserved under translation.
 
-There seems to be a lot of things in common:
+#construction("Identity")[
+For every type theory $cal(A)$, there exists an _identity compiler_ $cal(I):cal(A) → cal(A)$
+such that $[| A |]_cal(I) = A$ and $[| t |]_cal(I) = t$.
+]
 
-For every context $Γ$ and types $Γ ⊢ 🤔$,
-+ there is a type $Γ ⊢ ✨$,
-+ for every tuple of terms $Γ ⊢ ... : 🤔$, there is a term $Γ ⊢ ... : ✨$
-  such that every term of this type factor through its introduction,
-+ and this whole thing is preserved by substitution.
+Then, it is tempting to state the unital and associativity laws for compilers,
+but to do so we first need:
 
++ A notion of equality between compilers,
++ which requires the notion of equivalence between type theories,
++ which requires the notion of equivalence between types.
 
-Can we generalize this?
+To start, we need to specify the equivalence between $Γ⊢A$ and $Γ⊢B$,
+which we intend to do by defining a type-theoretic bijection between their terms.
+
+To define a map from $A$ to $B$, it is tempting to write $Γ,x:A ⊢ b:B$,
+but this does not make type sense, because it presupposes $Γ,x:A⊢B$, which is not true!
+So, instead we have to do $Γ,x:A ⊢ b:B[π_A]$, similarly we have $Γ,x:B ⊢ a:A[π_B]$.
+
+Then, we want to compose them in an appropriate way. To substitute $a$ into $b$, we need a substitution whose codomain is $Γ,x:A$. However, we can only afford to provide $b$ as a substitution with codomain $Γ,x:B,y:A[π_B]$ (by appending it to an identity substitution),
+and by #cross-link("subst", reference: <def_exchange>)[exchange]
+we know it's equivalent to $Γ,x:A,y:B[π_A]$ by a substitution $ex(B,A)$.
+
+TODO
+
+= Conclusion
+
+In this chapter, we defined the notion of a compiler between type theories, which is a sensible _structure-preserving_ map between them, as it preserves the derivability of judgments.

@@ -15,6 +15,7 @@
 #let wk(x) = $sans("wk")(#x)$
 #let elim = $sans("elim")$
 #let refl = $sans("refl")$
+#let ex(A,B) = $sans("ex")_(#A, #B)$
 
 #import "/book.typ": cross-link as lib-cross-link
 
