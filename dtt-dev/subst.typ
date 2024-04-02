@@ -20,6 +20,8 @@ We assume the following judgment schemas of type theories:
 + $Γ ⊢ σ ≡ τ : Δ$ means $σ$ and $τ$ are equal substitution objects from $Γ$ to $Δ$.
 ]
 
+The equality relation imposed by the judgments are called _judgmental equality_, which is the meta-level equality we will be working with throughout the development.
+
 In fact, we don't necessarily need $Γ ⊢ A$, $Γ ⊢ a : A$, and $Γ ⊢ σ : Δ$, as they can be seen as reflexive case of the equality judgments, but we keep them regardless for better readability.
 
 Some notational conventions:
@@ -42,12 +44,14 @@ When we write down a rule that derives a judgment, we implicitly assume that the
 
 For expert readers: unless explicitly stated otherwise, the type theory we consider will be structural type theories without modalities or type universes -- so that all type formers are well-behaved and simple.
 
-#definition[
-We assume the equality judgments to be reflexive:
+#definition[We assume judgmental equality to be _reflexive_:
 $ Γ ⊢ A ≡ A #h(2em) Γ ⊢ a ≡ a : A $
 ]
 
-#definition[
+#definition[We assume judgmental equality to be _substitutive_.]
+This is very hard to spell out formally in a general setting, but it basically means that we can substitute equal terms in any judgment.
+
+#corollary[
 We assume the equality judgments to be symmetric, and transitive:
 $ (Γ ⊢ A ≡ B)/(Γ ⊢ B ≡ A) #h(2em) (Γ ⊢ a ≡ b : A)/(Γ ⊢ b ≡ a : A) \
   (Γ ⊢ A ≡ B #h(2em) Γ ⊢ B ≡ C)/(Γ ⊢ A ≡ C) \
@@ -55,8 +59,8 @@ $ (Γ ⊢ A ≡ B)/(Γ ⊢ B ≡ A) #h(2em) (Γ ⊢ a ≡ b : A)/(Γ ⊢ b ≡ a
  $
 ]
 
-#definition[
-We intend that typing of terms is up to judgmental equality of types:
+#corollary[
+Typing of terms is up to judgmental equality of types:
 $ (Γ ⊢ A ≡ B #h(2em) Γ ⊢ a:A)/(Γ ⊢ a:B) $
 ] <def_typing_jeq>
 
@@ -100,7 +104,7 @@ For any context $Γ$, we denote $Γ ⊢ id_Γ : Γ$ to be the substitution objec
 
 $ (·)⊢id_((·)) : (·) #h(2em) (Γ ⊢ id_Γ : Γ)/(Γ,x:A⊢id_(Γ,x:A) : (Γ,x:A)) $
 so that $Γ ⊢ A[id_Γ] ≡ A$ and $Γ ⊢ a[id_Γ] ≡ a : A$.
-]
+] <def_id_subst>
 
 // Composition of morphisms
 #construction("Composition of substitutions")[
@@ -118,7 +122,7 @@ For equality of substitutions, we intend to equate them according to their actio
 #definition("Substitution extensionality")[
 If for every $Γ ⊢ A$, $Γ ⊢ A[σ] ≡ A[τ]$, and for every $Γ ⊢ a : A$, $Γ ⊢ a[σ] ≡ a[τ]$, then:
 $ Γ ⊢ σ ≡ τ : Δ $
-]
+] <def_subst_ext>
 
 #definition("Context isomorphism")[
 A substitution $Γ ⊢ σ : Δ$ is called a _context isomorphism_ if there exists $Δ ⊢ τ : Γ$ such that $σ;τ ≡ id_Δ$ and $τ;σ ≡ id_Γ$.
@@ -175,9 +179,14 @@ $ (x:A ∈_0 Γ)/(Γ ⊢ x[σ,a] ≡ a : A[σ]) \
   (x:A ∈_(n+1) (Γ,y:B) #h(2em) Γ ⊢ x[σ] : A')/
   (Γ, y:B ⊢ x[σ,b] ≡ x[π_B;σ]:A'[π_B])
  $
-]
+] <def_var>
 Intuitively, a variable picks the $n$-th element in a substitution.
 However, expressing this operation using typing rules is not trivial.
+
+We may define the identity substitution @def_id_subst as the substitution that maps every variable to itself,
+using @def_var. However, this will make the definition sort of circular, as we need the identity substitutions to define weakening @cons_weakening, which is used in the definition of variables @def_var.
+
+However, what we _can_ say, is that the identity substitution defined by variables + weakening is equivalent to the one defined by @def_id_subst, by @def_subst_ext.
 
 = Conclusion
 
