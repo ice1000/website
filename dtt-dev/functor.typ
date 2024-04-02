@@ -73,13 +73,16 @@ For every type theory $cal(A)$, there exists a compiler from the empty type theo
 
 We start the section by observing the following fact.
 
+#text(fill: red)[Warning: the rest of the section is still under construction,
+things might be completely wrong]
+
 #lemma[
 To say a type theory $cal(A)$ has a unit type, it suffice to construct a compiler from the unit type theory $bold(1)$ to $cal(A)$.
 ] <lem_unit_compile>
 #proof[
-It suffice to choose an assignment of $top$ and $★$ such that the rules are satisfied.
+It suffice to choose an assignment of $Γ ⊢^cal(A) top$ and $Γ ⊢^cal(A) ★ : top$ such that the rules are satisfied.
 
-Suppose the unit type in $bold(1)$ consists of $Γ ⊢^bold(1) top$ and $Γ ⊢^bold(1) ★ : top$, then by the provided compiler, their compilation results give rise to the desired data and judgmental equalities.
+Suppose the unit type in $bold(1)$ consists of $Γ ⊢^bold(1) top$ and $Γ ⊢^bold(1) ★ : top$, then by the provided compiler, their compilation results give rise to the desired data and judgmental equalities. Let 
 ]
 
 #lemma[
