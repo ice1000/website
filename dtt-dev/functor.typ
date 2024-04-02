@@ -1,4 +1,5 @@
 #import "config.typ": *
+#import "@preview/fletcher:0.4.3" as fletcher: diagram, node, edge
 #show: dtt.with(title: "Outside structures")
 
 = Introduction
@@ -45,8 +46,16 @@ such that:
 
 Note that presuppositions commute with compilations:
 
-- $Γ ⊢^cal(A) t: A$ presupposes $Γ ⊢^cal(A) A$,
-- $[| Γ |] ⊢^cal(B) [| t |] : [| A |]$ presupposes $[| Γ |] ⊢^cal(B) [| A |]$.
+#align(center)[#diagram(cell-size: 15mm, $
+  Γ ⊢^cal(A) t: A
+    edge("rr", #[presupposes], ->)
+    edge("d", [| - |], ->)
+    && Γ ⊢^cal(A) A
+    edge("d", [| - |], ->) \
+  [| Γ |] ⊢^cal(B) [| t |] : [| A |]
+    edge("rr", #[presupposes], "->")
+    && [| Γ |] ⊢^cal(B) [| A |]
+$)]
 
 So, when translating the rules, we do not have to do additional work to ensure that the presuppositions are satisfied.
 
