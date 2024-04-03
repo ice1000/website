@@ -13,13 +13,13 @@ We assume readers to know some less formal terminologies, such as introduction r
 #definition("Unit")[
 We say a type theory has a _unit type_ if it has the following constructions:
 
-+ _Formation_: $ Γ ⊢ top $
-+ _Introduction_: $ Γ ⊢ ★ : top $
++ _Formation_: $ · ⊢ top $
++ _Introduction_: $ · ⊢ ★ : top $
 
 such that the following rules hold:
 
-+ The fact that the introduction of unit type is preserved by substitution:
-  $ Γ ⊢ ★[σ] ≡ ★ : top $
++ The fact that the formation of unit type is preserved by substitution:
+  $ Γ ⊢ top[σ] ≡ top $
 + The $η$-law: $ (Γ ⊢ a : top)/(Γ ⊢ a ≡ ★ : top) $
 ] <def_unit>
 

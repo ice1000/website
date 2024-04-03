@@ -90,27 +90,43 @@ The judgmental equalities hold immediately.
 If we only require the judgmental equalities to be admissible, they wouldn't be further preserved under translation.
 
 #construction("Identity")[
-For every type theory $cal(A)$, there exists an _identity compiler_ $cal(I):cal(A) → cal(A)$
-such that $[| A |]_cal(I) = A$ and $[| t |]_cal(I) = t$.
-]
+For every type theory $cal(A)$, there exists an _identity compiler_ $id_cal(A) :cal(A) → cal(A)$
+such that $[| A |]_id_cal(A) = A$ and $[| t |]_id_cal(A) = t$.]
+The use of the keyword $id$ is intentional not in caligraphic to be consistent with other identities.
 
 Then, it is tempting to state the unital and associativity laws for compilers,
-but to do so we first need:
+but to do so we first need a notion of equality between compilers,
+which is roughly that they send the same types and terms to the same types and terms.
 
-+ A notion of equality between compilers,
-+ which requires the notion of equivalence between type theories,
-+ which requires the notion of equivalence between types.
+However, this is not immediately easy, because we care about using types abstractly,
+not caring how they are implemented,
+so for instance if two compilers are translating something using a unit type,
+one uses a distinguished unit type and the other uses a unit type implemented by some other types,
+we still consider them to be the same.
+
+= Equivalences
 
 To start, we need to specify the equivalence between $Γ⊢A$ and $Γ⊢B$,
 which we intend to do by defining a type-theoretic bijection between their terms.
 
 #definition("Type isomorphism")[
-For types $Γ⊢A$ and $Γ⊢B$, a _type isomorphism_ (or _isomorphism_ for short) between them is a pair of terms $Γ,x:A ⊢ b:B$ and $Γ,x:B ⊢ a:A$ such that:
+For types $Γ⊢A$ and $Γ⊢B$, a _type isomorphism_ (or _isomorphism_ for short) between them is a pair of terms $Γ,x:A ⊢ b:B$ and $Γ,x:B ⊢ a:A$ such that the following equations are derivable:
 $ Γ,x:A ⊢ x ≡ a[b slash x] : A \
   Γ,x:B ⊢ x ≡ b[a slash x] : B $
+We denote isomorphic type as a judgment $Γ⊢A ≃ B$.
 ]
 
-We wish isomorphic types to behave the same in type theory.
+We wish isomorphic types to _behave_ the same in type theory.
+
+Then, we can talk about the equivalence between compilers:
+
+#definition("Equivalent compilers")[
+Two compilers $cal(F):cal(A) → cal(B)$ and $cal(G):cal(A) → cal(B)$ are _equivalent_ if for every type $Γ ⊢^cal(A) A$, we have:
+
++ a context isomorphism $[| Γ |]_cal(F) ⊢ σ : [| Γ |]_cal(G)$,
++ a type isomorphism $[| Γ |]_cal(F) ⊢ [| A |]_cal(F) ≃ [| A |]_cal(G) [σ]$.
+
+We denote equivalent compilers as $cal(F) ≃ cal(G)$.]
 
 #lesson[It is common that instances of a type are usually infinite,
 and in that case they are always countable,
@@ -120,20 +136,43 @@ However, there will still be infinite types that are not isomorphic,
 since the definition of type isomorphism is an _internal_ isomorphism,
 i.e. the isomorphism needs to be _inside_ the type theory.]
 
-To establish the equivalence between types theories, we need to consider the following:
+Then, we can define the desired unital and associativity laws for compilers:
 
-+ Because we care about using types abstractly, not caring how they are implemented,
-  so for instance if $cal(A)$ has a distinguished unit type and $cal(B)$ has a unit type
-  implemented by some other types, we still consider them to be the same type theory
-  if everything else is the same,
+#lemma[For compiler $cal(F):cal(A) → cal(B)$, we have:
+$ (cal(F) ∘ id_cal(A)) ≃ (id_cal(B) ∘ cal(F)) ≃ cal(F) $]
+#lemma[For compilers $cal(F):cal(A) → cal(B)$, $cal(G):cal(B) → cal(C)$, and $cal(H):cal(C) → cal(D)$, we have:
+$ cal(H) ∘ (cal(G) ∘ cal(F)) ≃ (cal(H) ∘ cal(G)) ∘ cal(F) $]
+
+We also need to establish the equivalence between types theories,
+and to do so we need to consider the following:
+
++ We wish the equivalence to be weak:
+  using different implementations of an "abstract" type should not affect the equivalence,
 + If we translate $Γ⊢^cal(A) A$ into $Γ' ⊢^cal(B) A'$, we wish the terms to be translated so that:
   + Different terms get translated into different terms,
   + Every term of $A'$ is the translation of some term of $A$.
 
 Putting all of these conditions together, we can form a sensible notion of equivalence between type theories.
 
-TODO
+// Essentially surjective
+#definition("Surjective")[We say a compiler $cal(F):cal(A) → cal(B)$ to be _surjective_
+if for every type $Γ' ⊢^cal(B) B$ there exists a type $Γ ⊢^cal(A) A$ such that:
++ there exists a context isomorphism $Γ' ⊢ σ : [| Γ |]_cal(F)$,
++ $Γ' ⊢ B ≃ [| A |]_cal(F)[σ]$.]
+
+// Fully faithful
+#definition("Injective")[Consider a compiler $cal(F):cal(A) → cal(B)$ and a type $Γ ⊢^cal(A) A$.
+We say $cal(F)$ to be:
+
++ _full_ if for every $[| Γ |] ⊢^cal(B) u : [| A |]$, there exists $Γ ⊢^cal(A) v : A$ such that $[| Γ |] ⊢^cal(B) u ≡ [| v |] : [| A |]$,
++ _faithful_ if $[| Γ |] ⊢^cal(B) u ≡ v : [| A |]$ implies $Γ ⊢^cal(A) u ≡ v : A$.
+
+A compiler is _injective_ if it is both full and faithful.]
+
+#definition("Equivalence")[We say a compiler to be an equivalence between type theories if it is surjective and injective.]
 
 = Conclusion
 
 In this chapter, we defined the notion of a compiler between type theories, which is a sensible _structure-preserving_ map between them, as it preserves the derivability of judgments.
+
+Then, we described a couple of properties of compilers, and used them to define equivalences between type theories.

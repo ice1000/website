@@ -158,7 +158,7 @@ For any substitution objects $Γ ⊢ σ : Δ$ and $Δ ⊢ γ : Θ$, we denote $�
 ]
 
 #lemma[Composition of substitutions is associative: $ (γ∘σ)∘ρ ≡ γ∘(σ∘ρ) $]
-#lemma[Composition of substitutions is unital: $ (id∘σ) ≡ σ #h(3em) (σ∘id) ≡ σ $]
+#lemma[Composition of substitutions is unital: $ (id∘σ) ≡ (σ∘id) ≡ σ $]
 #lemma[Composition of substitutions commutes with substitution action: $ A[γ∘σ] ≡ A[σ][γ] #h(2em) a[γ∘σ] ≡ a[σ][γ] $]
 Note that the order of composition of substitutions is reversed when applying them as actions.
 
