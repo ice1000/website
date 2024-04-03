@@ -118,15 +118,15 @@ so that $Γ ⊢ A[id_Γ] ≡ A$ and $Γ ⊢ a[id_Γ] ≡ a : A$.
 
 // Composition of morphisms
 #construction("Composition of substitutions")[
-For any substitution objects $Γ ⊢ σ : Δ$ and $Δ ⊢ γ : Θ$, we denote $Γ ⊢ (γ;σ) : Θ$ to be the substitution object formed by induction on $γ$:
+For any substitution objects $Γ ⊢ σ : Δ$ and $Δ ⊢ γ : Θ$, we denote $Γ ⊢ (γ∘σ) : Θ$ to be the substitution object formed by induction on $γ$:
 
-+ $γ = (·)$, which implies $Θ = (·)$, we define $(·;σ) = σ$.
-+ $γ = (γ',a)$, which implies $Θ = (Θ',x:A)$, we define $((γ',a);σ) = ((γ';σ),a[σ])$.
++ $γ = (·)$, which implies $Θ = (·)$, we define $(·∘σ) = σ$.
++ $γ = (γ',a)$, which implies $Θ = (Θ',x:A)$, we define $((γ',a)∘σ) = ((γ'∘σ),a[σ])$.
 ]
 
-#lemma[Composition of substitutions is associative: $ (γ;σ);ρ ≡ γ;(σ;ρ) $]
-#lemma[Composition of substitutions is unital: $ (id;σ) ≡ σ #h(3em) (σ;id) ≡ σ $]
-#lemma[Composition of substitutions commutes with substitution action: $ A[γ;σ] ≡ A[σ][γ] #h(2em) a[γ;σ] ≡ a[σ][γ] $]
+#lemma[Composition of substitutions is associative: $ (γ∘σ)∘ρ ≡ γ∘(σ∘ρ) $]
+#lemma[Composition of substitutions is unital: $ (id∘σ) ≡ σ #h(3em) (σ∘id) ≡ σ $]
+#lemma[Composition of substitutions commutes with substitution action: $ A[γ∘σ] ≡ A[σ][γ] #h(2em) a[γ∘σ] ≡ a[σ][γ] $]
 Note that the order of composition of substitutions is reversed when applying them as actions.
 
 For equality of substitutions, we intend to equate them according to their actions. In other words, two substitutions are equal if they act the same way on types and terms.
@@ -136,7 +136,7 @@ $ Γ ⊢ σ ≡ γ : Δ $
 ] <def_subst_ext>
 
 #definition("Context isomorphism")[
-A substitution $Γ ⊢ σ : Δ$ is called a _context isomorphism_ if there exists $Δ ⊢ γ : Γ$ such that $σ;γ ≡ id_Δ$ and $γ;σ ≡ id_Γ$.
+A substitution $Γ ⊢ σ : Δ$ is called a _context isomorphism_ if there exists $Δ ⊢ γ : Γ$ such that $σ∘γ ≡ id_Δ$ and $γ∘σ ≡ id_Γ$.
 We denote isomorphic contexts as $Γ ≃ Δ$.
 ]
 #lemma[Composition of context isomorphisms will also be context isomorphisms.]
@@ -147,7 +147,7 @@ We denote isomorphic contexts as $Γ ≃ Δ$.
 // Display maps
 #definition("Projection")[
 For any type $Γ⊢A$, we denote $Γ,x:A ⊢π_A : Γ$ to be the substitution object such that for every $Γ⊢a:A$, we have:
-$ Γ ⊢ (π_A;(id_Γ,a)) ≡ id_Γ : Γ $
+$ Γ ⊢ (π_A∘(id_Γ,a)) ≡ id_Γ : Γ $
 ]
 Intuitively, $π_A$ is the substitution object that simply deletes the last variable from the context, and acts as the identity substitution otherwise.
 
@@ -189,7 +189,7 @@ $ (x:A ∈_n Γ)/(Γ ⊢ x:A) $
 such that substitution acts on variables as follows:
 $ (x:A ∈_0 Γ)/(Γ ⊢ x[σ,a] ≡ a : A[σ]) \
   (x:A ∈_(n+1) (Γ,y:B) #h(2em) Γ ⊢ x[σ] : A')/
-  (Γ, y:B ⊢ x[σ,b] ≡ x[π_B;σ]:A'[π_B])
+  (Γ, y:B ⊢ x[σ,b] ≡ x[π_B∘σ]:A'[π_B])
  $
 ] <def_var>
 Intuitively, a variable picks the $n$-th element in a substitution.
