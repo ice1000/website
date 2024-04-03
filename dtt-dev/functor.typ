@@ -104,13 +104,13 @@ but to do so we first need:
 To start, we need to specify the equivalence between $Γ⊢A$ and $Γ⊢B$,
 which we intend to do by defining a type-theoretic bijection between their terms.
 
-To define a map from $A$ to $B$, it is tempting to write $Γ,x:A ⊢ b:B$,
-but this does not make type sense, because it presupposes $Γ,x:A⊢B$, which is not true!
-So, instead we have to do $Γ,x:A ⊢ b:B[π_A]$, similarly we have $Γ,x:B ⊢ a:A[π_B]$.
+// To define a map from $A$ to $B$, it is tempting to write $Γ,x:A ⊢ b:B$,
+// but this does not make type sense, because it presupposes $Γ,x:A⊢B$, which is not true!
+// So, instead we have to do $Γ,x:A ⊢ b:B[π_A]$, similarly we have $Γ,x:B ⊢ a:A[π_B]$.
 
-Then, we want to compose them in an appropriate way. To substitute $a$ into $b$, we need a substitution whose codomain is $Γ,x:A$. However, we can only afford to provide $b$ as a substitution with codomain $Γ,x:B,y:A[π_B]$ (by appending it to an identity substitution),
-and by #cross-link("subst", reference: <def_exchange>)[exchange]
-we know it's equivalent to $Γ,x:A,y:B[π_A]$ by a substitution $ex(B,A)$.
+// Then, we want to compose them in an appropriate way. To substitute $a$ into $b$, we need a substitution whose codomain is $Γ,x:A$. However, we can only afford to provide $b$ as a substitution with codomain $Γ,x:B,y:A[π_B]$ (by appending it to an identity substitution),
+// and by #cross-link("subst", reference: <def_exchange>)[exchange]
+// we know it's equivalent to $Γ,x:A,y:B[π_A]$ by a substitution $ex(B,A)$.
 
 TODO
 

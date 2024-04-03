@@ -160,8 +160,7 @@ By $η$-law, both $p$ and $q$ are equal to $refl_a$.
 ]
 
 #lemma[Having _extensional equality type_ and any closed term $· ⊢ a:A$ implies having a _unit type_.]
-#proof[Let $top := (a =_A a)$ and $★ := refl_a$.
-In case of open context we apply #cross-link("subst", reference: <cons_weakening>)[weakening].]
+#proof[Let $top := (a =_A a)$ and $★ := refl_a$.]
 
 = Conclusion
 
