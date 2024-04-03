@@ -17,7 +17,7 @@ We assume the following judgment schemas of type theories:
 + $Γ ⊢ a : A$ means $a$ is a well-typed term of type $A$ in $Γ$.
 + $Γ ⊢ a ≡ b : A$ means $a$ and $b$ are equal terms of type $A$ in $Γ$.
 + $Γ ⊢ σ : Δ$ means $σ$ is a substitution object from $Γ$ to $Δ$.
-+ $Γ ⊢ σ ≡ τ : Δ$ means $σ$ and $τ$ are equal substitution objects from $Γ$ to $Δ$.
++ $Γ ⊢ σ ≡ γ : Δ$ means $σ$ and $γ$ are equal substitution objects from $Γ$ to $Δ$.
 ]
 
 The equality relation imposed by the judgments are called _judgmental equality_, which is the meta-level equality we will be working with throughout the development.
@@ -37,7 +37,7 @@ The judgments come with _presuppositions_ that are always assumed:
 + $Γ ⊢ a : A$ presupposes $Γ ⊢ A$.
 + $Γ ⊢ a ≡ b : A$ presupposes $Γ ⊢ a : A$ and $Γ ⊢ b : A$.
 + $Γ ⊢ σ : Δ$ presupposes $Γ ⊢$ and $Δ ⊢$.
-+ $Γ ⊢ σ ≡ τ : Δ$ presupposes $Γ ⊢ σ : Δ$ and $Γ ⊢ τ : Δ$.
++ $Γ ⊢ σ ≡ γ : Δ$ presupposes $Γ ⊢ σ : Δ$ and $Γ ⊢ γ : Δ$.
 
 When we write down a rule that derives a judgment, we implicitly assume that the presuppositions are in the premises.
 ] <def_presup>
@@ -118,25 +118,25 @@ so that $Γ ⊢ A[id_Γ] ≡ A$ and $Γ ⊢ a[id_Γ] ≡ a : A$.
 
 // Composition of morphisms
 #construction("Composition of substitutions")[
-For any substitution objects $Γ ⊢ σ : Δ$ and $Δ ⊢ τ : Θ$, we denote $Γ ⊢ (τ;σ) : Θ$ to be the substitution object formed by induction on $τ$:
+For any substitution objects $Γ ⊢ σ : Δ$ and $Δ ⊢ γ : Θ$, we denote $Γ ⊢ (γ;σ) : Θ$ to be the substitution object formed by induction on $γ$:
 
-+ $τ = (·)$, which implies $Θ = (·)$, we define $(·;σ) = σ$.
-+ $τ = (τ',a)$, which implies $Θ = (Θ',x:A)$, we define $((τ',a);σ) = ((τ';σ),a[σ])$.
++ $γ = (·)$, which implies $Θ = (·)$, we define $(·;σ) = σ$.
++ $γ = (γ',a)$, which implies $Θ = (Θ',x:A)$, we define $((γ',a);σ) = ((γ';σ),a[σ])$.
 ]
 
-#lemma[Composition of substitutions is associative: $ (τ;σ);ρ ≡ τ;(σ;ρ) $]
+#lemma[Composition of substitutions is associative: $ (γ;σ);ρ ≡ γ;(σ;ρ) $]
 #lemma[Composition of substitutions is unital: $ (id;σ) ≡ σ #h(3em) (σ;id) ≡ σ $]
-#lemma[Composition of substitutions commutes with substitution action: $ A[τ;σ] ≡ A[σ][τ] #h(2em) a[τ;σ] ≡ a[σ][τ] $]
+#lemma[Composition of substitutions commutes with substitution action: $ A[γ;σ] ≡ A[σ][γ] #h(2em) a[γ;σ] ≡ a[σ][γ] $]
 Note that the order of composition of substitutions is reversed when applying them as actions.
 
 For equality of substitutions, we intend to equate them according to their actions. In other words, two substitutions are equal if they act the same way on types and terms.
 #definition("Substitution extensionality")[
-If for every $Γ ⊢ A$, $Γ ⊢ A[σ] ≡ A[τ]$, and for every $Γ ⊢ a : A$, $Γ ⊢ a[σ] ≡ a[τ]$, then:
-$ Γ ⊢ σ ≡ τ : Δ $
+If for every $Γ ⊢ A$, $Γ ⊢ A[σ] ≡ A[γ]$, and for every $Γ ⊢ a : A$, $Γ ⊢ a[σ] ≡ a[γ]$, then:
+$ Γ ⊢ σ ≡ γ : Δ $
 ] <def_subst_ext>
 
 #definition("Context isomorphism")[
-A substitution $Γ ⊢ σ : Δ$ is called a _context isomorphism_ if there exists $Δ ⊢ τ : Γ$ such that $σ;τ ≡ id_Δ$ and $τ;σ ≡ id_Γ$.
+A substitution $Γ ⊢ σ : Δ$ is called a _context isomorphism_ if there exists $Δ ⊢ γ : Γ$ such that $σ;γ ≡ id_Δ$ and $γ;σ ≡ id_Γ$.
 We denote isomorphic contexts as $Γ ≃ Δ$.
 ]
 #lemma[Composition of context isomorphisms will also be context isomorphisms.]
