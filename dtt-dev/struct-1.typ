@@ -1,13 +1,14 @@
 #import "config.typ": *
 #show: dtt.with(title: "Inside structures")
 
-= Introduction
+#let struct-1-fulltext = [
+== Introduction
 
 The goal of this chapter is to defined some simple strucures inside dependent type theories.
 
 We assume readers to know some less formal terminologies, such as introduction rules, elimination rules, term formers, $β$-rules, $η$-laws, etc., which are common in type theory literature.
 
-= Nullary connectives
+== Nullary connectives
 
 // Terminal object
 #definition("Unit")[
@@ -78,7 +79,7 @@ There might be a type theory that does not directly define a unit type, but as l
 This is a form of _abstraction_, where we care only about how types are intended to be used, not how they are implemented,
 and we use the abstracted rules which usually leads to lighter notations, shorter theorems and proofs, more efficient communications, and more general results.
 
-= Binary connectives
+== Product
 
 // Cartesian product
 #definition("Product")[
@@ -127,7 +128,7 @@ Let $u := ⟨a,b⟩[σ]$. By @lem_product_ext, the goal is equivalently $u.1 ≡
 Since projection is preserved by substitution, we have $(⟨a,b⟩[σ]).1 ≡ (⟨a,b⟩.1)[σ] ≡ a[σ]$, hence $u.1 ≡ a[σ]$, likewise $u.2 ≡ b[σ]$.
 ]
 
-= Dependently-typed connective
+== Extensional equality
 
 Before diving into more complicated dependently-typed structures, we first introduce a very simple type -- the extensional equality type.
 
@@ -167,8 +168,10 @@ By $η$-law, both $p$ and $q$ are equal to $refl_a$.
 #lemma[Having _extensional equality type_ and any closed term $· ⊢ a:A$ implies having a _unit type_.]
 #proof[Let $top := (a =_A a)$ and $★ := refl_a$.]
 
-= Conclusion
+== Conclusion
 
 In this chapter, we have defined some simply-typed structures inside dependent type theories, including unit type, empty type, product type, and extensional equality type.
 
 In the next chapter, we will seek to generalize some of these structures into a more general construction.
+]
+#struct-1-fulltext

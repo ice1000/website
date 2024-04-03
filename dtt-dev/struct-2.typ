@@ -2,11 +2,12 @@
 #import "@preview/fletcher:0.4.3" as fletcher: diagram, node, edge
 #show: dtt.with(title: "Limits")
 
-= Introduction
+#let struct-2-fulltext = [
+== Introduction
 
 The goal of this chapter is to revisit the structures defined in #cross-link("struct-1")[Structures I] with an eye on generalization.
 
-= Structures, revisited
+== Structures, revisited
 
 We start the section by a reflection on the definition of #cross-link("struct-1", reference: <def_unit>)[having a unit type].
 For a type theory to have a unit type, the following needs to be true:
@@ -38,3 +39,5 @@ For every context $Γ$ and types $Γ ⊢ 🤔$,
 + and this whole thing is preserved by substitution.
 
 Now, the real question arise: can we generalize this and how do we do that?
+]
+#struct-2-fulltext

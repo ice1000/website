@@ -3,14 +3,15 @@
 #show: dtt.with(title: "Outside structures")
 #set quote(block: true)
 
-= Introduction
+#let functor-fulltext = [
+== Introduction
 
 The goal of this chapter is to defined well-typed translations between type theories, aka compilers.
 
 Before talking about translations between type theories,
 we first need to make it explicit that what data give rise to a type theory, and then we define how to translate between them.
 
-= Conventions
+== Conventions
 
 We consider a type theory to be a #cross-link("subst")[substitution calculus] plus a set of postulated rules,
 denoted using bold font, e.g. $bold(A), bold(B)$, or $bold("TT")$.
@@ -30,7 +31,7 @@ The following are some example definitions of type theories:
 #lemma[In the empty type theory, there is only one context -- the empty one.]
 #lemma[In the unit type theory, all contexts except the empty one are isomorphic.]
 
-= Translations
+== Translations
 
 #definition("Compiler")[
 A _compiler_ from type theory $bold(A)$ to type theory $bold(B)$, denoted $bold(F):bold(A) → bold(B)$,
@@ -104,7 +105,7 @@ so for instance if two compilers are translating something using a unit type,
 one uses a distinguished unit type and the other uses a unit type implemented by some other types,
 we still consider them to be the same.
 
-= Equivalences
+== Equivalences
 
 To start, we need to specify the equivalence between $Γ⊢A$ and $Γ⊢B$,
 which we intend to do by defining a type-theoretic bijection between their terms.
@@ -172,8 +173,10 @@ A compiler is _injective_ if it is both full and faithful.]
 
 #definition("Equivalence")[We say a compiler to be an equivalence between type theories if it is surjective and injective.]
 
-= Conclusion
+== Conclusion
 
 In this chapter, we defined the notion of a compiler between type theories, which is a sensible _structure-preserving_ map between them, as it preserves the derivability of judgments.
 
 Then, we described a couple of properties of compilers, and used them to define equivalences between type theories.
+]
+#functor-fulltext

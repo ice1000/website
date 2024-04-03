@@ -1,7 +1,8 @@
 #import "config.typ": *
 #show: dtt.with(title: "DTT")
 
-= Dependent Theory of Types
+#let intro-fulltext = [
+== Introduction
 
 This is a series of extremely syntax-minded development on some meta-level dependent type theory,
 which I wish to convey an interesting perspective.
@@ -22,3 +23,5 @@ A _derivable_ judgment in a type theory is a judgment one may derive using the t
 #definition("Admissible")[
 An _admissible_ rule in a type theory is a rule that can be proved at the meta level by doing case analysis on the premises.
 ]
+]
+#intro-fulltext
