@@ -13,15 +13,14 @@ We assume readers to know some less formal terminologies, such as introduction r
 #definition("Unit")[
 We say a type theory has a _unit type_ if it has the following constructions:
 
-+ $Γ ⊢ top$ the _formation rule_,
-+ $Γ ⊢ ★ : top$ the _introduction rule_;
++ _Formation_: $ Γ ⊢ top $
++ _Introduction_: $ Γ ⊢ ★ : top $
 
 such that the following rules hold:
 
-+ $Γ ⊢ top[σ] ≡ top$ the fact that unit is preserved by substitution action,
-+ $ (Γ ⊢ a : top)/(Γ ⊢ a ≡ ★ : top)
-  $
-  The $η$-law.
++ The fact that the introduction of unit type is preserved by substitution:
+  $ Γ ⊢ ★[σ] ≡ ★ : top $
++ The $η$-law: $ (Γ ⊢ a : top)/(Γ ⊢ a ≡ ★ : top) $
 ] <def_unit>
 
 #lemma[The introduction of unit type is preserved by substitution:
@@ -42,17 +41,18 @@ In fact, this can be used alternatively to define a unit type.
 #definition("Empty")[
 We say a type theory has _empty type_ if it has the following constructions:
 
-+ $Γ ⊢ mybot$ the _formation rule_,
-+ $ (Γ ⊢ a : mybot)/(Γ ⊢ elim_mybot (a) : A)
++ _Formation_: $ Γ ⊢ mybot $
++ _Elimination_:
+  $ (Γ, x:mybot ⊢ u: A)/(Γ, x: mybot ⊢ u ≡ elim_mybot (x) : A)
   $
-  The _elimination rule_;
 
 such that the following rules hold:
 
-+ $Γ ⊢ mybot[σ] ≡ mybot$ the fact that empty is preserved by substitution action,
-+ $ (Γ, x:mybot ⊢ u: A)/(Γ, x: mybot ⊢ u ≡ elim_mybot (x) : A)
++ The fact that empty is preserved by substitution:
+  $ Γ ⊢ mybot[σ] ≡ mybot $
++ The $η$-law:
+  $ (Γ, x:mybot ⊢ u: A)/(Γ, x: mybot ⊢ u ≡ elim_mybot (x) : A)
   $
-  The $η$-law.
 ]
 
 Similarly we can state a theorem similar to @lem_subst_unit:
@@ -84,29 +84,30 @@ and we use the abstracted rules which usually leads to lighter notations, shorte
 #definition("Product")[
 We say a type theory has _product types_ if it has the following constructions:
 
-+ $ (Γ⊢A #h(2em) Γ⊢B)/(Γ ⊢ A × B) $
-  The _formation rule_,
-+ $ (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a, b⟩ : A × B)
-  $
-  The _introduction rule_,
-+ $ (Γ ⊢ p : A × B)/(Γ ⊢ p.1 : A)
++  _Formation_:
+  $ (Γ⊢A #h(2em) Γ⊢B)/(Γ ⊢ A × B) $
++ _Introduction_:
+  $ (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a, b⟩ : A × B) $
++ _Elimination_:
+  $ (Γ ⊢ p : A × B)/(Γ ⊢ p.1 : A)
     #h(2em)
     (Γ ⊢ p : A × B)/(Γ ⊢ p.2 : A)
   $
-  The _elimination rules_;
 
 such that the following rules hold:
 
-+ $Γ ⊢ (A × B)[σ] ≡ A[σ] × B[σ]$ the fact that product is preserved by substitution,
-+ $Γ ⊢ p.1[σ] ≡ p[σ].1 : A$ and $Γ ⊢ p.2[σ] ≡ p[σ].2 : B$,
-  the fact that projections are preserved by substitution,
-+ $ (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.1 ≡ a : A) \
++ The fact that product is preserved by substitution:
+  $ Γ ⊢ (A × B)[σ] ≡ A[σ] × B[σ] $
++  The fact that projections are preserved by substitution:
+  $ Γ ⊢ p.1[σ] ≡ p[σ].1 : A \
+    Γ ⊢ p.2[σ] ≡ p[σ].2 : B $
++ The $β$-rules:
+  $ (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.1 ≡ a : A) \
     (Γ ⊢ a:A #h(2em) Γ ⊢ b:B)/(Γ ⊢ ⟨a,b⟩.2 ≡ b : B)
   $
-  The $β$-rules,
-+ $ (Γ ⊢ p : A × B)/(Γ ⊢ p ≡ ⟨p.1, p.2⟩ : A × B)
++ The $η$-law:
+  $ (Γ ⊢ p : A × B)/(Γ ⊢ p ≡ ⟨p.1, p.2⟩ : A × B)
   $
-  The $η$-law.
 ] <def_product>
 
 #lemma("Product extensionality")[
@@ -134,16 +135,20 @@ Before diving into more complicated dependently-typed structures, we first intro
 #definition("Equality")[
 We say a type theory has _extensional equality type_ if it has the following constructions:
 
-+ $ (Γ ⊢ A #h(2em) Γ ⊢ a:A #h(2em) Γ ⊢ b:A)/
-    (Γ ⊢ a =_A b) $ the _formation rule_,
-+ $Γ ⊢ refl_a : a =_A a$ the _introduction rule_;
++ _Formation_:
+  $ (Γ ⊢ A #h(2em) Γ ⊢ a:A #h(2em) Γ ⊢ b:A)/
+    (Γ ⊢ a =_A b) $
++ _Introduction_:
+  $ Γ ⊢ refl_a : a =_A a $
 
 such that the following rules hold:
 
-+ $Γ ⊢ (a =_A b)[σ] ≡ (a[σ] =_(A[σ]) b[σ])$ the fact that equality type is preserved by substitution,
-+ $ (Γ ⊢ p : a =_A b)/(Γ ⊢ a ≡ b : A) $
-  The _elimination rule_, also known as _equality reflection_,
-+ $Γ ⊢ (p ≡ refl_a) : (a =_A a)$ the $η$-law.
++ The fact that equality type is preserved by substitution:
+  $ Γ ⊢ (a =_A b)[σ] ≡ (a[σ] =_(A[σ]) b[σ]) $
++ The _elimination rule_, also known as _equality reflection_:
+  $ (Γ ⊢ p : a =_A b)/(Γ ⊢ a ≡ b : A) $
++ The $η$-law:
+  $ Γ ⊢ (p ≡ refl_a) : (a =_A a) $
 ]
 
 Before stating any properties of extensional equality, observe that in the $η$-law, we do not have a premise $Γ ⊢ p : a =_A b$.
