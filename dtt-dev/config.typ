@@ -10,7 +10,6 @@
 #let lesson = thmbox("lesson", "Lesson", breakable: true, fill: rgb("#FFCCCB" + alpha))
 #let proof = thmproof("proof", "Proof")
 
-#let mybot = box(sym.bot)
 #let inl(x) = $sans("inl")(#x)$
 #let inr(x) = $sans("inr")(#x)$
 #let wk(x) = $sans("wk")(#x)$
@@ -29,6 +28,8 @@
 
   show math.equation: it => {
     show "★": math.class.with("unary")
+    show sym.bot: math.class.with("unary")
+    show "·": math.class.with("unary")
     show "∈": math.scripts
     show "⊢": math.scripts
     show "=": math.scripts

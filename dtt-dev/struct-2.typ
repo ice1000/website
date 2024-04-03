@@ -13,7 +13,7 @@ For a type theory to have a unit type, the following needs to be true:
 
 For every context $Γ$,
 + there is a type $Γ ⊢ top$,
-+ there is a distinguished term $Γ ⊢ ★ : top$
++ there is a term $Γ ⊢ ★ : top$
   such that every term of this type is equal to it,
 + and this whole thing is preserved by substitution.
 
@@ -23,12 +23,11 @@ but with the presence of rule premises, they are more complicated:
 For every context $Γ$ and types $Γ ⊢ A$ and $Γ ⊢ B$,
 + there is a type $Γ ⊢ A × B$,
 + for every pair of terms $Γ ⊢ t : A$ and $Γ ⊢ u : B$, there is a term $Γ ⊢ ⟨t, u⟩ : A × B$
-  such that every term of this type can be written as such a
-  pair,
+  such that every term of this type can be written as such a pair,
 + and this whole thing is preserved by substitution.
 
 Note that the fact that all terms can be written as such a pair is known as all terms _factor through_ the introduction rule.
-Similarly for the empty type, all terms in contexts where $mybot$ is present _factor through_ the elimination rule.
+Similarly for the empty type, all terms in contexts where $bot$ is present _factor through_ the elimination rule.
 
 There seems to be a lot of things in common:
 
@@ -38,4 +37,4 @@ For every context $Γ$ and types $Γ ⊢ 🤔$,
   such that every term of this type factor through its introduction,
 + and this whole thing is preserved by substitution.
 
-Now, the real question arise: can we generalize this?
+Now, the real question arise: can we generalize this and how do we do that?

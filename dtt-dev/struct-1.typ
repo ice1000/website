@@ -41,33 +41,33 @@ In fact, this can be used alternatively to define a unit type.
 #definition("Empty")[
 We say a type theory has _empty type_ if it has the following constructions:
 
-+ _Formation_: $ Γ ⊢ mybot $
++ _Formation_: $ Γ ⊢ bot $
 + _Elimination_:
-  $ (Γ, x:mybot ⊢ u: A)/(Γ, x: mybot ⊢ u ≡ elim_mybot (x) : A)
+  $ (Γ, x:bot ⊢ u: A)/(Γ, x: bot ⊢ u ≡ elim_bot (x) : A)
   $
 
 such that the following rules hold:
 
 + The fact that empty is preserved by substitution:
-  $ Γ ⊢ mybot[σ] ≡ mybot $
+  $ Γ ⊢ bot[σ] ≡ bot $
 + The $η$-law:
-  $ (Γ, x:mybot ⊢ u: A)/(Γ, x: mybot ⊢ u ≡ elim_mybot (x) : A)
+  $ (Γ, x:bot ⊢ u: A)/(Γ, x: bot ⊢ u ≡ elim_bot (x) : A)
   $
 ]
 
 Similarly we can state a theorem similar to @lem_subst_unit:
 #lemma[The elimination of empty type is preserved by substitution:
-$ (Δ,x:mybot ⊢ a:A #h(2em) Γ ⊢ σ : Δ #h(2em) σ' := (σ,x slash x))/
-  (Γ,x:mybot ⊢ a[σ'] ≡ elim_mybot (x) : A[σ']) $] <lem_subst_empty>
-#proof[So by typing of the extended substitution object we know $ Γ,x:mybot ⊢ σ' : (Δ,x:mybot) $
-therefore the substitution is well-typed and $ Γ,x:mybot ⊢ a[σ'] : A[σ'] $
+$ (Δ,x:bot ⊢ a:A #h(2em) Γ ⊢ σ : Δ #h(2em) σ' := (σ,x slash x))/
+  (Γ,x:bot ⊢ a[σ'] ≡ elim_bot (x) : A[σ']) $] <lem_subst_empty>
+#proof[So by typing of the extended substitution object we know $ Γ,x:bot ⊢ σ' : (Δ,x:bot) $
+therefore the substitution is well-typed and $ Γ,x:bot ⊢ a[σ'] : A[σ'] $
 and by the $η$-law.]
 
-#lemma[For every context extended by $mybot$, there is a context isomorphism among each pair of them.
+#lemma[For every context extended by $bot$, there is a context isomorphism among each pair of them.
 
-In other words, for all $Γ ⊢$ and $Δ ⊢$, we have a context isomorphism between $Γ, x:mybot ⊢$ and $Δ, x:mybot ⊢$.]
+In other words, for all $Γ ⊢$ and $Δ ⊢$, we have a context isomorphism between $Γ, x:bot ⊢$ and $Δ, x:bot ⊢$.]
 #proof[
-The isomorphism $Γ, x:mybot ⊢ σ : (Δ,x:mybot)$ is given by a list of $elim_mybot (x)$,
+The isomorphism $Γ, x:bot ⊢ σ : (Δ,x:bot)$ is given by a list of $elim_bot (x)$,
 whose inverse is given alike.
 ]
 
