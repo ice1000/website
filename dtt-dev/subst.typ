@@ -147,7 +147,7 @@ We denote isomorphic contexts as $Γ ≃ Δ$.
 // Display maps
 #definition("Projection")[
 For any type $Γ⊢A$, we denote $Γ,x:A ⊢π_A : Γ$ to be the substitution object such that for every $Γ⊢a:A$, we have:
-$ Γ ⊢ (π_A;(id_Γ,a)) ≡ (id_(Γ,x:A)) : Γ $
+$ Γ ⊢ (π_A;(id_Γ,a)) ≡ id_Γ : Γ $
 ]
 Intuitively, $π_A$ is the substitution object that simply deletes the last variable from the context, and acts as the identity substitution otherwise.
 
