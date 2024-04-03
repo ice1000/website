@@ -21,11 +21,8 @@
 
 #let cross-link(path, reference: none, content) = lib-cross-link("/dtt-dev/" + path + ".typ", reference: reference, content)
 
-#let dtt(title: "DTT", body) = {
-  import "/book.typ": book-page
+#let common-config(body) = {
   show: thmrules.with(qed-symbol: $square$)
-  show: book-page.with(title: title)
-
   show math.equation: it => {
     show "★": math.class.with("unary")
     show sym.bot: math.class.with("unary")
@@ -35,6 +32,12 @@
     show "=": math.scripts
     it
   }
+  body
+}
+#let dtt(title: "DTT", body) = {
+  import "/book.typ": book-page
+  show: book-page.with(title: title)
 
+  show: common-config
   body
 }

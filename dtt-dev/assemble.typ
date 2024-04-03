@@ -14,6 +14,9 @@
     ),
   )
 }
+#import "config.typ": common-config
+#show: common-config
+
 #setup("Dependent Theory of Types", ((
   name: "Tesla Zhang",
   email: "teslaz@cmu.edu"
