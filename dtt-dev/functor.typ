@@ -104,13 +104,33 @@ but to do so we first need:
 To start, we need to specify the equivalence between $Γ⊢A$ and $Γ⊢B$,
 which we intend to do by defining a type-theoretic bijection between their terms.
 
-// To define a map from $A$ to $B$, it is tempting to write $Γ,x:A ⊢ b:B$,
-// but this does not make type sense, because it presupposes $Γ,x:A⊢B$, which is not true!
-// So, instead we have to do $Γ,x:A ⊢ b:B[π_A]$, similarly we have $Γ,x:B ⊢ a:A[π_B]$.
+#definition("Type isomorphism")[
+For types $Γ⊢A$ and $Γ⊢B$, a _type isomorphism_ (or _isomorphism_ for short) between them is a pair of terms $Γ,x:A ⊢ b:B$ and $Γ,x:B ⊢ a:A$ such that:
+$ Γ,x:A ⊢ x ≡ a[b slash x] : A \
+  Γ,x:B ⊢ x ≡ b[a slash x] : B $
+]
 
-// Then, we want to compose them in an appropriate way. To substitute $a$ into $b$, we need a substitution whose codomain is $Γ,x:A$. However, we can only afford to provide $b$ as a substitution with codomain $Γ,x:B,y:A[π_B]$ (by appending it to an identity substitution),
-// and by #cross-link("subst", reference: <def_exchange>)[exchange]
-// we know it's equivalent to $Γ,x:A,y:B[π_A]$ by a substitution $ex(B,A)$.
+We wish isomorphic types to behave the same in type theory.
+
+#lesson[It is common that instances of a type are usually infinite,
+and in that case they are always countable,
+as the terms we an write down are essentially _abstract syntax trees_, and trees are countable.
+
+However, there will still be infinite types that are not isomorphic,
+since the definition of type isomorphism is an _internal_ isomorphism,
+i.e. the isomorphism needs to be _inside_ the type theory.]
+
+To establish the equivalence between types theories, we need to consider the following:
+
++ Because we care about using types abstractly, not caring how they are implemented,
+  so for instance if $cal(A)$ has a distinguished unit type and $cal(B)$ has a unit type
+  implemented by some other types, we still consider them to be the same type theory
+  if everything else is the same,
++ If we translate $Γ⊢^cal(A) A$ into $Γ' ⊢^cal(B) A'$, we wish the terms to be translated so that:
+  + Different terms get translated into different terms,
+  + Every term of $A'$ is the translation of some term of $A$.
+
+Putting all of these conditions together, we can form a sensible notion of equivalence between type theories.
 
 TODO
 

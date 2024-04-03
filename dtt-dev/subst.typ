@@ -176,20 +176,43 @@ we define $Γ,x:A ⊢π_A : Γ$ to be the identity substitution object $id_Γ$ w
 An alternative way to think about $π_A$ is that it is the substitution
 object that deletes the last variable from the context, and acts as the identity substitution otherwise.
 
-#lemma("Weakening")[
-The substitution action induced by any projection is an inclusion:
+= Structural properties
+
+Since we already have weakening, we further require that the weakening substitution is an inclusion.
+
+#definition("Weakening")[
+The substitution action induced by any projection is an identity:
 $ (Γ⊢A #h(2em) Γ⊢B)/(Γ,x:A⊢B[π_A] ≡ B) #h(2em)
   (Γ⊢b:B)/(Γ,x:A⊢b[π_A]≡b : B)
  $
 ]
 
-If weakening is an inclusion, the variable rule becomes very easy to write down,
-we can simply say:
-$ Γ ⊢ x : A $
+#lesson("Pain")[If weakening is an inclusion, the variable rule becomes very easy to write down,
+we can simply say: $ Γ ⊢ x : A $
 if $A$ is not at the end of the context and weakening is not an inclusion,
-we would have to write:
-$ Γ ⊢ x : A[π_B_1][π_B_2]... $
-where $π_B_1,π_B_2,...$ are the projections that delete the types before $A$.
+we would have to write: $ Γ ⊢ x : A[π_B_1][π_B_2]... $
+where $π_B_1,π_B_2,...$ are the projections that delete the types before $A$.]
+
+In our case, since weakening substitutions behave like inclusions, we can omit all of them.
+
+#theorem("Exchange")[
+For types $Γ⊢A$ and $Γ⊢B$, we have the following context isomorphism:
+$ Γ,A,B ≃ Γ,B,A $
+]
+#proof[$Γ,x:A,y:B ⊢ (id_Γ,y,x) : (Γ,B,A)$.]
+
+#lesson("Tears")[If weakening is not an inclusion, the above will be very painful to write down!
+For instance, the context expression
+$ Γ,x:A,y:B $
+does not make sense,
+because to extend the context $Γ,A$ with $B$, we need $Γ,A ⊢ B$, as opposed to what we have, which is $Γ ⊢ B$.
+
+So, we need to apply a weakening to get $Γ,A ⊢ B[π_A]$,
+and the context is actually $Γ,A,B[π_A]$, and we need to construct the $σ$ in
+$ Γ,A,B[π_A] ⊢ σ : Γ,B,A[π_B] $
+We begin with weaekning $id_Γ$ into the context, and it's
+$ Γ,x:A,y:B[π_A] ⊢ id_Γ [π_A][π_B[π_A]] : Γ $
+and we need to append $x$ and $y$ to the end of it, which is even worse.]
 
 = Conclusion
 

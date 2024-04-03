@@ -7,6 +7,7 @@
 #let definition = thmbox("definition", "Definition", breakable: true, fill: rgb("#DFF9FF" + alpha))
 #let construction = thmbox("construction", "Construction", breakable: true, fill: rgb("#fff7f7" + alpha))
 #let example = thmbox("example", "Example", breakable: true, fill: rgb("#f7f7fd" + alpha))
+#let lesson = thmbox("lesson", "Lesson", breakable: true, fill: rgb("#FFCCCB" + alpha))
 #let proof = thmproof("proof", "Proof")
 
 #let mybot = box(sym.bot)
