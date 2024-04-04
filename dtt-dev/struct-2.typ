@@ -39,5 +39,25 @@ For every context $Γ$ and types $Γ ⊢ 🤔$,
 + and this whole thing is preserved by substitution.
 
 Now, the real question arise: can we generalize this and how do we do that?
+
+== Compiler as type
+
+We start by thinking about products.
+Given any $Γ⊢A$ and $Γ⊢B$, and let's think about $Γ⊢X$ with two _pseudo-projections_:
+$ Γ,x:X ⊢ a: A #h(2em) Γ,x:X ⊢ b: B $
+We pack them up and write it as $(X, a, b)$.
+In what case do we consider $X$ to be a product of $A$ and $B$?
+
+The generalization is very hard to motivate, but here is the construction.
+Consider all such product-like things $(X, a, b)$.
+Assuming the product $A×B$ exists, so that must be one of those $X$'s,
+and the packed data is $(A×B, x.1, x.2)$.
+Then, for every $X$, there must exist a _unique_ term:
+$ Γ, x:X ⊢ h : A×B $
+such that:
+$ Γ, x:X ⊢ a ≡ h.1 : A \
+  Γ, x:X ⊢ b ≡ h.2 : B
+  $
+TODO
 ]
 #struct-2-fulltext
