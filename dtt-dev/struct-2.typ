@@ -1,5 +1,6 @@
 #import "config.typ": *
 #import "@preview/fletcher:0.4.3" as fletcher: diagram, node, edge
+#let cedge(..args) = edge(label-side: center, ..args)
 #show: dtt.with(title: "Limits")
 
 #let struct-2-fulltext = [
@@ -40,38 +41,56 @@ For every context $Γ$ and types $Γ ⊢ 🤔$,
 
 Now, the real question arise: can we generalize this and how do we do that?
 
-== Compiler as type
+== Raw structures
 
 We start by thinking about products.
-Given any $Γ⊢A$ and $Γ⊢B$, and let's think about $Γ⊢X$ with two _pseudo-projections_:
+Given any $Γ⊢A$ and $Γ⊢B$, we may rephrase the introduction of product $A×B$ as having another type $Γ⊢X$ with two _pseudo-projections_:
 $ Γ,x:X ⊢ a: A #h(2em) Γ,x:X ⊢ b: B $
-We pack them up and write it as $(X, a, b)$.
-In what case do we consider $X$ to be a product of $A$ and $B$?
+which gives me back the original $A$ and $B$.
+This motivates the following definition.
 
-The generalization is very hard to motivate, but here is the construction.
-Consider all such product-like things $(X, a, b)$.
-Assuming the product $A×B$ exists, so that must be one of those $X$'s,
-and the packed data is $(A×B, x.1, x.2)$.
-Then, for every $X$, there must exist a _unique_ term:
+// Cones for products
+#definition("Raw product")[
+Given any $Γ⊢A$ and $Γ⊢B$. A _raw product_ consists of the following data:
++ A type $Γ⊢X$,
++ Two terms $Γ,x:X ⊢ a: A$ and $Γ,x:X ⊢ b: B$.
+We denote a raw product as $(X, a, b)$.
+]
+
+Then, the product $A×B$ is something we can always use these pieces of information to introduce an instance with, like this:
+$ Γ,x:X ⊢ ⟨a,b⟩ : A×B $
+Also note that the product $A×B$ can also be used to make a "raw product", namely $(A×B, x.1, x.2)$.
+The special feature of this legitimate product is that it has an introduction rule that transforms any raw product into it.
+
+Now, we can redefine the product without assuming its pre-existing rules.
+
+#definition("Product")[
+The product $(A×B,x.1,x.2)$ is a raw product such that
+for every other raw product $(X,a,b)$, there exists a _unique_ term, called the _constructor_:
 $ Γ, x:X ⊢ h : A×B $
 such that:
 $ Γ, x:X ⊢ a ≡ h.1 : A \
   Γ, x:X ⊢ b ≡ h.2 : B
   $
 where $h.1$ is the result of the substitution $x.1 [h slash x]$, and similarly for $h.2$.
+] <def_ct_product>
 The idea is that constructing a term of type $A×B$ must go through its introduction rule,
 
-We can diagramize the above conditions.
+We can diagramize the conditions in @def_ct_product as a commutative diagram.
 In context $Γ$, we have:
 #align(center)[#diagram(cell-size: 15mm, $
-  &X edge("lb", a, ->)
-     edge("rb", b, ->)
-     edge("d", h, "-->")
+  &X cedge("lb", a, ->)
+     cedge("rb", b, ->)
+     cedge("d", h, "-->")
    & \
-  A &A×B edge("l", .1, ->)
-      edge("r", .2, ->)
+  A &A×B cedge("l", .1, ->)
+      cedge("r", .2, ->)
   & B
 $)]
+
+Now, it is tempting to define another type in a similar vibe.
+Let's try the unit type.
+
 TODO
 ]
 #struct-2-fulltext
