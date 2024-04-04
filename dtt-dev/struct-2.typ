@@ -58,6 +58,20 @@ such that:
 $ Γ, x:X ⊢ a ≡ h.1 : A \
   Γ, x:X ⊢ b ≡ h.2 : B
   $
+where $h.1$ is the result of the substitution $x.1 [h slash x]$, and similarly for $h.2$.
+The idea is that constructing a term of type $A×B$ must go through its introduction rule,
+
+We can diagramize the above conditions.
+In context $Γ$, we have:
+#align(center)[#diagram(cell-size: 15mm, $
+  &X edge("lb", a, ->)
+     edge("rb", b, ->)
+     edge("d", h, "-->")
+   & \
+  A &A×B edge("l", .1, ->)
+      edge("r", .2, ->)
+  & B
+$)]
 TODO
 ]
 #struct-2-fulltext

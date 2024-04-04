@@ -34,18 +34,22 @@ The following are some example definitions of type theories:
 == Translations
 
 #definition("Compiler")[
-A _compiler_ from type theory $bold(A)$ to type theory $bold(B)$, denoted $bold(F):bold(A) → bold(B)$,
-is a pair of functions, called _translations_, both denoted $[| - |]_bold(F)$,
-where for input $A$, it produces output $[| A |]_bold(F)$:
+A _compiler_ from type theory $bold(A)$ to type theory $bold(B)$, denoted $bold(F):bold(A) → bold(B)$, consists of the following data:
 
-- A mapping from types $Γ ⊢^bold(A) A$ into the types in $bold(B)$, such that $[| Γ |]_bold(F) ⊢^bold(B) [| A |]_bold(F)$ is derivable, where $[|Γ|]_bold(F)$ is iterated translation of types inside $Γ$,
-- A mapping from terms $Γ ⊢^bold(A) t : A$ into terms in $bold(B)$, such that $[| Γ |]_bold(F) ⊢^bold(B) [| t |]_bold(F) : [| A |]_bold(F)$ is derivable;
++ A context $Δ$ in $bold(B)$, which we map the empty context in $bold(A)$ to,
++ A pair of functions, called _translations_, both denoted $[| - |]_bold(F)$,
+  i.e. for input $A$, it produces output $[| A |]_bold(F)$, maps the types and terms from $bold(A)$ to $bold(B)$.
+3. In addition to that, we define $[| Γ |]$ to be iteratively translating the types inside $Γ$ and push them onto $Δ$ -- the translation of the empty context;
 
 such that:
 
-- If $Γ ⊢^bold(A) A ≡ B$ is derivable, then $[| Γ |]_bold(F) ⊢^bold(B) [| A |]_bold(F) ≡ [| B |]_bold(F)$ is derivable,
-- If $Γ ⊢^bold(A) t ≡ u : A$ is derivable, then $[| Γ |]_bold(F) ⊢^bold(B) [| t |]_bold(F) ≡ [| u |]_bold(F) : [| A |]_bold(F)$ is derivable.
++ For $Γ ⊢^bold(A) A$, the judgment $[| Γ |]_bold(F) ⊢^bold(B) [| A |]_bold(F)$ must be derivable,
++ For $Γ ⊢^bold(A) t : A$, the judgment $[| Γ |]_bold(F) ⊢^bold(B) [| t |]_bold(F) : [| A |]_bold(F)$ must be derivable,
++ If $Γ ⊢^bold(A) A ≡ B$ is derivable, then $[| Γ |]_bold(F) ⊢^bold(B) [| A |]_bold(F) ≡ [| B |]_bold(F)$ is derivable,
++ If $Γ ⊢^bold(A) t ≡ u : A$ is derivable, then $[| Γ |]_bold(F) ⊢^bold(B) [| t |]_bold(F) ≡ [| u |]_bold(F) : [| A |]_bold(F)$ is derivable.
 ] <def_compiler>
+
+By default, we assume the empty context is translated into the empty context.
 
 When there is only one compiler in the context, we might omit the subscript $bold(F)$.
 
