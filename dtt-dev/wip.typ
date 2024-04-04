@@ -38,3 +38,13 @@ A _raw extensional equality_ consists of the following data:
 + The equality reflection rule, namely
   $ (Γ⊢p:X)/(Γ⊢a≡b:A) $
 ]
+
+Then, $a=_A b$ is an instance of such a raw extensional equality,
+which can be characterized as follows:
+
+#definition("Extensional equality")[
+The extensional equality $a=_A b$ is a raw extensional equality such that
+for every other raw extensional equality $X$, there exists a _unique_ term,
+called the _reflexivity principle_:
++ $ Γ ⊢ h : a =_A b $
+such that:

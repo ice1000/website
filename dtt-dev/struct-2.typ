@@ -91,7 +91,7 @@ $)]
 This is rather like _characterizing_ the product type, instead of _defining_ it.
 
 Now, it is tempting to define another type in a similar vibe.
-Let's try the unit type and the extensional equality.
+Let's try the unit type.
 
 #definition("Raw unit")[
 A _raw unit_ consists of the following data:
@@ -113,6 +113,26 @@ $ Γ ⊢ u ≡ h : top $
 
 It is clear that this coincides with the original definition of the unit type,
 where $h$ is just another name for $★$!
+
+== Limit of Compilers
+
+Now, let's further generalize the idea of raw structures.
+The data in a raw product in type theory $bold(A)$ can be seen as the _image_ of a compiler from the following type theory:
+
+#definition("Schema of a product")[
+The _schema_ of a product is a dependent type theory with the following rules:
+
+$ ·⊢A #h(2em) ·⊢B #h(2em) ·⊢X $
+$ x:X ⊢ x.1 : A #h(2em)
+  x:X ⊢ x.2 : B $
+]
+They constitute the following diagram:
+
+#align(center)[#diagram(cell-size: 15mm, $
+  A &X cedge("l", x.1, ->)
+     cedge("r", x.2, ->)
+   &B
+  $)]
 
 TODO
 ]
