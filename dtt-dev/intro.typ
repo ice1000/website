@@ -23,5 +23,10 @@ A _derivable_ judgment in a type theory is a judgment one may derive using the t
 #definition("Admissible")[
 An _admissible_ rule in a type theory is a rule that can be proved at the meta level by doing case analysis on the premises.
 ]
+The usual definition of admissibility is that it does not add new theorems to the theory,
+but I personally find it too much of a characterization, and is far from something we can easily verify.
+
+In practice, it's most likely the case that admissible rules are proved by case analysis on the premises,
+which is usually clearer how to do.
 ]
 #intro-fulltext

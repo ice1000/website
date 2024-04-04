@@ -30,3 +30,11 @@ such that the following rules are derivable:
   $
   The $η$-law.
 ]
+
+#definition("Raw extensional equality")[
+Given $Γ⊢a:A$ and $Γ⊢b:A$.
+A _raw extensional equality_ consists of the following data:
++ A type $Γ⊢X$,
++ The equality reflection rule, namely
+  $ (Γ⊢p:X)/(Γ⊢a≡b:A) $
+]

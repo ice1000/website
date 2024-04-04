@@ -88,8 +88,31 @@ In context $Γ$, we have:
   & B
 $)]
 
+This is rather like _characterizing_ the product type, instead of _defining_ it.
+
 Now, it is tempting to define another type in a similar vibe.
-Let's try the unit type.
+Let's try the unit type and the extensional equality.
+
+#definition("Raw unit")[
+A _raw unit_ consists of the following data:
++ A type $Γ⊢X$,
++ A term $Γ⊢u: X$.
+We denote a raw unit as $(X, u)$.
+]
+
+Then $(top, ★)$ is an instance of such a raw unit,
+and we can characterize the unit type as follows:
+
+#definition("Unit")[
+The unit type is a raw unit such that
+for every other raw unit $(X,u)$, there exists a _unique_ term, called the _constructor_:
+$ Γ ⊢ h : top $
+such that:
+$ Γ ⊢ u ≡ h : top $
+] <def_ct_unit>
+
+It is clear that this coincides with the original definition of the unit type,
+where $h$ is just another name for $★$!
 
 TODO
 ]
