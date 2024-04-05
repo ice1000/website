@@ -41,13 +41,13 @@ The judgments come with _presuppositions_ that are always assumed:
 + $Γ ⊢ σ ≡ γ : Δ$ presupposes $Γ ⊢ σ : Δ$ and $Γ ⊢ γ : Δ$.
 
 When we write down a rule that derives a judgment, we implicitly assume that the presuppositions are in the premises.
-] <def_presup>
+] <def:presup>
 
 // For expert readers: unless explicitly stated otherwise, the type theory we consider will be structural type theories without modalities or type universes -- so that all type formers are well-behaved and simple.
 
 #definition[We assume judgmental equality to be _reflexive_:
 $ Γ ⊢ A ≡ A #h(2em) Γ ⊢ a ≡ a : A $
-] <def_refl_jeq>
+] <def:refl:jeq>
 
 #definition[We assume judgmental equality to be _substitutive_.]
 This is very hard to spell out formally in a general setting, but it basically means that we can substitute equal terms in any judgment.
@@ -62,7 +62,7 @@ $ (Γ ⊢ A ≡ B)/(Γ ⊢ B ≡ A) #h(2em) (Γ ⊢ a ≡ b : A)/(Γ ⊢ b ≡ a
 ]
 #proof[
 - Symmetry: $Γ ⊢ A ≡ B$ so we can replace $B$ with $A$, and the goal becomes $Γ ⊢ A ≡ A$,
-  which holds by @def_refl_jeq. The one for terms is similar.
+  which holds by @def:refl:jeq. The one for terms is similar.
 - Transitivity: $Γ ⊢ A ≡ B$, so we can replace $B$ with $A$ so the other premise becomes $Γ ⊢ A ≡ C$,
   which is equal to the goal.
 ]
@@ -70,7 +70,7 @@ $ (Γ ⊢ A ≡ B)/(Γ ⊢ B ≡ A) #h(2em) (Γ ⊢ a ≡ b : A)/(Γ ⊢ b ≡ a
 #corollary[
 Typing of terms is up to judgmental equality of types:
 $ (Γ ⊢ A ≡ B #h(2em) Γ ⊢ a:B)/(Γ ⊢ a:A) $
-] <def_typing_jeq>
+] <def:typing:jeq>
 #proof[$Γ ⊢ A ≡ B$ so we can replace $B$ with $A$ in the premise, which makes it equal to the goal.]
 
 Furthermore, we assume all the congruence rules (i.e. all functions are pure) for the equality judgments, which are omitted everywhere for brevity.
@@ -110,7 +110,7 @@ For equality of substitutions, we intend to equate them according to their actio
 #definition("Substitution extensionality")[
 If for every $Γ ⊢ A$, $Γ ⊢ A[σ] ≡ A[γ]$, and for every $Γ ⊢ a : A$, $Γ ⊢ a[σ] ≡ a[γ]$, then:
 $ Γ ⊢ σ ≡ γ : Δ $
-] <def_subst_ext>
+] <def:subst:ext>
 
 We assume substitution to have some commonly expected properties,
 which includes having an identity and compose associatively.
@@ -145,7 +145,7 @@ such that $x[σ]$ is defined as the $n$-th term in the substitution object $σ$.
 For any context $Γ$, we define $Γ ⊢ id_Γ : Γ$ to be the following substitution object by induction on $Γ$:
 + $Γ = (·)$, then $id_((·)) := (·)$.
 + $Γ = Γ',x:A$, then $id_(Γ',x:A) := (id_(Γ'),x)$, where $Γ ⊢ x:A$.
-] <cons_id_subst>
+] <cons:id:subst>
 
 #lemma[Idenity substitution actions are identity functions:
 $ Γ ⊢ A[id_Γ] ≡ A #h(2em) Γ ⊢ a[id_Γ] ≡ a : A $]
@@ -222,7 +222,7 @@ which will be used as the foundational framework for the rest of the development
 
 Importantly, we have shown weakening to be an inclusion.
 
-As a side remark, an alternative to presuppositions @def_presup is to use rules like these:
+As a side remark, an alternative to presuppositions @def:presup is to use rules like these:
 $ (Γ ⊢ a : A)/(Γ ⊢ A) $
 It is up to preference and formalism to choose between the two styles.
 We use presuppositions to avoid proving a reason to use the above style.

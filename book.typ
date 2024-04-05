@@ -1,4 +1,4 @@
-#import "@preview/book:0.2.4": *
+#import "@preview/book:0.2.5": *
 #show: book
 
 #book-meta(

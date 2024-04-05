@@ -10,7 +10,7 @@ The goal of this chapter is to revisit the structures defined in #cross-link("st
 
 == Structures, revisited
 
-We start the section by a reflection on the definition of #cross-link("struct-1", reference: <def_unit>)[having a unit type].
+We start the section by a reflection on the definition of #cross-link("struct-1", reference: <def:rule:unit>)[having a unit type].
 For a type theory to have a unit type, the following needs to be true:
 
 For every context $Γ$,
@@ -73,10 +73,10 @@ $ Γ, x:X ⊢ a ≡ h.1 : A \
   Γ, x:X ⊢ b ≡ h.2 : B
   $
 where $h.1$ is the result of the substitution $x.1 [h slash x]$, and similarly for $h.2$.
-] <def_ct_product>
+] <def:ct:product>
 The idea is that constructing a term of type $A×B$ must go through its introduction rule,
 
-We can diagramize the conditions in @def_ct_product as a commutative diagram.
+We can diagramize the conditions in @def:ct:product as a commutative diagram.
 In context $Γ$, we have:
 #align(center)[#diagram(cell-size: 15mm, $
   &X cedge("lb", a, ->)
@@ -109,7 +109,7 @@ for every other raw unit $(X,u)$, there exists a _unique_ term, called the _cons
 $ Γ ⊢ h : top $
 such that:
 $ Γ ⊢ u ≡ h : top $
-] <def_ct_unit>
+] <def:ct:unit>
 
 It is clear that this coincides with the original definition of the unit type,
 where $h$ is just another name for $★$!

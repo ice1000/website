@@ -48,3 +48,4 @@ for every other raw extensional equality $X$, there exists a _unique_ term,
 called the _reflexivity principle_:
 + $ Γ ⊢ h : a =_A b $
 such that:
+]

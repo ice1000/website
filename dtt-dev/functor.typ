@@ -19,7 +19,7 @@ denoted using bold font, e.g. $bold(A), bold(B)$, or $bold("TT")$.
 In the presence of multiple type theories, we write $Γ ⊢^bold(A) ...$ to mean that this judgment happens in type theory $bold(A)$.
 
 Recall in #cross-link("struct-1")[last chapter] we have introduced a couple of _structures_ of type theories, defined to be having some data and the ability to derive some rules.
-When postulating rules, we might just say "$bold(A)$ has #cross-link("struct-1", reference: <def_product>)[product type]" to say that we are postulating all the rules needed by product type in $bold(A)$.
+When postulating rules, we might just say "$bold(A)$ has #cross-link("struct-1", reference: <def:rule:product>)[product type]" to say that we are postulating all the rules needed by product type in $bold(A)$.
 
 The following are some example definitions of type theories:
 
@@ -27,7 +27,7 @@ The following are some example definitions of type theories:
 - The empty type theory $bold(0)$ has the empty set of postulated rules.
 - The unit type theory $bold(1)$ has a unit type.
 - Alternatively, another unit type theory has a unit type and product types.
-] <ex_empty_unit_fp>
+] <ex:empty:unit:fp>
 #lemma[In the empty type theory, there is only one context -- the empty one.]
 #lemma[In the unit type theory, all contexts except the empty one are isomorphic.]
 
@@ -47,7 +47,7 @@ such that:
 + For $Γ ⊢^bold(A) t : A$, the judgment $[| Γ |]_bold(F) ⊢^bold(B) [| t |]_bold(F) : [| A |]_bold(F)$ must be derivable,
 + If $Γ ⊢^bold(A) A ≡ B$ is derivable, then $[| Γ |]_bold(F) ⊢^bold(B) [| A |]_bold(F) ≡ [| B |]_bold(F)$ is derivable,
 + If $Γ ⊢^bold(A) t ≡ u : A$ is derivable, then $[| Γ |]_bold(F) ⊢^bold(B) [| t |]_bold(F) ≡ [| u |]_bold(F) : [| A |]_bold(F)$ is derivable.
-] <def_compiler>
+] <def:compiler>
 
 By default, we assume the empty context is translated into the empty context.
 
@@ -69,7 +69,7 @@ $)]
 So, when translating the rules, we do not have to do additional work to ensure that the presuppositions are satisfied.
 
 #example[
-For every type theory $bold(A)$, there exists a compiler from $bold(A)$ to the unit type theory $bold(1)$ (@ex_empty_unit_fp), by compiling all types and terms as the unit type and its introduction rule.
+For every type theory $bold(A)$, there exists a compiler from $bold(A)$ to the unit type theory $bold(1)$ (@ex:empty:unit:fp), by compiling all types and terms as the unit type and its introduction rule.
 ]
 #example[
 For every type theory $bold(A)$, there exists a compiler from the empty type theory $bold(0)$ to $bold(A)$, because there is nothing to compile.

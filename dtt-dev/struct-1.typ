@@ -22,10 +22,10 @@ such that the following rules hold:
 + The fact that the formation of unit type is preserved by substitution:
   $ Γ ⊢ top[σ] ≡ top $
 + The $η$-law: $ (Γ ⊢ a : top)/(Γ ⊢ a ≡ ★ : top) $
-] <def_unit>
+] <def:rule:unit>
 
 #lemma[The introduction of unit type is preserved by substitution:
-$ Γ ⊢ ★[σ] ≡ ★ : top $] <lem_subst_unit>
+$ Γ ⊢ ★[σ] ≡ ★ : top $] <lem:subst:unit>
 #proof[Because $Γ ⊢ ★[σ] : top$, and by the $η$-law.]
 
 In any type theory, as long as we can assign $top$ and $★$ to an existing construction, we consider this type theory to have unit type.
@@ -56,7 +56,7 @@ such that the following rules hold:
   $
 ]
 
-Similarly we can state a theorem similar to @lem_subst_unit:
+Similarly we can state a theorem similar to @lem:subst:unit:
 #lemma[The elimination of empty type is preserved by substitution:
 $ (Δ,x:bot ⊢ a:A #h(2em) Γ ⊢ σ : Δ #h(2em) σ' := (σ,x slash x))/
   (Γ,x:bot ⊢ a[σ'] ≡ elim_bot (x) : A[σ']) $] <lem_subst_empty>
@@ -74,7 +74,7 @@ whose inverse is given alike.
 
 Before proceeding further, we briefly describe the intended way to use these definitions.
 
-There might be a type theory that does not directly define a unit type, but as long as it can provide the data and prove the equations needed by @def_unit, we can say it has a unit type, and may start using the rules of unit type in the type theory.
+There might be a type theory that does not directly define a unit type, but as long as it can provide the data and prove the equations needed by @def:rule:unit, we can say it has a unit type, and may start using the rules of unit type in the type theory.
 
 This is a form of _abstraction_, where we care only about how types are intended to be used, not how they are implemented,
 and we use the abstracted rules which usually leads to lighter notations, shorter theorems and proofs, more efficient communications, and more general results.
@@ -109,21 +109,21 @@ such that the following rules hold:
 + The $η$-law:
   $ (Γ ⊢ p : A × B)/(Γ ⊢ p ≡ ⟨p.1, p.2⟩ : A × B)
   $
-] <def_product>
+] <def:rule:product>
 
 #lemma("Product extensionality")[
 The following rule is derivable:
 $ (Γ ⊢ a.1 ≡ b.1 : A #h(2em) Γ ⊢ a.2 ≡ b.2 : B)/
   (Γ ⊢ a ≡ b : A × B)
   $
-] <lem_product_ext>
+] <lem:product:ext>
 #proof[By $η$-law, what we need to show is equivalently $⟨a.1, a.2⟩ ≡ ⟨b.1, b.2⟩$ and by congruence of equality.]
 
 // Beck--Chevalley condition
 #lemma[The introduction of product type is preserved by substitution:
 $ Γ ⊢ ⟨a,b⟩[σ] ≡ ⟨a[σ], b[σ]⟩ : A[σ] × B[σ] $] <lem_subst_product>
 #proof[
-Let $u := ⟨a,b⟩[σ]$. By @lem_product_ext, the goal is equivalently $u.1 ≡ a[σ]$ and $u.2 ≡ b[σ]$.
+Let $u := ⟨a,b⟩[σ]$. By @lem:product:ext, the goal is equivalently $u.1 ≡ a[σ]$ and $u.2 ≡ b[σ]$.
 
 Since projection is preserved by substitution, we have $(⟨a,b⟩[σ]).1 ≡ (⟨a,b⟩.1)[σ] ≡ a[σ]$, hence $u.1 ≡ a[σ]$, likewise $u.2 ≡ b[σ]$.
 ]
@@ -153,12 +153,12 @@ such that the following rules hold:
 ]
 
 Before stating any properties of extensional equality, observe that in the $η$-law, we do not have a premise $Γ ⊢ p : a =_A b$.
-This is because we have #cross-link("subst", reference: <def_presup>)[_presuppositions_], implying that this is already assumed when we _state_ the conclusion.
+This is because we have #cross-link("subst", reference: <def:presup>)[_presuppositions_], implying that this is already assumed when we _state_ the conclusion.
 
 #lemma("Uniqueness")[The following judgment is _derivable_:
 $ (Γ ⊢ p : a =_A b #h(2em) Γ ⊢ q : a =_A b)/
   (Γ ⊢ p ≡ q : a =_A b)
-  $] <lem_uniqueness>
+  $] <lem:refl:uniqueness>
 #proof[
 By elimination of equality, we know $Γ ⊢ a ≡ b : A$, hence it suffice to show:
 $ Γ ⊢ p ≡ q : a =_A a $
