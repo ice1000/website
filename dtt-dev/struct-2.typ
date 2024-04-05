@@ -117,22 +117,38 @@ where $h$ is just another name for $★$!
 == Limit of Compilers
 
 Now, let's further generalize the idea of raw structures.
-The data in a raw product in type theory $bold(A)$ can be seen as the _image_ of a compiler from the following type theory:
+The data in a raw product in type theory $bold(A)$ can be represented as a _cone_,
+which is defined below.
 
 #definition("Schema of a product")[
-The _schema_ of a product is a dependent type theory with the following rules:
+Consider a dependent type theory $bold(D)$ with the following rules:
+$ ·⊢A #h(2em) ·⊢B $
+The _schema_ of a product in type theory $bold(A)$ is a compiler $bold(F) : bold(D) → bold(A)$.
+] <def:schema:product>
+Essentially, a schema _chooses_ two types $Γ⊢[| A |]_bold(F)$ and $Γ⊢[| B |]_bold(F)$
+in $bold(A)$ for the base context $Γ=[| · |]_bold(F)$.
 
-$ ·⊢A #h(2em) ·⊢B #h(2em) ·⊢X $
-$ x:X ⊢ x.1 : A #h(2em)
-  x:X ⊢ x.2 : B $
+#definition("Cone")[
+A _cone_ of a schema $bold(F) : bold(D) → bold(A)$ consists of the following data,
+where we denote the base context as $Γ=[| · |]_bold(F)$:
++ A type $Γ⊢X$,
++ for every type $Δ⊢A$ in $bold(D)$,
+  a substitution $Γ,x:X ⊢ a_A : [| Δ,A |]_bold(F)$,
++ such that the diagram commutes.
 ]
-They constitute the following diagram:
+
+A _cone_ of the schema in @def:schema:product corresponds to the following diagram:
 
 #align(center)[#diagram(cell-size: 15mm, $
   A &X cedge("l", x.1, ->)
      cedge("r", x.2, ->)
    &B
   $)]
+Since there is no directed paths that share the same source and target,
+the diagram always commutes.
+
+With the notion of cones, we can define the notion of _limits_,
+which corresponds to the definition of product type if the schema is chosen to be @def:schema:product:
 
 TODO
 ]

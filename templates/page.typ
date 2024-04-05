@@ -1,13 +1,6 @@
 // This is important for typst-book to produce a responsive layout
 // and multiple targets.
-#import "@preview/book:0.2.5": get-page-width, target, is-web-target, is-pdf-target, plain-text as plain-text-cringe
-
-#let plain-text(it) = {
-  if type(it) == content {
-    "114514"
-  }
-  plain-text-cringe(it)
-}
+#import "@preview/book:0.2.5": get-page-width, target, is-web-target, is-pdf-target, plain-text
 
 #let page-width = get-page-width()
 #let is-pdf-target = is-pdf-target()
