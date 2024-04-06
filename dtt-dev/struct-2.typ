@@ -128,6 +128,11 @@ The _schema_ of a product in type theory $bold(A)$ is a compiler $bold(F) : bold
 Essentially, a schema _chooses_ two types $Γ⊢[| A |]_bold(F)$ and $Γ⊢[| B |]_bold(F)$
 in $bold(A)$ for the base context $Γ=[| · |]_bold(F)$.
 
+#definition("Schema of a unit")[
+The _schema_ of a unit in type theory $bold(A)$ is a compiler $bold(F) : bold(0) → bold(A)$,
+where $bold(0)$ is the empty type theory.
+] <def:schema:unit>
+
 #definition("Cone")[
 A _cone_ of a schema $bold(F) : bold(D) → bold(A)$ consists of the following data,
 where we denote the base context as $Γ=[| · |]_bold(F)$:
@@ -136,6 +141,7 @@ where we denote the base context as $Γ=[| · |]_bold(F)$:
   a substitution $Γ,x:X ⊢ a_A : [| Δ,A |]_bold(F)$,
 + such that the diagram commutes.
 ]
+In our case, $Δ$ is always $·$, so the substitution $a_A$ is really just a term.
 
 A _cone_ of the schema in @def:schema:product corresponds to the following diagram:
 
@@ -147,8 +153,16 @@ A _cone_ of the schema in @def:schema:product corresponds to the following diagr
 Since there is no directed paths that share the same source and target,
 the diagram always commutes.
 
+A cone of the schema in @def:schema:unit is just a type $Γ⊢X$.
+
 With the notion of cones, we can define the notion of _limits_,
-which corresponds to the definition of product type if the schema is chosen to be @def:schema:product:
+which should coincide to the original definition of the types (in our case, products and the unit type):
+
+#definition("Limit")[
+The _limit_ of the cones of a schema $bold(F) : bold(D) → bold(A)$
+is a cone $(X, a)$ such that for every other cone $(Y, b)$,
+
+]
 
 TODO
 ]
