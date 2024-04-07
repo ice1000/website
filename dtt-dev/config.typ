@@ -16,6 +16,7 @@
 #let elim = $sans("elim")$
 #let refl = $sans("refl")$
 #let ex(A,B) = $sans("ex")_(#A, #B)$
+#let Cone(D, X) = $sans("Cone")_(#D)(X)$
 
 #import "/book.typ": cross-link as lib-cross-link
 

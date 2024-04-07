@@ -139,19 +139,23 @@ where we denote the base context as $Γ=[| · |]_bold(F)$:
 + A type $Γ⊢X$,
 + for every type $Δ⊢A$ in $bold(D)$,
   a substitution $Γ,x:X ⊢ a_A : [| Δ,A |]_bold(F)$,
-+ such that the diagram commutes.
++ such that the diagram of all $a_A$ and the terms interpreted by $bold(F)$ commutes.
+We denote a cone as $Cone(bold(F), Γ⊢X)$, and refer to the diagram mentioned above
+as the diagram of this cone.
 ]
 In our case, $Δ$ is always $·$, so the substitution $a_A$ is really just a term.
 
 A _cone_ of the schema in @def:schema:product corresponds to the following diagram:
 
 #align(center)[#diagram(cell-size: 15mm, $
-  A &X cedge("l", x.1, ->)
+  [| A |] &X cedge("l", x.1, ->)
      cedge("r", x.2, ->)
-   &B
+   & [| B |]
   $)]
 Since there is no directed paths that share the same source and target,
 the diagram always commutes.
+Usually, there will be some term in the image of $bold(F)$,
+and in those cases, we will have a nontrivial commutative diagram.
 
 A cone of the schema in @def:schema:unit is just a type $Γ⊢X$.
 
@@ -160,9 +164,13 @@ which should coincide to the original definition of the types (in our case, prod
 
 #definition("Limit")[
 The _limit_ of the cones of a schema $bold(F) : bold(D) → bold(A)$
-is a cone $(X, a)$ such that for every other cone $(Y, b)$,
+is a cone $Cone(bold(F), Γ⊢X)$ such that for every other cone
+from the same context $Cone(bold(F), Γ⊢A)$, there is a unique term:
+$ Γ,x:A ⊢ h: X $
+such that the diagram of both cones and $h$ commutes.
+] <def:limit>
 
-]
+Let's take a look at products as the limit of the schema in @def:schema:product.
 
 TODO
 ]
