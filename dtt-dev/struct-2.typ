@@ -91,7 +91,7 @@ $)]
 This is rather like _characterizing_ the product type, instead of _defining_ it.
 
 Now, it is tempting to define another type in a similar vibe.
-Let's try the unit type.
+We start by trying the unit type.
 
 #definition("Raw unit")[
 A _raw unit_ consists of the following data:
@@ -116,7 +116,7 @@ where $h$ is just another name for $★$!
 
 == Limit of Compilers
 
-Now, let's further generalize the idea of raw structures.
+Now, we further generalize the idea of raw structures.
 The data in a raw product in type theory $bold(A)$ can be represented as a _cone_,
 which is defined below.
 
@@ -143,7 +143,7 @@ where we denote the base context as $Γ=[| · |]_bold(F)$:
 We denote a cone as $Cone(bold(F), Γ⊢X)$, and refer to the diagram mentioned above
 as the diagram of this cone.
 ]
-In our case, $Δ$ is always $·$, so the substitution $a_A$ is really just a term.
+In the above two cases, $Δ$ is always $·$, so the substitution $a_A$ is really just a term.
 
 A _cone_ of the schema in @def:schema:product corresponds to the following diagram:
 
@@ -170,7 +170,7 @@ $ Γ,x:A ⊢ h: X $
 such that the diagram of both cones and $h$ commutes.
 ] <def:limit>
 
-Let's take a look at products as the limit of the schema in @def:schema:product.
+Now, let us take a look at products as the limit of the schema in @def:schema:product.
 
 TODO
 ]
