@@ -5,6 +5,7 @@
 #let lemma = thmbox("lemma", "Lemma", breakable: true, fill: rgb("#eeffee" + alpha))
 #let corollary = thmbox("corollary", "Corollary", breakable: true, fill: rgb("#eeffee" + alpha))
 #let definition = thmbox("definition", "Definition", breakable: true, fill: rgb("#DFF9FF" + alpha))
+#let notation = thmbox("notation", "Notation", breakable: true, fill: rgb("#DFF9FF" + alpha))
 #let construction = thmbox("construction", "Construction", breakable: true, fill: rgb("#fff7f7" + alpha))
 #let example = thmbox("example", "Example", breakable: true, fill: rgb("#f7f7fd" + alpha))
 #let lesson = thmbox("lesson", "Lesson", breakable: true, fill: rgb("#FFCCCB" + alpha))
