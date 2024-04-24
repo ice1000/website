@@ -14,4 +14,9 @@ and thinking about type theories from a categorical point of view.
 Some links: #link("https://orcid.org/0000-0002-9050-846X")[ORCiD], #link("https://github.com/ice1000")[GitHub],
 #link("https://arxiv.org/a/zhang_t_4")[arXiv], #link("https://www.aya-prover.org")[Aya Prover].
 
+== Collaborators
+
+- My advisor
+- #link("https://chasenorman.com")[Chase Norman]
+
 This website is under construction, stay tuned!

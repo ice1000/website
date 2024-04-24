@@ -760,4 +760,4 @@ with respect to this interpretation.
 
 ... */
 
-#bibliography("papers.bib")
+#bibliography("papers.bib", style: "association-for-computing-machinery")
