@@ -17,12 +17,10 @@
     #chapter("dtt-dev/struct-2.typ")[Structures, revisted],
     // Plan: pi, sigma (maybe local colimits?)
     #chapter(none)[Structures II],
-    // Plan: type 2-theory
-    #chapter(none)[Theory of Types],
     // Plan: modalities
     #chapter(none)[Modalities],
     // Plan: substructural type theories
-    #chapter(none)[Substructural],
+    // #chapter(none)[Substructural],
     #chapter("dtt-dev/wip.typ")[WIP Definitions],
     = Miscellaneous
     #prefix-chapter("resume.typ")[Industry Resume],
