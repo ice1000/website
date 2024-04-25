@@ -170,7 +170,18 @@ $ Γ,x:A ⊢ h: X $
 such that the diagram of both cones and $h$ commutes.
 ] <def:limit>
 
-Now, let us take a look at products as the limit of the schema in @def:schema:product.
+Now, let us check that a product is the limit of the schema in @def:schema:product.
+A cone for the schema consists of the following data:
++ A type $Γ⊢X$ (where $Γ$ is the base context),
++ For $Γ⊢A$, a term $Γ,x:X ⊢ a_A : A$ (we write $·,A$ as $A$ for simplicity),
++ For $Γ⊢B$, a term $Γ,x:X ⊢ b_B : B$.
+
+The limit of these cones matches precisely with @def:ct:product.
+Similarly, a unit type is the limit of the schema in @def:schema:unit,
+and we leave the construction as an exercise.
+
+Here is another fun fact: the extensional equality is also a limit!
+Let's look at the following schema:
 
 TODO
 ]

@@ -44,7 +44,7 @@ We say a type theory has _empty type_ if it has the following constructions:
 
 + _Formation_: $ Γ ⊢ bot $
 + _Elimination_:
-  $ (Γ, x:bot ⊢ u: A)/(Γ, x: bot ⊢ u ≡ elim_bot (x) : A)
+  $ (Γ, x:bot ⊢ u: A)/(Γ, x: bot ⊢ elim_bot (x) : A)
   $
 
 such that the following rules hold:
@@ -55,6 +55,8 @@ such that the following rules hold:
   $ (Γ, x:bot ⊢ u: A)/(Γ, x: bot ⊢ u ≡ elim_bot (x) : A)
   $
 ]
+
+The $η$-law of the empty type says _any term_ in a context with a $bot$ in it is equivalent to $elim_bot (x)$.
 
 Similarly we can state a theorem similar to @lem:subst:unit:
 #lemma[The elimination of empty type is preserved by substitution:
