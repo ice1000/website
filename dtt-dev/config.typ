@@ -38,7 +38,7 @@
 }
 #let dtt(title: "DTT", body) = {
   import "/book.typ": book-page
-  show: book-page.with(title: title)
+  show: book-page.with(title: title, show-title: true)
 
   show: common-config
   body

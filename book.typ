@@ -8,20 +8,9 @@
   language: "en",
   summary: [
     #prefix-chapter("index.typ")[About],
+    = Academic Writing
     #prefix-chapter("lnl-modal/report.typ")[LNL Cxl Modal Logic],
-    = Dependent Theory of Types
-    #chapter("dtt-dev/intro.typ")[Introduction],
-    #chapter("dtt-dev/subst.typ")[Subst Calculus],
-    #chapter("dtt-dev/struct-1.typ")[Structures I],
-    #chapter("dtt-dev/functor.typ")[Compilers],
-    #chapter("dtt-dev/struct-2.typ")[Structures, revisted],
-    // Plan: pi, sigma (maybe local colimits?)
-    #chapter(none)[Structures II],
-    // Plan: modalities
-    #chapter(none)[Modalities],
-    // Plan: substructural type theories
-    // #chapter(none)[Substructural],
-    #chapter("dtt-dev/wip.typ")[WIP Definitions],
+    #prefix-chapter("dtt-dev/assemble.typ")[Dependent Theory of Types],
     = Miscellaneous
     #prefix-chapter("resume.typ")[Industry Resume],
     #prefix-chapter("typst-test.typ")[Typesetting Experiments],
