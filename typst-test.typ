@@ -50,11 +50,3 @@ $ lr({ A mid(|) integral }) quad
   lr(size: #1em, ( A mid(|) integral ]) quad
   lr(size: #(1em+20%), ( A mid(|) integral ]) "wrong"
 $
-
-#import "@preview/finite:0.3.0": *
-#let A2 = (
-  "1": ("2": ("a", "b"), "3": "a"),
-  "2": ("3": "a"),
-  "3": ("1": "b", "2": "b"),
-)
-#automaton(A2, layout: layout.circular)

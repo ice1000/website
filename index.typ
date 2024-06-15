@@ -7,7 +7,7 @@ I am a first-year Ph.D. student in the #link("https://www.csd.cs.cmu.edu")[Compu
 advised by Professor #link("https://www.cs.cmu.edu/~balzers")[Stephanie Balzer].
 
 My personal interests include implementing type checkers for dependent type theories,
-making fancy programming language tools,
+making fancy programming language tools, programming language design,
 and thinking about type theories from a category theoretical point of view.
 
 Some links: #link("https://orcid.org/0000-0002-9050-846X")[ORCiD], #link("https://github.com/ice1000")[GitHub],
@@ -20,7 +20,7 @@ Some links: #link("https://orcid.org/0000-0002-9050-846X")[ORCiD], #link("https:
 
 == Collaborators
 
-- My advisor: session type theories, their applications and metatheories.
+- My advisor: logical relations for session type theories.
 - #link("https://chasenorman.com")[Chase Norman]: automated theorem proving for dependent type theories.
 
 This website is under construction, stay tuned!
