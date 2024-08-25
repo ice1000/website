@@ -3,7 +3,7 @@
 
 = Tesla (Yinsen) Zhang
 
-I am a first-year Ph.D. student in the #link("https://www.csd.cs.cmu.edu")[Computer Science Department] at CMU,
+I am a second-year Ph.D. student in the #link("https://www.csd.cs.cmu.edu")[Computer Science Department] at CMU,
 advised by Professor #link("https://www.cs.cmu.edu/~balzers")[Stephanie Balzer].
 
 My personal interests include implementing type checkers for dependent type theories,
@@ -16,11 +16,11 @@ Some links: #link("https://orcid.org/0000-0002-9050-846X")[ORCiD], #link("https:
 == Coordinates
 
 - My email is teslaz [at] cmu [dot] edu.
-- My office is in the Gates--Hillman Center, floor 5, 5103.
+- My office is in the Gates--Hillman Center, floor 5, 5103 (need ID access outside business hours).
 
 == Collaborators
 
 - My advisor: logical relations for session type theories.
-- #link("https://chasenorman.com")[Chase Norman]: automated theorem proving for dependent type theories.
+- #link("https://chasenorman.com")[Chase Norman]: automated theorem proving for dependent type theories (#link("https://chasenorman.com/demo.html")[online demo]).
 
 This website is under construction, stay tuned!
