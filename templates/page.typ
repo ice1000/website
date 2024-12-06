@@ -1,6 +1,6 @@
 // This is important for typst-book to produce a responsive layout
 // and multiple targets.
-#import "@preview/shiroa:0.1.1": get-page-width, target, is-web-target, is-pdf-target, plain-text
+#import "@preview/shiroa:0.1.2": get-page-width, target, is-web-target, is-pdf-target, plain-text
 
 #let page-width = get-page-width()
 #let is-pdf-target = is-pdf-target()
