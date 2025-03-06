@@ -1,4 +1,4 @@
-#import "@preview/ctheorems:1.1.2": *
+#import "@preview/ctheorems:1.1.3": *
 
 #let alpha = "33"
 #let theorem = thmbox("theorem", "Theorem", breakable: true, fill: rgb("#eeffee" + alpha))
