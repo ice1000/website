@@ -1,3 +1,4 @@
+#let none-type = type(none)
 #let prooftree(
   spacing: (
     horizontal: 1em,
@@ -15,19 +16,19 @@
 ) = {
   // Check the types of the parameters.
   assert(
-    type(spacing) == "dictionary",
+    type(spacing) == dictionary,
     message: "The value `" + repr(spacing) + "` of the `spacing` argument was expected"
-      + "to have type `dictionary` but instead had type `" + type(spacing) + "`."
+      + "to have type `dictionary` but instead had type `" + str(type(spacing)) + "`."
   )
   assert(
-    type(label) == "dictionary",
+    type(label) == dictionary,
     message: "The value `" + repr(label) + "` of the `label` argument was expected"
-      + "to have type `dictionary` but instead had type `" + type(label) + "`."
+      + "to have type `dictionary` but instead had type `" + str(type(label)) + "`."
   )
   assert(
-    type(line-stroke) == "length",
+    type(line-stroke) == length,
     message: "The value `" + repr(line-stroke) + "` of the `line-stroke` argument was expected"
-      + "to have type `length` but instead had type `" + type(line-stroke) + "`."
+      + "to have type `length` but instead had type `" + str(type(line-stroke)) + "`."
 )
 
   // Check validity of `spacing`'s keys.
@@ -35,10 +36,10 @@
     if key not in ("horizontal", "vertical", "lateral", "h", "v", "l") {
       panic("The key `" + key + "` in the `spacing` argument `" + repr(spacing) + "` was not expected.")
     }
-    if type(value) != "length" {
+    if type(value) != length {
       panic(
         "The value `" + repr(value) + "` of the key `" + key + "` in the `spacing` argument `" + repr(spacing)
-        + "` was expected to have type `length` but instead had type `" + type(value) + "`."
+        + "` was expected to have type `length` but instead had type `" + str(type(value)) + "`."
       )
     }
   }
@@ -56,7 +57,7 @@
   mutually_exclusive("lateral", "l", spacing.keys())
   
   // Check validity of `label`'s keys.
-  let expected = ("offset": "length", "side": "alignment", "padding": "length")
+  let expected = ("offset": length, "side": alignment, "padding": length)
   for (key, value) in label {
     if key not in expected {
       panic("The key `" + key + "` in the `label` argument `" + repr(label) + "` was not expected.")
@@ -96,7 +97,7 @@
   )
 
   // Draw the rules in a stack-based evaluation order. 
-  style(styles => {
+  context {
     let stack = ()
 
     for rule in rules.pos() {
@@ -111,7 +112,6 @@
 
       let elem = rule_func(
         settings,
-        styles,
         stack.slice(stack.len() - to_pop)
       )
 
@@ -128,15 +128,15 @@
     set box(inset: 0pt, outset: 0pt)
     
     stack.pop().body
-  })
+  }
 }
 
 #let axiom(label: none, body) = {
   // Check the type of `label`.
   assert(
-    type(label) in ("string", "content", "none"),
+    type(label) in (str, content, none-type),
     message: "The type of the `label` argument `" + repr(label) + "` was expected to be "
-     + "`none`, `string` or `content` but was instead `" + type(label) + "`."
+     + "`none`, `str` or `content` but was instead `" + str(type(label)) + "`."
   )
 
   // TODO: allow the label to be aligned on left, right or center (default and current).
@@ -144,7 +144,7 @@
   (
     __prooftree_raw: body,
     __prooftree_to_pop: 0,
-    __prooftree_rule_func: (settings, styles, children) => {
+    __prooftree_rule_func: (settings, children) => {
       let body = box(body, inset: (x: settings.spacing.lateral))
       // let body = body
       if label != none {
@@ -175,28 +175,28 @@
 ) = {
   // Check validity of the `n` parameter
   assert(
-    type(n) == "integer",
+    type(n) == int,
     message: "The type of the `n` argument `" + repr(n) + "` was expected to be "
-     + "`integer` but was instead `" + type(n) + "`."
+     + "`int` but was instead `" + str(type(n)) + "`."
   )
 
   // Check the type of `label`.
   assert(
-    type(label) in ("string", "dictionary", "content", "none"),
+    type(label) in (str, dictionary, content, none-type),
     message: "The type of the `label` argument `" + repr(label) + "` was expected to be "
-     + "`none`, `string`, `content` or `dictionary` but was instead `" + type(label) + "`."
+     + "`none`, `string`, `content` or `dictionary` but was instead `" + str(type(label)) + "`."
   )
   // If the type of `label` was string then it's good, otherwise we need to check its keys.
-  if type(label) == "dictionary" {
+  if type(label) == dictionary {
     for (key, value) in label {
       // TODO: maybe consider allowing `top`, `top-left` and `top-right` if `rule(n: 0)` gets changed.
       if key not in ("left", "right") {
         panic("The key `" + key + "` in the `label` argument `" + repr(label) + "` was not expected.")
       }
-      if type(value) not in ("string", "content") {
+      if type(value) not in (str, content) {
         panic(
           "The value `" + repr(value) + "` of the key `" + key + "` in the `label` argument `" + repr(label)
-          + "` was expected to have type `string` or `content` but instead had type `" + type(value) + "`."
+          + "` was expected to have type `string` or `content` but instead had type `" + str(type(value)) + "`."
         )
       }
     }
@@ -205,9 +205,9 @@
   (
     __prooftree_raw: root,
     __prooftree_to_pop: n,
-    __prooftree_rule_func: (settings, styles, children) => {
-      let width(it) = measure(it, styles).width
-      let height(it) = measure(it, styles).height
+    __prooftree_rule_func: (settings, children) => {
+      let width(it) = measure(it).width
+      let height(it) = measure(it).height
       let maxl(..lengths) = width(
         for length in lengths.pos() {
           line(length: length)
@@ -280,13 +280,13 @@
 
       // Normalize label given the default value in the `prooftree` function.
       let label = label
-      if type(label) == "none" {
+      if type(label) == none-type {
         label = (
           left: none,
           right: none
         )
       }
-      if type(label) in ("string", "content") {
+      if type(label) in (str, content) {
         label = (
           left: if settings.label.side == left { label } else { none },
           right: if settings.label.side == right { label } else { none }
