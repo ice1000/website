@@ -1,5 +1,5 @@
-#import "@preview/shiroa:0.1.2": *
-#import "/templates/page.typ": project, part-style
+#import "@preview/shiroa:0.2.0": *
+#import "/contrib/typst/gh-pages.typ": project, part-style
 
 #let _page-project = project
 
@@ -8,31 +8,30 @@
 #let resolve-inclusion(inc) = _resolve-inclusion-state.update(it => inc)
 
 #let project(title: "", authors: (), spec: "", content) = {
-  set document(author: authors, title: title)
+  // Set document metadata early
+  set document(
+    author: authors,
+    title: title,
+  )
 
-  // inherit from gh-pages
+  // Inherit from gh-pages
   show: _page-project
 
   if title != "" {
     heading(title)
   }
 
-  locate(loc => {
-
-    let inc = _resolve-inclusion-state.final(loc)
+  context {
+    let inc = _resolve-inclusion-state.final()
     external-book(spec: inc(spec))
 
-    let mt = book-meta-state.final(loc)
-    let styles = (
-      inc: inc,
-      part: part-style,
-      chapter: it => it,
-    )
+    let mt = book-meta-state.final()
+    let styles = (inc: inc, part: part-style, chapter: it => it)
 
     if mt != none {
       mt.summary.map(it => visit-summary(it, styles)).sum()
     }
-  })
+  }
 
   content
 }

@@ -62,11 +62,7 @@
 #let project(title: "Shiroa", authors: (), kind: "page", show-title: false, body) = {
   // set basic document metadata
   set document(
-    author: if type(authors) == array {
-      authors
-    } else {
-      authors.pairs()
-    },
+    author: authors.map(a => a.name),
     title: title,
   ) if not is-pdf-target
 
