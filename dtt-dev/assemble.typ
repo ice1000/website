@@ -23,7 +23,7 @@
 
 #set heading(numbering: "1.")
 #outline(depth: 2, indent: auto)
-#import "@preview/fletcher:0.5.5" as fletcher: diagram, node, edge
+#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
 #let cedge(..args) = edge(label-side: center, ..args)
 #set quote(block: true)
 

@@ -31,7 +31,7 @@
     show "·": math.class.with("unary")
     show "∈": math.scripts
     show "⊢": math.scripts
-    show "=": math.scripts
+    // show "=": math.scripts
     it
   }
   body
