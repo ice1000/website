@@ -1,4 +1,4 @@
-#import "@preview/ctheorems:1.1.2": *
+#import "@preview/ctheorems:1.1.3": *
 #import "/book.typ": book-page
 #show: book-page.with(title: "Tesla Zhang")
 
