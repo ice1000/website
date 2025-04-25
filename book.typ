@@ -10,7 +10,7 @@
     #prefix-chapter("index.typ")[About],
     = Academic Writing
     #prefix-chapter("lnl-modal/report.typ")[LNL Cxl Modal Logic],
-    #prefix-chapter("dtt-dev/assemble.typ")[Dependent Theory of Types],
+    // #prefix-chapter("dtt-dev/assemble.typ")[Dependent Theory of Types],
     = Miscellaneous
     #prefix-chapter("resume.typ")[Industry Resume],
     #prefix-chapter("typst-test.typ")[Typesetting Experiments],
