@@ -13,7 +13,6 @@
 
 #align(center)[15-745 Optimizing Compilers]
 
-This is a stub @MemOIR.
+Links:
 
-#bibliography("papers.bib", style: "association-for-computing-machinery")
-
+- #link("proposal")[Project Proposal]
