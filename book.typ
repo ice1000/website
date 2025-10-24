@@ -9,13 +9,13 @@
   summary: [
     #prefix-chapter("index.typ")[About],
     = Academic Writing
-    - #chapter("lnl-modal/report.typ")[LNL Cxl Modal Logic],
-    - #chapter("memoir/report.typ")[Rust Data in SSA],
-      - #chapter("memoir/proposal.typ")[Project Proposal],
-    // #chapter("dtt-dev/assemble.typ")[Dependent Theory of Types],
+    - #prefix-chapter("lnl-modal/report.typ")[LNL Cxl Modal Logic],
+    - #prefix-chapter("memoir/report.typ")[Rust Data in SSA],
+      - #prefix-chapter("memoir/proposal.typ")[Project Proposal],
+    // #prefix-chapter("dtt-dev/assemble.typ")[Dependent Theory of Types],
     = Miscellaneous
-    - #chapter("resume.typ")[Industry Resume],
-    - #chapter("typst-test.typ")[Typesetting Experiments],
+    - #prefix-chapter("resume.typ")[Industry Resume],
+    - #prefix-chapter("typst-test.typ")[Typesetting Experiments],
   ]
 )
 
