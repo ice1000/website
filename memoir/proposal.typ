@@ -45,7 +45,7 @@ There are several things we want to try, and we will decide which to pursue base
 We plan to do the work together by pair (triple?) coding.
 
 #table(
-  columns: (6em, 1fr),
+  columns: (7em, 1fr),
   "10/28 - 11/2",
   "Implement the part of the collection IR we need from the MemOIR paper in LLVM, write some benchmarks, begin implementing live \"range\" analysis",
   "11/3 - 11/9",
