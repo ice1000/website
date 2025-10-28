@@ -11,7 +11,7 @@
     = Academic Writing
     - #prefix-chapter("lnl-modal/report.typ")[LNL Cxl Modal Logic],
     - #prefix-chapter("memoir/report.typ")[Rust Data in SSA],
-      - #prefix-chapter("memoir/proposal.typ")[Project Proposal],
+      - #chapter("memoir/proposal.typ", section: "1")[Project Proposal],
     // #prefix-chapter("dtt-dev/assemble.typ")[Dependent Theory of Types],
     = Miscellaneous
     - #prefix-chapter("resume.typ")[Industry Resume],
