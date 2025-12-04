@@ -10,8 +10,7 @@
     #prefix-chapter("index.typ")[About],
     = Academic Writing
     - #chapter("lnl-modal/report.typ", section: "1")[LNL Cxl Modal Logic]
-    - #chapter("memoir/report.typ", section: "2")[Rust Data in SSA]
-      - #chapter("memoir/proposal.typ", section: "2.1")[Project Proposal]
+    - #chapter("memoir/report.typ", section: "2")[Array SSA]
     // #chapter("dtt-dev/assemble.typ")[Dependent Theory of Types]
     = Miscellaneous
     - #prefix-chapter("resume.typ")[Industry Resume]

@@ -25,13 +25,10 @@
 // Good box
 #let gbox(content) = box(stroke: black, inset: 5pt, baseline: 4pt, content)
 
-This document is the miniproject project for the course
+This document is the miniproject for the course
 Substructural Logics (15-836, #link("https://www.cs.cmu.edu/~fp/courses/15836-f23")).
 
 /* = Project description
-
-This section is adapted from the miniproject description from the course
-Substructural Logics (15-836, #link("https://www.cs.cmu.edu/~fp/courses/15836-f23")).
 
 Originally, contextual modal type theory @08nanevski_contextual_modal_type_theory was developed for two main
 purposes: support metaprogramming with open code, and capture the concept of metavariable
