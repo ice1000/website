@@ -652,7 +652,7 @@ A provider of generalized upshift type $↑Psi_L]A_L$
 provides a structural channel
 that expects to receive the resources $Psi_L$
 and continues by providing a channel of type $A_L$.
-In essence, it is like a global #smallcaps("MPass") function $times.circle.big_i Psi_i multimap A_L$
+In essence, it is like a global #smallcaps("MPass") function $times.o.big_i Psi_i multimap A_L$
 (registered with `proc`)
 that can be called arbitrarily many times,
 but now existing dynamically as a channel.
@@ -721,16 +721,16 @@ we may need to adjust the message grammar to $M ::= dots.h | ⟨overline(a_i)⟩
 
 Benton @94benton_mixed_linear_non_linear_logic_proofs_terms_models
 showed that a categorical model
-of the multiplicative ($times.circle, multimap, 1$) fragment of LNL can be built out of the data of
+of the multiplicative ($times.o, multimap, 1$) fragment of LNL can be built out of the data of
 - a cartesian closed category $(cal(C), 1, times, arrow)$; and
-- a symmetric monoidal closed category $(cal(L), bold(I), times.circle, multimap)$; and
+- a symmetric monoidal closed category $(cal(L), bold(I), times.o, multimap)$; and
 - a pair of symmetric monoidal functors $(arrow.t, n) : cal(L) arrow cal(C)$,
   $(arrow.b, m) : cal(C) arrow cal(L)$
   that form a symmetric monoidal adjunction $arrow.b tack.l arrow.t$.
 
 As one consequence of this definition,
 there is a natural isomorphism
-$m_(A,B) : arrow.b A times.circle arrow.b B tilde.equiv arrow.b (A times B)$
+$m_(A,B) : arrow.b A times.o arrow.b B tilde.equiv arrow.b (A times B)$
 and an isomorphism $m_I : bold(I) tilde.equiv arrow.b 1$.
 
 Given this data,
@@ -742,7 +742,7 @@ respectively.
 A proof of
 $ Gamma_1, dots.h, Gamma_n;Delta_1, dots.h, Delta_m tack.r A_L $
 becomes a morphism
-$ times.circle.big_(1<=i<=n) arrow.b Gamma_i times.circle times.circle.big_(1<=j<=m) Delta_j arrow A in cal(L) $
+$ times.o.big_(1<=i<=n) arrow.b Gamma_i times.o times.o.big_(1<=j<=m) Delta_j arrow A in cal(L) $
 whereas a proof of
 $ Gamma_1, dots.h, Gamma_n tack.r A_S $
 becomes a morphism
@@ -750,7 +750,7 @@ $ product_(1<=i<=n) Gamma_i arrow A in cal(C) $
 where we punned types and their interpretations.
 
 We conjecture that a possible interpretation of $arrow.t Psi_1, dots.h, Psi_n]A_L$
-comes from the exponential object via $arrow.t (times.circle.big_(1<=i<=n)Psi_i multimap A)$.
+comes from the exponential object via $arrow.t (times.o.big_(1<=i<=n)Psi_i multimap A)$.
 Below we check that this makes the two rules for $arrow.t$ interpretable.
 However, we do not check that our cut elimination procedure is sound
 with respect to this interpretation.
