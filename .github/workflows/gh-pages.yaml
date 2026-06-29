@@ -43,7 +43,7 @@ jobs:
           sudo cp shiroa-x86_64-unknown-linux-gnu/shiroa /usr/bin/shiroa
       - name: Build Book
         run: |
-          shiroa build --font-path assets/fonts -w . -d ./dist .
+          shiroa build --mode=static-html --font-path assets/fonts -w . -d ./dist .
       - name: Deploy to GitHub Pages
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
