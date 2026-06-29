@@ -160,6 +160,25 @@
   show: equation-rules.with(..common, theme-box: theme-box)
   // code block setting
   show: code-block-rules.with(..common, themes: themes, code-font: code-font)
+    add-styles(
+    ```css
+    .inline-equation {
+      display: inline-block;
+      width: fit-content;
+      vertical-align: middle;
+      transform: translateY(-0.1em);
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+    .block-equation {
+      display: grid;
+      place-items: center;
+      overflow-x: auto;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+    ```,
+  )
 
   if show-title {
     align(center)[ #block(text(weight: 700, 1.75em, title)) ]
