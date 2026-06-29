@@ -83,6 +83,7 @@ $ #prooftree(
   axiom($Delta,A tack.r C$),
   rule($Delta, !A tack.r C$, label: $!L$)
 ) $
+
 $ #prooftree(
   axiom($Delta tack.r C$),
   rule($Delta, !A tack.r C$, label: $sans("Wk")$)

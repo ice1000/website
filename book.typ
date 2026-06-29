@@ -2,7 +2,7 @@
 #show: book
 
 #book-meta(
-  // title: "Tesla Zhang",
+  title: "Tesla Zhang",
   repository: "https://github.com/ice1000/ice1000.github.io",
   authors: ("Tesla Zhang",),
   language: "en",
