@@ -1,19 +1,13 @@
-#import "@preview/ctheorems:1.1.3": *
 #import "/book.typ": book-page
 #show: book-page.with(title: "Tesla Zhang")
 
 The purpose of this page is to test some random things.
 
-#show: thmrules.with(qed-symbol: $square$)
-
-#let definition = thmbox("definition", "Definition", inset: (x: 1.2em, top: 1em))
-
 #let emsp = h(2em)
-#definition("Heterogeneous Composition")[
+
 $ (A:bb(I) → cal(U)_1 #emsp φ:bb(F) #emsp r, s : bb(I)
   #emsp u: (i:bb(I)) → "Partial"(φ ∨ i=r, A(i)))/(
   "com"^(r arrow.squiggly s)(u) : { A(s) | φ ∨ r=s ↦ u(s) }) $
-]
 
 == Harpoons
 

@@ -1,6 +1,6 @@
 // This is important for shiroa to produce a responsive layout
 // and multiple targets.
-#import "@preview/shiroa:0.3.1": (
+#import "@preview/shiroa:0.4.0": (
   get-page-width, is-html-target, is-pdf-target, is-web-target, plain-text, shiroa-sys-target, templates,
 )
 #import templates: *
@@ -120,14 +120,24 @@
     web-theme: web-theme,
   )
 
-  show: template-rules.with(
-    book-meta: include "/book.typ",
+  let template-args = arguments(
+    include "/book.typ",
     title: title,
     description: description,
     plain-body: plain-body,
     extra-assets: (extra-css,),
-    ..common,
   )
+
+  // Applies a theme.
+  show: if web-theme == "starlight" {
+    import "@preview/shiroa-starlight:0.4.0": starlight
+    starlight.with(..template-args)
+  } else if web-theme == "mdbook" {
+    import "@preview/shiroa-mdbook:0.4.0": mdbook
+    mdbook.with(..template-args)
+  } else {
+    panic("Unknown web theme: " + web-theme)
+  }
 
   // Set main text
   set text(
@@ -150,6 +160,28 @@
   show: equation-rules.with(..common, theme-box: theme-box)
   // code block setting
   show: code-block-rules.with(..common, themes: themes, code-font: code-font)
+    add-styles(
+    ```css
+    .inline-equation {
+      display: inline-block;
+      width: fit-content;
+      vertical-align: middle;
+      transform: translateY(-0.1em);
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+    .block-equation {
+      display: grid;
+      place-items: center;
+      overflow-x: auto;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+    .outline > nav ol {
+      padding: 0;
+    }
+    ```,
+  )
 
   if show-title {
     align(center)[ #block(text(weight: 700, 1.75em, title)) ]

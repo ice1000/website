@@ -1,8 +1,8 @@
-#import "@preview/shiroa:0.3.1": *
+#import "@preview/shiroa:0.4.0": *
 #show: book
 
 #book-meta(
-  // title: "Tesla Zhang",
+  title: "Tesla Zhang",
   repository: "https://github.com/ice1000/ice1000.github.io",
   authors: ("Tesla Zhang",),
   language: "en",
@@ -19,5 +19,5 @@
 )
 
 // re-export page template
-#import "/templates/page.typ": project
+#import "/templates/gh-pages.typ": project
 #let book-page = project
