@@ -120,14 +120,24 @@
     web-theme: web-theme,
   )
 
-  show: template-rules.with(
-    book-meta: include "/book.typ",
+  let template-args = arguments(
+    include "/book.typ",
     title: title,
     description: description,
     plain-body: plain-body,
     extra-assets: (extra-css,),
-    ..common,
   )
+
+  // Applies a theme.
+  show: if web-theme == "starlight" {
+    import "@preview/shiroa-starlight:0.4.0": starlight
+    starlight.with(..template-args)
+  } else if web-theme == "mdbook" {
+    import "@preview/shiroa-mdbook:0.4.0": mdbook
+    mdbook.with(..template-args)
+  } else {
+    panic("Unknown web theme: " + web-theme)
+  }
 
   // Set main text
   set text(
