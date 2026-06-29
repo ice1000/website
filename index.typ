@@ -1,8 +1,6 @@
 #import "/book.typ": book-page
 #show: book-page.with(title: "Tesla Zhang")
 
-= Tesla (Yinsen) Zhang
-
 I am a third-year Ph.D. student in the #link("https://www.csd.cs.cmu.edu")[Computer Science Department] at CMU,
 advised by Professor #link("https://www.cs.cmu.edu/~balzers")[Stephanie Balzer].
 My research is about logical relations for session type theories and mechanization of these logical relation proofs.
