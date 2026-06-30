@@ -1,6 +1,4 @@
-#import "@preview/ctheorems:1.1.3": *
+#import "@preview/theorion:0.6.0": *
+#show: show-theorion
 
 #let alpha = "33"
-#let theorem = thmbox("theorem", "Theorem", breakable: true, fill: rgb("#eeffee" + alpha))
-#let lemma = thmbox("lemma", "Lemma", breakable: true, fill: rgb("#eeffee" + alpha))
-#let proof = thmproof("proof", "Proof")

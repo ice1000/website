@@ -1,6 +1,5 @@
 #import "tizart.typ": *
 #import "prooftree.typ": prooftree, axiom, rule
-#show: thmrules.with(qed-symbol: $square$)
 
 #import "/book.typ": book-page
 #show: book-page.with(
@@ -158,29 +157,24 @@ and $Γ_S; Δ_L ⊢ A_L$.
 The shift rules are as follows:
 
 #figure(
-  grid(
-    columns: (1fr, 1fr),
-    [
-      $ #prooftree(
-        axiom($Γ_S;dot ⊢ A_L$),
-        rule($Γ_S ⊢ ↑ A_L$, label: $↑ R$)
-      ) $
-      $ #prooftree(
-        axiom($Γ_S ⊢ A_S$),
-        rule($Γ_S;dot ⊢ ↓ A_S$, label: $↓ R$)
-      ) $
-    ],
-    [
-      $ #prooftree(
-        axiom($Γ_S, ↑ A_L;Δ_L,A_L ⊢ C_L$),
-        rule($Γ_S, ↑ A_L;Δ_L ⊢ C_L$, label: $↑ L$)
-      ) $
-      $ #prooftree(
-        axiom($Γ_S, A_S;Δ_L ⊢ C_L$),
-        rule($Γ_S;Δ_L, ↓ A_S ⊢ C_L$, label: $↓ L$)
-      ) $
-    ]
-  ),
+  [
+    $ #prooftree(
+      axiom($Γ_S;dot ⊢ A_L$),
+      rule($Γ_S ⊢ ↑ A_L$, label: $↑ R$)
+    ) $
+    $ #prooftree(
+      axiom($Γ_S ⊢ A_S$),
+      rule($Γ_S;dot ⊢ ↓ A_S$, label: $↓ R$)
+    ) $
+    $ #prooftree(
+      axiom($Γ_S, ↑ A_L;Δ_L,A_L ⊢ C_L$),
+      rule($Γ_S, ↑ A_L;Δ_L ⊢ C_L$, label: $↑ L$)
+    ) $
+    $ #prooftree(
+      axiom($Γ_S, A_S;Δ_L ⊢ C_L$),
+      rule($Γ_S;Δ_L, ↓ A_S ⊢ C_L$, label: $↓ L$)
+    ) $
+  ],
   caption: [Shift rules]
 )
 
@@ -345,7 +339,7 @@ has these properties.
   caption: [Cut rules]
 )
 
-#lemma("Identity for contexts")[
+#lemma[Identity for contexts][
 If $Gamma_S;A_L ⊢ A_L$ is derivable for every $A_L in Psi_L$, then
 $ #prooftree(
   rule($Γ_S;Psi_L ⊢ Psi_L$, n: 0, label: idmL)
@@ -363,7 +357,7 @@ $ #prooftree(
 ) $
 ]
 
-#theorem("Admissibility of Identity")[
+#theorem[Admissibility of Identity][
 The rules of identity #idS and #idL are admissible
 in the system where identities are restricted to atomic propositions.
 ]
@@ -383,7 +377,7 @@ $ #prooftree(
 ) $
 ]
 
-#lemma("Cut for contexts")[
+#lemma[Cut for contexts][
 If #cutSL with $cal(D)$ and any subderivation of $cal(E)$
 as premises is admissible,
 then
@@ -465,7 +459,7 @@ $ #prooftree(
 
 ]
 
-#theorem("Admissibility of Cut")[
+#theorem[Admissibility of Cut][
 The three rules of cut are admissible in the system without cut.
 ]
 #proof[
