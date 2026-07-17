@@ -1,5 +1,5 @@
 #import "tizart.typ": *
-#import "prooftree.typ": prooftree, axiom, rule
+#import "prooftree.typ": prooftree, pt-axiom, pt-rule
 
 #import "/book.typ": book-page
 #show: book-page.with(
@@ -76,19 +76,19 @@ by means of an 'of course' operator $!$
 that does admit weakeaning and contraction:
 
 $ #prooftree(
-  axiom($!Delta tack.r A$),
-  rule($!Delta tack.r !A$, label: $!R$)
+  pt-axiom($!Delta tack.r A$),
+  pt-rule($!Delta tack.r !A$, label: $!R$)
 ) #h(3em) #prooftree(
-  axiom($Delta,A tack.r C$),
-  rule($Delta, !A tack.r C$, label: $!L$)
+  pt-axiom($Delta,A tack.r C$),
+  pt-rule($Delta, !A tack.r C$, label: $!L$)
 ) $
 
 $ #prooftree(
-  axiom($Delta tack.r C$),
-  rule($Delta, !A tack.r C$, label: $sans("Wk")$)
+  pt-axiom($Delta tack.r C$),
+  pt-rule($Delta, !A tack.r C$, label: $sans("Wk")$)
 ) #h(3em) #prooftree(
-  axiom($Delta,!A,!A tack.r C$),
-  rule($Delta, !A tack.r C$, label: $sans("Ctr")$)
+  pt-axiom($Delta,!A,!A tack.r C$),
+  pt-rule($Delta, !A tack.r C$, label: $sans("Ctr")$)
 ) $
 
 In fact, 'of course' also satisfies the axioms of an S4 modality.
@@ -106,8 +106,8 @@ with no linear assumptions
 (a construction that requires no resources):
 
 $ #prooftree(
-  axiom($Γ; dot ⊢ A$),
-  rule($Γ; dot ⊢ !A$, label: $!R$)
+  pt-axiom($Γ; dot ⊢ A$),
+  pt-rule($Γ; dot ⊢ !A$, label: $!R$)
 ) $
 
 This brings forward the connection of ILL to ICML:
@@ -159,20 +159,20 @@ The shift rules are as follows:
 #figure(
   [
     $ #prooftree(
-      axiom($Γ_S;dot ⊢ A_L$),
-      rule($Γ_S ⊢ ↑ A_L$, label: $↑ R$)
+      pt-axiom($Γ_S;dot ⊢ A_L$),
+      pt-rule($Γ_S ⊢ ↑ A_L$, label: $↑ R$)
     ) $
     $ #prooftree(
-      axiom($Γ_S ⊢ A_S$),
-      rule($Γ_S;dot ⊢ ↓ A_S$, label: $↓ R$)
+      pt-axiom($Γ_S ⊢ A_S$),
+      pt-rule($Γ_S;dot ⊢ ↓ A_S$, label: $↓ R$)
     ) $
     $ #prooftree(
-      axiom($Γ_S, ↑ A_L;Δ_L,A_L ⊢ C_L$),
-      rule($Γ_S, ↑ A_L;Δ_L ⊢ C_L$, label: $↑ L$)
+      pt-axiom($Γ_S, ↑ A_L;Δ_L,A_L ⊢ C_L$),
+      pt-rule($Γ_S, ↑ A_L;Δ_L ⊢ C_L$, label: $↑ L$)
     ) $
     $ #prooftree(
-      axiom($Γ_S, A_S;Δ_L ⊢ C_L$),
-      rule($Γ_S;Δ_L, ↓ A_S ⊢ C_L$, label: $↓ L$)
+      pt-axiom($Γ_S, A_S;Δ_L ⊢ C_L$),
+      pt-rule($Γ_S;Δ_L, ↓ A_S ⊢ C_L$, label: $↓ L$)
     ) $
   ],
   caption: [Shift rules]
@@ -188,8 +188,8 @@ it suffices to prove $A_L$ in an empty linear context.
 It is clear how to make the linear context arbitrary:
 
 $ #prooftree(
-  axiom($Γ_S; Ψ_L ⊢ A_L$),
-  rule($Γ_S ⊢ ↑ Ψ_L ] A_L$, label: $↑ R$)
+  pt-axiom($Γ_S; Ψ_L ⊢ A_L$),
+  pt-rule($Γ_S ⊢ ↑ Ψ_L ] A_L$, label: $↑ R$)
 ) $
 
 The left rule is not so easy:
@@ -208,16 +208,16 @@ One possible generalization would consequently be
 to cut in $A_L$ for some context $Ψ_L$:
 
 $ #prooftree(
-  axiom($Γ_S, ↑ Ψ_L ]A_L; Δ_L,A_L ⊢ C_L$),
-  rule($Γ_S, ↑ Ψ_L ]A_L; Δ_L,Ψ_L ⊢ C_L$, label: $↑ L?$)
+  pt-axiom($Γ_S, ↑ Ψ_L ]A_L; Δ_L,A_L ⊢ C_L$),
+  pt-rule($Γ_S, ↑ Ψ_L ]A_L; Δ_L,Ψ_L ⊢ C_L$, label: $↑ L?$)
 ) $
 
 Unfortunately this does not admit cut elimination,
 for essentially the same reason that
 
 $ #prooftree(
-  axiom($Δ,B ⊢ C$),
-  rule($Δ,A,A⊸B ⊢ C$)
+  pt-axiom($Δ,B ⊢ C$),
+  pt-rule($Δ,A,A⊸B ⊢ C$)
 ) $
 
 does not admit cut elimination in ILL.
@@ -231,9 +231,9 @@ from a subcontext of $Δ$.
 To remedy this, in ILL we must use
 
 $ #prooftree(
-  axiom($Δ' ⊢ A$),
-  axiom($Δ,B ⊢ C$),
-  rule($Δ,Δ',A⊸B ⊢ C$, n: 2)
+  pt-axiom($Δ' ⊢ A$),
+  pt-axiom($Δ,B ⊢ C$),
+  pt-rule($Δ,Δ',A⊸B ⊢ C$, n: 2)
 ) $
 
 Similarly in our system with $↑ L?$,
@@ -248,18 +248,18 @@ where the succedent is a linear context
 derivable by
 
 $ #prooftree(
-  axiom($Γ_S;Δ_1 ⊢ A_1$),
-  axiom($dots.h$),
-  axiom($Γ_S;Δ_n ⊢ A_n$),
-  rule($Γ_S;Δ_1, dots.h, Δ_n ⊢ A_1, dots.h, A_n$, n: 3, label: ctx)
+  pt-axiom($Γ_S;Δ_1 ⊢ A_1$),
+  pt-axiom($dots.h$),
+  pt-axiom($Γ_S;Δ_n ⊢ A_n$),
+  pt-rule($Γ_S;Δ_1, dots.h, Δ_n ⊢ A_1, dots.h, A_n$, n: 3, label: ctx)
 ) $
 
 This extra gadget allows us to express the correct left rule
 
 $ #prooftree(
-  axiom($Γ_S, ↑ Ψ_L ]A_L; Δ'_L ⊢ Ψ_L$),
-  axiom($Γ_S, ↑ Ψ_L ]A_L; Δ_L,A_L ⊢ C_L$),
-  rule($Γ_S, ↑ Ψ_L ]A_L; Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑L$)
+  pt-axiom($Γ_S, ↑ Ψ_L ]A_L; Δ'_L ⊢ Ψ_L$),
+  pt-axiom($Γ_S, ↑ Ψ_L ]A_L; Δ_L,A_L ⊢ C_L$),
+  pt-rule($Γ_S, ↑ Ψ_L ]A_L; Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑L$)
 ) $
 
 == Rules
@@ -269,21 +269,21 @@ extended by a concludes-context judgment $Gamma_S;Delta_L tack.r Psi_L$
 derivable by
 
 $ #prooftree(
-  axiom($Γ_S;Δ_1 ⊢ A_1$),
-  axiom($dots.h$),
-  axiom($Γ_S;Δ_n ⊢ A_n$),
-  rule($Γ_S;Δ_1, dots.h, Δ_n ⊢ A_1, dots.h, A_n$, n: 3, label: ctx)
+  pt-axiom($Γ_S;Δ_1 ⊢ A_1$),
+  pt-axiom($dots.h$),
+  pt-axiom($Γ_S;Δ_n ⊢ A_n$),
+  pt-rule($Γ_S;Δ_1, dots.h, Δ_n ⊢ A_1, dots.h, A_n$, n: 3, label: ctx)
 ) $
 
 and with the upshift rules replaced by
 
 $ #prooftree(
-  axiom($Γ_S; Ψ_L ⊢ A_L$),
-  rule($Γ_S ⊢ ↑ Ψ_L ] A_L$, label: $↑ R$)
+  pt-axiom($Γ_S; Ψ_L ⊢ A_L$),
+  pt-rule($Γ_S ⊢ ↑ Ψ_L ] A_L$, label: $↑ R$)
 )\ #prooftree(
-  axiom($Γ_S, ↑ Ψ_L ]A_L; Δ'_L ⊢ Ψ_L$),
-  axiom($Γ_S, ↑ Ψ_L ]A_L; Δ_L,A_L ⊢ C_L$),
-  rule($Γ_S, ↑ Ψ_L ]A_L; Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑L$)
+  pt-axiom($Γ_S, ↑ Ψ_L ]A_L; Δ'_L ⊢ Ψ_L$),
+  pt-axiom($Γ_S, ↑ Ψ_L ]A_L; Δ_L,A_L ⊢ C_L$),
+  pt-rule($Γ_S, ↑ Ψ_L ]A_L; Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑L$)
 ) $
 
 We also note some essential properties of $↑$ and $↓$:
@@ -311,9 +311,9 @@ has these properties.
 
 #figure(
   $ #prooftree(
-    rule($Γ_S,A_S ⊢ A_S$, n: 0, label: idS)
+    pt-rule($Γ_S,A_S ⊢ A_S$, n: 0, label: idS)
   ) #h(3em) #prooftree(
-    rule($Γ_S;A_L ⊢ A_L$, n: 0, label: idL)
+    pt-rule($Γ_S;A_L ⊢ A_L$, n: 0, label: idL)
   ) $,
   caption: [Identity rules]
 )
@@ -321,19 +321,19 @@ has these properties.
 #figure(
   [
     $ #prooftree(
-      axiom($Γ_S ⊢ A_S$),
-      axiom($Γ_S,A_S ⊢ C_S$),
-      rule($Γ_S ⊢ C_S$, n: 2, label: cutSS)
+      pt-axiom($Γ_S ⊢ A_S$),
+      pt-axiom($Γ_S,A_S ⊢ C_S$),
+      pt-rule($Γ_S ⊢ C_S$, n: 2, label: cutSS)
     ) \
     #prooftree(
-      axiom($Γ_S ⊢ A_S$),
-      axiom($Γ_S,A_S;Δ_L ⊢ C_L$),
-      rule($Γ_S;Δ_L ⊢ C_L$, n: 2, label: cutSL)
+      pt-axiom($Γ_S ⊢ A_S$),
+      pt-axiom($Γ_S,A_S;Δ_L ⊢ C_L$),
+      pt-rule($Γ_S;Δ_L ⊢ C_L$, n: 2, label: cutSL)
     ) \
     #prooftree(
-      axiom($Γ_S;Δ'_L ⊢ A_L$),
-      axiom($Γ_S;Δ_L,A_L ⊢ C_L$),
-      rule($Γ_S;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: cutLL)
+      pt-axiom($Γ_S;Δ'_L ⊢ A_L$),
+      pt-axiom($Γ_S;Δ_L,A_L ⊢ C_L$),
+      pt-rule($Γ_S;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: cutLL)
     ) $
   ],
   caption: [Cut rules]
@@ -342,7 +342,7 @@ has these properties.
 #lemma[Identity for contexts][
 If $Gamma_S;A_L ⊢ A_L$ is derivable for every $A_L in Psi_L$, then
 $ #prooftree(
-  rule($Γ_S;Psi_L ⊢ Psi_L$, n: 0, label: idmL)
+  pt-rule($Γ_S;Psi_L ⊢ Psi_L$, n: 0, label: idmL)
 ) $
 is derivable.
 ]
@@ -350,10 +350,10 @@ is derivable.
 Let $Psi_L = A_1, dots.h, A_n$. Then
 
 $ #prooftree(
-  axiom($Gamma_S;A_1 ⊢ A_1$),
-  axiom($dots.h$),
-  axiom($Gamma_S;A_n ⊢ A_n$),
-  rule($Gamma_S;A_1, dots.h, A_n ⊢ A_1, dots.h, A_n$, n: 3, label: ctx)
+  pt-axiom($Gamma_S;A_1 ⊢ A_1$),
+  pt-axiom($dots.h$),
+  pt-axiom($Gamma_S;A_n ⊢ A_n$),
+  pt-rule($Gamma_S;A_1, dots.h, A_n ⊢ A_1, dots.h, A_n$, n: 3, label: ctx)
 ) $
 ]
 
@@ -370,10 +370,10 @@ The new case of #idS follows by #idmL since all propositions in $Psi_L$
 are subformulas of $↑Psi_L]A_L$.
 
 $ #prooftree(
-  rule($Γ_S,↑Psi_L]A_L;Psi_L ⊢ Psi_L$, n: 0, label: idmL),
-  rule($Γ_S,↑Psi_L]A_L;A_L ⊢ A_L$, n: 0, label: idL),
-  rule($Γ_S,↑Psi_L]A_L;Psi_L ⊢ A_L$, n: 2, label: $↑ L$),
-  rule($Γ_S,↑Psi_L]A_L ⊢ ↑ Psi_L]A_L$, label: $↑ R$)
+  pt-rule($Γ_S,↑Psi_L]A_L;Psi_L ⊢ Psi_L$, n: 0, label: idmL),
+  pt-rule($Γ_S,↑Psi_L]A_L;A_L ⊢ A_L$, n: 0, label: idL),
+  pt-rule($Γ_S,↑Psi_L]A_L;Psi_L ⊢ A_L$, n: 2, label: $↑ L$),
+  pt-rule($Γ_S,↑Psi_L]A_L ⊢ ↑ Psi_L]A_L$, label: $↑ R$)
 ) $
 ]
 
@@ -382,27 +382,27 @@ If #cutSL with $cal(D)$ and any subderivation of $cal(E)$
 as premises is admissible,
 then
 $ #prooftree(
-  axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
-  axiom($Γ_S,A_S;Delta_L ⊢ Psi_L$, label: $cal(E)$),
-  rule($Γ_S;Δ_L ⊢ Psi_L$, n: 2, label: cutSmL)
+  pt-axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
+  pt-axiom($Γ_S,A_S;Delta_L ⊢ Psi_L$, label: $cal(E)$),
+  pt-rule($Γ_S;Δ_L ⊢ Psi_L$, n: 2, label: cutSmL)
 ) $
 is derivable.
 Similarly if #cutLL with $cal(D)$ and any subderivation of $cal(E)$
 as premises is admissible,
 then
 $ #prooftree(
-  axiom($Γ_S;Delta'_L ⊢ A_L$, label: $cal(D)$),
-  axiom($Γ_S;Delta_L, A_L ⊢ Psi_L$, label: $cal(E)$),
-  rule($Γ_S;Δ_L, Delta'_L ⊢ Psi_L$, n: 2, label: cutLmL)
+  pt-axiom($Γ_S;Delta'_L ⊢ A_L$, label: $cal(D)$),
+  pt-axiom($Γ_S;Delta_L, A_L ⊢ Psi_L$, label: $cal(E)$),
+  pt-rule($Γ_S;Δ_L, Delta'_L ⊢ Psi_L$, n: 2, label: cutLmL)
 ) $
 is derivable.
 Furthermore if #cutLL with any subderivation of $cal(D)$
 as the left permise is admissible,
 then for all $cal(E)$
 $ #prooftree(
-  axiom($Γ_S;Delta'_L ⊢ Psi_L$, label: $cal(D)$),
-  axiom($Γ_S;Delta_L, Psi_L ⊢ C_L$, label: $cal(E)$),
-  rule($Γ_S;Δ_L, Delta'_L ⊢ C_L$, n: 2, label: cutmLL)
+  pt-axiom($Γ_S;Delta'_L ⊢ Psi_L$, label: $cal(D)$),
+  pt-axiom($Γ_S;Delta_L, Psi_L ⊢ C_L$, label: $cal(E)$),
+  pt-rule($Γ_S;Δ_L, Delta'_L ⊢ C_L$, n: 2, label: cutmLL)
 ) $
 is derivable.
 ]
@@ -413,14 +413,14 @@ there are contexts ${Delta_i}$ such that $Delta_L = Delta_1, dots.h, Delta_n$,
 and $Gamma_S,A_S;Delta_i ⊢ B_i$ are all derivable.
 Thus
 $ #prooftree(
-  axiom($Γ_S ⊢ A_S$),
-  axiom($Γ_S,A_S;Delta_1 ⊢ B_1$),
-  rule($Γ_S;Δ_1 ⊢ B_1$, n: 2, label: cutSL),
-  axiom($dots.h$),
-  axiom($Γ_S ⊢ A_S$),
-  axiom($Γ_S,A_S;Delta_n ⊢ B_n$),
-  rule($Γ_S;Δ_n ⊢ B_n$, n: 2, label: cutSL),
-  rule($Γ_S;Δ_L ⊢ B_1, dots.h, B_n$, n: 3, label: ctx)
+  pt-axiom($Γ_S ⊢ A_S$),
+  pt-axiom($Γ_S,A_S;Delta_1 ⊢ B_1$),
+  pt-rule($Γ_S;Δ_1 ⊢ B_1$, n: 2, label: cutSL),
+  pt-axiom($dots.h$),
+  pt-axiom($Γ_S ⊢ A_S$),
+  pt-axiom($Γ_S,A_S;Delta_n ⊢ B_n$),
+  pt-rule($Γ_S;Δ_n ⊢ B_n$, n: 2, label: cutSL),
+  pt-rule($Γ_S;Δ_L ⊢ B_1, dots.h, B_n$, n: 3, label: ctx)
 ) $
 
 (#cutLmL).
@@ -432,14 +432,14 @@ Let $Delta_(i_0)$ be the context that contains $A_L$.
 We now have
 
 $ #prooftree(
-  axiom($Γ_S;Δ_1 ⊢ B_1$),
-  axiom($dots.h$),
-  axiom($Γ_S;Delta'_L ⊢ A_L$, label: $cal(D)$),
-  axiom($Γ_S;Delta_(i_0) ⊢ B_(i_0)$),
-  rule($Γ_S;Δ_(i_0) - {A_L}, Δ'_L ⊢ B_(i_0)$, n: 2, label: cutLL),
-  axiom($dots.h$),
-  axiom($Γ_S;Δ_n ⊢ B_n$),
-  rule($Γ_S;Δ_L, Δ'_L ⊢ Psi_L$, n: 5, label: ctx)
+  pt-axiom($Γ_S;Δ_1 ⊢ B_1$),
+  pt-axiom($dots.h$),
+  pt-axiom($Γ_S;Delta'_L ⊢ A_L$, label: $cal(D)$),
+  pt-axiom($Γ_S;Delta_(i_0) ⊢ B_(i_0)$),
+  pt-rule($Γ_S;Δ_(i_0) - {A_L}, Δ'_L ⊢ B_(i_0)$, n: 2, label: cutLL),
+  pt-axiom($dots.h$),
+  pt-axiom($Γ_S;Δ_n ⊢ B_n$),
+  pt-rule($Γ_S;Δ_L, Δ'_L ⊢ Psi_L$, n: 5, label: ctx)
 ) $
 
 (#cutmLL). Let $Psi_L = A_1, dots.h, A_n$.
@@ -449,12 +449,12 @@ and $Gamma_S;Delta'_i ⊢ A_i$ are all derivable.
 We now have
 
 $ #prooftree(
-  axiom($Γ_S;Delta'_1 ⊢ A_1$),
-  axiom($Γ_S;Delta'_2 ⊢ A_2$),
-  axiom($Gamma_S;Delta_L,Psi_L tack.r C_L$, label: $cal(E)$),
-  rule($dots.v$),
-  rule($Γ_S;Delta_L,A_1,Delta'_2,dots.h,Delta'_n ⊢ C_L$, n: 2, label: cutLL),
-  rule($Γ_S;Δ_L, Delta'_1, dots.h, Delta'_n ⊢ C_L$, n: 2, label: cutLL)
+  pt-axiom($Γ_S;Delta'_1 ⊢ A_1$),
+  pt-axiom($Γ_S;Delta'_2 ⊢ A_2$),
+  pt-axiom($Gamma_S;Delta_L,Psi_L tack.r C_L$, label: $cal(E)$),
+  pt-rule($dots.v$),
+  pt-rule($Γ_S;Delta_L,A_1,Delta'_2,dots.h,Delta'_n ⊢ C_L$, n: 2, label: cutLL),
+  pt-rule($Γ_S;Δ_L, Delta'_1, dots.h, Delta'_n ⊢ C_L$, n: 2, label: cutLL)
 ) $
 
 ]
@@ -480,33 +480,33 @@ We only consider principal and commuting cases.
 The *principal case* of #cutSL $↑R slash ↑L$ is
 
 $ #prooftree(
-  axiom($Γ_S;Psi_L ⊢ A_L$, label: $cal(D)$),
-  rule($Γ_S ⊢ ↑ Psi_L]A_L$, label: $↑ R$),
-  axiom($Γ_S, ↑ Psi_L]A_L;Δ'_L ⊢ Psi_L$, label: $cal(E_1)$),
-  axiom($Γ_S, ↑ Psi_L]A_L;Δ_L,A_L ⊢ C_L$, label: $cal(E_2)$),
-  rule($Γ_S, ↑ Psi_L]A_L;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑L$),
-  rule($Γ_S;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: cutSL)
+  pt-axiom($Γ_S;Psi_L ⊢ A_L$, label: $cal(D)$),
+  pt-rule($Γ_S ⊢ ↑ Psi_L]A_L$, label: $↑ R$),
+  pt-axiom($Γ_S, ↑ Psi_L]A_L;Δ'_L ⊢ Psi_L$, label: $cal(E_1)$),
+  pt-axiom($Γ_S, ↑ Psi_L]A_L;Δ_L,A_L ⊢ C_L$, label: $cal(E_2)$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑L$),
+  pt-rule($Γ_S;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: cutSL)
 ) $
 
 and eliminates to
 
 $ #prooftree(
-  axiom($cal(A)$),
-  axiom($Γ_S;Psi_L ⊢ A_L$, label: $cal(D)$),
-  axiom($Γ_S ⊢ ↑ Psi_L]A_L$, label: $cal(D')$),
-  axiom($Γ_S, ↑ Psi_L]A_L;Δ_L,A_L ⊢ C_L$, label: $cal(E_2)$),
-  rule($Γ_S;Δ_L,A_L ⊢ C_L$, n: 2, label: cutSL),
-  rule($Γ_S;Δ_L,Psi_L ⊢ C_L$, n: 2, label: cutLL),
-  rule($Γ_S;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: cutmLL)
+  pt-axiom($cal(A)$),
+  pt-axiom($Γ_S;Psi_L ⊢ A_L$, label: $cal(D)$),
+  pt-axiom($Γ_S ⊢ ↑ Psi_L]A_L$, label: $cal(D')$),
+  pt-axiom($Γ_S, ↑ Psi_L]A_L;Δ_L,A_L ⊢ C_L$, label: $cal(E_2)$),
+  pt-rule($Γ_S;Δ_L,A_L ⊢ C_L$, n: 2, label: cutSL),
+  pt-rule($Γ_S;Δ_L,Psi_L ⊢ C_L$, n: 2, label: cutLL),
+  pt-rule($Γ_S;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: cutmLL)
 ) $
 
 // TODO: draw a brace around $cal(D')$ in the unreduced proof?
 where $cal(D') = cal(D)+↑ R$, and $cal(A)$ is
 
 $ #prooftree(
-  axiom($Γ_S ⊢ ↑Psi_L]A_L$, label: $cal(D')$),
-  axiom($Γ_S, ↑Psi_L]A_L;Δ'_L ⊢ Psi_L$, label: $cal(E_1)$),
-  rule($Γ_S;Δ'_L ⊢ Psi_L$, n: 2, label: cutSmL)
+  pt-axiom($Γ_S ⊢ ↑Psi_L]A_L$, label: $cal(D')$),
+  pt-axiom($Γ_S, ↑Psi_L]A_L;Δ'_L ⊢ Psi_L$, label: $cal(E_1)$),
+  pt-rule($Γ_S;Δ'_L ⊢ Psi_L$, n: 2, label: cutSmL)
 ) $
 
 Note that the use of #cutmLL on $Psi_L$ is justified
@@ -517,61 +517,61 @@ because $cal(E)_1$ is a smaller derivation.
 The *commuting case* of #cutLL with $↑L slash ?$ is
 
 $ #prooftree(
-  axiom($Γ_S, ↑ Ψ_L ]A_L; Δ'_L ⊢ Ψ_L$, label: $cal(D)_1$),
-  axiom($Γ_S, ↑ Ψ_L ]A_L; Δ_L,A_L ⊢ C_L$, label: $cal(D)_2$),
-  rule($Γ_S, ↑ Ψ_L ]A_L; Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑L$),
-  axiom($Γ_S, ↑ Ψ_L ]A_L;Δ''_L,C_L ⊢ D_L$, label: $cal(E)$),
-  rule($Γ_S, ↑ Ψ_L ]A_L;Δ_L,Δ'_L,Δ''_L ⊢ D_L$, n: 2, label: cutLL)
+  pt-axiom($Γ_S, ↑ Ψ_L ]A_L; Δ'_L ⊢ Ψ_L$, label: $cal(D)_1$),
+  pt-axiom($Γ_S, ↑ Ψ_L ]A_L; Δ_L,A_L ⊢ C_L$, label: $cal(D)_2$),
+  pt-rule($Γ_S, ↑ Ψ_L ]A_L; Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑L$),
+  pt-axiom($Γ_S, ↑ Ψ_L ]A_L;Δ''_L,C_L ⊢ D_L$, label: $cal(E)$),
+  pt-rule($Γ_S, ↑ Ψ_L ]A_L;Δ_L,Δ'_L,Δ''_L ⊢ D_L$, n: 2, label: cutLL)
 ) $
 
 This eliminates to
 
 $ #prooftree(
-  axiom($Γ_S, ↑ Ψ_L ]A_L; Δ'_L ⊢ Ψ_L$, label: $cal(D)_1$),
-  axiom($Γ_S, ↑ Ψ_L ]A_L; Δ_L,A_L ⊢ C_L$, label: $cal(D)_2$),
-  axiom($Γ_S, ↑ Ψ_L ]A_L;Δ''_L,C_L ⊢ D_L$, label: $cal(E)$),
-  rule($Γ_S, ↑ Ψ_L ]A_L;Δ_L,A_L,Δ''_L ⊢ D_L$, n: 2, label: cutLL),
-  rule($Γ_S, ↑ Ψ_L ]A_L;Δ_L,Δ'_L,Δ''_L ⊢ D_L$, n: 2, label: $↑ L$)
+  pt-axiom($Γ_S, ↑ Ψ_L ]A_L; Δ'_L ⊢ Ψ_L$, label: $cal(D)_1$),
+  pt-axiom($Γ_S, ↑ Ψ_L ]A_L; Δ_L,A_L ⊢ C_L$, label: $cal(D)_2$),
+  pt-axiom($Γ_S, ↑ Ψ_L ]A_L;Δ''_L,C_L ⊢ D_L$, label: $cal(E)$),
+  pt-rule($Γ_S, ↑ Ψ_L ]A_L;Δ_L,A_L,Δ''_L ⊢ D_L$, n: 2, label: cutLL),
+  pt-rule($Γ_S, ↑ Ψ_L ]A_L;Δ_L,Δ'_L,Δ''_L ⊢ D_L$, n: 2, label: $↑ L$)
 ) $
 
 The *commuting case* of #cutSS with $? slash ↑R$ is
 
 $ #prooftree(
-  axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
-  axiom($Γ_S,A_S;Psi_L ⊢ B_L$, label: $cal(E)$),
-  rule($Γ_S,A_S ⊢ ↑ Psi_L]B_L$, label: $↑ R$),
-  rule($Γ_S ⊢ ↑ Psi_L]B_L$, n: 2, label: cutSS)
+  pt-axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
+  pt-axiom($Γ_S,A_S;Psi_L ⊢ B_L$, label: $cal(E)$),
+  pt-rule($Γ_S,A_S ⊢ ↑ Psi_L]B_L$, label: $↑ R$),
+  pt-rule($Γ_S ⊢ ↑ Psi_L]B_L$, n: 2, label: cutSS)
 ) $
 
 This eliminates to
 
 $ #prooftree(
-  axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
-  axiom($Γ_S,A_S;Psi_L ⊢ B_L$, label: $cal(E)$),
-  rule($Γ_S; Psi_L ⊢ B_L$, n: 2, label: cutSS),
-  rule($Γ_S ⊢ ↑ Psi_L]B_L$, label: $↑ R$)
+  pt-axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
+  pt-axiom($Γ_S,A_S;Psi_L ⊢ B_L$, label: $cal(E)$),
+  pt-rule($Γ_S; Psi_L ⊢ B_L$, n: 2, label: cutSS),
+  pt-rule($Γ_S ⊢ ↑ Psi_L]B_L$, label: $↑ R$)
 ) $
 
 The *commuting case* of #cutSL with $? slash ↑ L$ is
 
 $ #prooftree(
-  axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
-  axiom($Γ_S, A_S, ↑ Psi_L]A_L; Δ_L ⊢ Psi_L$, label: $cal(E)_1$),
-  axiom($Γ_S, A_S, ↑ Psi_L]A_L; Δ'_L, A_L ⊢ C_L$, label: $cal(E)_2$),
-  rule($Γ_S, A_S, ↑ Psi_L]A_L;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑ L$),
-  rule($Γ_S, ↑ Psi_L]A_L;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: cutSL)
+  pt-axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
+  pt-axiom($Γ_S, A_S, ↑ Psi_L]A_L; Δ_L ⊢ Psi_L$, label: $cal(E)_1$),
+  pt-axiom($Γ_S, A_S, ↑ Psi_L]A_L; Δ'_L, A_L ⊢ C_L$, label: $cal(E)_2$),
+  pt-rule($Γ_S, A_S, ↑ Psi_L]A_L;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑ L$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: cutSL)
 ) $
 
 and eliminates to
 
 $ #prooftree(
-  axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
-  axiom($Γ_S, A_S, ↑ Psi_L]A_L; Δ_L ⊢ Psi_L$, label: $cal(E)_1$),
-  rule($Γ_S, ↑ Psi_L]A_L; Δ_L ⊢ Psi_L$, n: 2, label: cutSmL),
-  axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
-  axiom($Γ_S, A_S, ↑ Psi_L]A_L; Δ'_L, A_L ⊢ C_L$, label: $cal(E)_2$),
-  rule($Γ_S, ↑ Psi_L]A_L; Δ'_L, A_L ⊢ C_L$, n: 2, label: cutSL),
-  rule($Γ_S, ↑ Psi_L]A_L;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑L$)
+  pt-axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
+  pt-axiom($Γ_S, A_S, ↑ Psi_L]A_L; Δ_L ⊢ Psi_L$, label: $cal(E)_1$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L; Δ_L ⊢ Psi_L$, n: 2, label: cutSmL),
+  pt-axiom($Γ_S ⊢ A_S$, label: $cal(D)$),
+  pt-axiom($Γ_S, A_S, ↑ Psi_L]A_L; Δ'_L, A_L ⊢ C_L$, label: $cal(E)_2$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L; Δ'_L, A_L ⊢ C_L$, n: 2, label: cutSL),
+  pt-rule($Γ_S, ↑ Psi_L]A_L;Δ_L,Δ'_L ⊢ C_L$, n: 2, label: $↑L$)
 ) $
 
 Finally, #cutLL with $? slash ↑ L$ has two *commuting cases*
@@ -579,54 +579,54 @@ depending on which branch uses $B_L$.
 The first is
 
 $ #prooftree(
-  axiom($Γ_S, ↑ Psi_L]A_L; Δ'_L ⊢ B_L$, label: $cal(D)$),
-  axiom($Γ_S, ↑ Psi_L]A_L; Δ_1, B_L ⊢ Psi_L$, label: $cal(E)_1$),
-  axiom($Γ_S, ↑ Psi_L]A_L; Δ_2, A_L ⊢ C_L$, label: $cal(E)_2$),
-  rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,B_L ⊢ C_L$, n: 2, label: $↑ L$),
-  rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,Δ'_L ⊢ C_L$, n: 2, label: cutLL)
+  pt-axiom($Γ_S, ↑ Psi_L]A_L; Δ'_L ⊢ B_L$, label: $cal(D)$),
+  pt-axiom($Γ_S, ↑ Psi_L]A_L; Δ_1, B_L ⊢ Psi_L$, label: $cal(E)_1$),
+  pt-axiom($Γ_S, ↑ Psi_L]A_L; Δ_2, A_L ⊢ C_L$, label: $cal(E)_2$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,B_L ⊢ C_L$, n: 2, label: $↑ L$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,Δ'_L ⊢ C_L$, n: 2, label: cutLL)
 ) $
 
 We first do a sub-cut to obtain derivation $cal(A)$:
 
 $ #prooftree(
-  axiom($Γ_S, ↑ Psi_L]A_L;Δ'_L ⊢ B_L$, label: $cal(D)$),
-  axiom($Γ_S, ↑ Psi_L]A_L;Δ_1, B_L ⊢ Psi_L$, label: $cal(E)_1$),
-  rule($Γ_S, ↑ Psi_L]A_L;Δ_1, Δ'_L ⊢ Psi_L$, n: 2, label: cutLmL)
+  pt-axiom($Γ_S, ↑ Psi_L]A_L;Δ'_L ⊢ B_L$, label: $cal(D)$),
+  pt-axiom($Γ_S, ↑ Psi_L]A_L;Δ_1, B_L ⊢ Psi_L$, label: $cal(E)_1$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L;Δ_1, Δ'_L ⊢ Psi_L$, n: 2, label: cutLmL)
 ) $
 
 The use of #cutLmL is justified here because $cal(E)_1$
 is a smaller derivation. Then we can eliminate to
 
 $ #prooftree(
-  axiom($Γ_S, ↑ Psi_L]A_L;Δ_1, Δ'_L ⊢ Psi_L$, label: $cal(A)$),
-  axiom($Γ_S, ↑ Psi_L]A_L; Δ_2, A_L ⊢ C_L$, label: $cal(E)_2$),
-  rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,Δ'_L ⊢ C_L$, n: 2, label: $↑ L$)
+  pt-axiom($Γ_S, ↑ Psi_L]A_L;Δ_1, Δ'_L ⊢ Psi_L$, label: $cal(A)$),
+  pt-axiom($Γ_S, ↑ Psi_L]A_L; Δ_2, A_L ⊢ C_L$, label: $cal(E)_2$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,Δ'_L ⊢ C_L$, n: 2, label: $↑ L$)
 ) $
 
 The *second* is
 
 $ #prooftree(
-  axiom($Γ_S, ↑ Psi_L]A_L; Δ'_L ⊢ B_L$, label: $cal(D)$),
-  axiom($Γ_S, ↑ Psi_L]A_L; Δ_1, ⊢ Psi_L$, label: $cal(E)_1$),
-  axiom($Γ_S, ↑ Psi_L]A_L; Δ_2, B_L, A_L ⊢ C_L$, label: $cal(E)_2$),
-  rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,B_L ⊢ C_L$, n: 2, label: $↑ L$),
-  rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,Δ'_L ⊢ C_L$, n: 2, label: cutLL)
+  pt-axiom($Γ_S, ↑ Psi_L]A_L; Δ'_L ⊢ B_L$, label: $cal(D)$),
+  pt-axiom($Γ_S, ↑ Psi_L]A_L; Δ_1, ⊢ Psi_L$, label: $cal(E)_1$),
+  pt-axiom($Γ_S, ↑ Psi_L]A_L; Δ_2, B_L, A_L ⊢ C_L$, label: $cal(E)_2$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,B_L ⊢ C_L$, n: 2, label: $↑ L$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,Δ'_L ⊢ C_L$, n: 2, label: cutLL)
 ) $
 
 We first obtain $cal(A)$:
 
 $ #prooftree(
-  axiom($Γ_S, ↑ Psi_L]A_L;Δ'_L ⊢ B_L$, label: $cal(D)$),
-  axiom($Γ_S, ↑ Psi_L]A_L;Δ_2, B_L, A_L ⊢ C_L$, label: $cal(E)_2$),
-  rule($Γ_S, ↑ Psi_L]A_L;Δ_2, Δ'_L, A_L ⊢ C_L$, n: 2, label: cutLL)
+  pt-axiom($Γ_S, ↑ Psi_L]A_L;Δ'_L ⊢ B_L$, label: $cal(D)$),
+  pt-axiom($Γ_S, ↑ Psi_L]A_L;Δ_2, B_L, A_L ⊢ C_L$, label: $cal(E)_2$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L;Δ_2, Δ'_L, A_L ⊢ C_L$, n: 2, label: cutLL)
 ) $
 
 And then produce the new proof:
 
 $ #prooftree(
-  axiom($Γ_S, ↑ Psi_L]A_L; Δ_1 ⊢ Psi_L$, label: $cal(E)_1$),
-  axiom($Γ_S, ↑ Psi_L]A_L;Δ_2, Δ'_L, A_L ⊢ C_L$, label: $cal(A)$),
-  rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,Δ'_L ⊢ C_L$, n: 2, label: $↑L$)
+  pt-axiom($Γ_S, ↑ Psi_L]A_L; Δ_1 ⊢ Psi_L$, label: $cal(E)_1$),
+  pt-axiom($Γ_S, ↑ Psi_L]A_L;Δ_2, Δ'_L, A_L ⊢ C_L$, label: $cal(A)$),
+  pt-rule($Γ_S, ↑ Psi_L]A_L;Δ_1,Δ_2,Δ'_L ⊢ C_L$, n: 2, label: $↑L$)
 ) $
 
 ]
@@ -658,14 +658,14 @@ our program terms written in send-receive style are:
 #figure(
   [
     $ #prooftree(
-      axiom($Γ_S;overline(x_i):Psi_L ⊢ P(overline(x_i),y_L) :: (y_L:A_L)$),
-      rule($Γ_S ⊢ recv f_S space (⟨y_L⟩, overline(⟨x_i⟩) => P) :: (f_S:↑ Psi_L]A_L)$, label: $↑ R$)
+      pt-axiom($Γ_S;overline(x_i):Psi_L ⊢ P(overline(x_i),y_L) :: (y_L:A_L)$),
+      pt-rule($Γ_S ⊢ recv f_S space (⟨y_L⟩, overline(⟨x_i⟩) => P) :: (f_S:↑ Psi_L]A_L)$, label: $↑ R$)
     ) $
 
     $ #prooftree(
-      axiom($Γ_S,f_S:↑ Psi_L]A_L;Δ_L ⊢ overline(P_i (x_i)) :: (overline(x_i):Psi_L)$),
-      axiom($Γ_S,f_S:↑ Psi_L]A_L;Δ'_L,y_L:A_L ⊢ Q(y_L) :: (z_L:C_L)$),
-      rule($Γ_S,f_S:↑ Psi_L]A_L;Δ_L,Δ'_L ⊢ send f_S space overline((⟨x_i⟩ => P_i)) space (⟨y_L⟩ => Q) :: (z_L:C_L)$, n: 2, label: $↑ L$)
+      pt-axiom($Γ_S,f_S:↑ Psi_L]A_L;Δ_L ⊢ overline(P_i (x_i)) :: (overline(x_i):Psi_L)$),
+      pt-axiom($Γ_S,f_S:↑ Psi_L]A_L;Δ'_L,y_L:A_L ⊢ Q(y_L) :: (z_L:C_L)$),
+      pt-rule($Γ_S,f_S:↑ Psi_L]A_L;Δ_L,Δ'_L ⊢ send f_S space overline((⟨x_i⟩ => P_i)) space (⟨y_L⟩ => Q) :: (z_L:C_L)$, n: 2, label: $↑ L$)
     ) $
   ],
   caption: [Upshift program terms]
@@ -696,8 +696,8 @@ we may need to adjust the message grammar to $M ::= dots.h | ⟨overline(a_i)⟩
   as in $↑Γ_S;Psi_L]A_L$
   with the right rule
   $ #prooftree(
-    axiom($Gamma_S;Psi_L tack.r A_L$),
-    rule($Theta_S tack.r ↑Γ_S;Psi_L]A_L$)
+    pt-axiom($Gamma_S;Psi_L tack.r A_L$),
+    pt-rule($Theta_S tack.r ↑Γ_S;Psi_L]A_L$)
   ) $
   This formulation would more clearly include the structural ICML
   in its structural fragment; our current version seems to include

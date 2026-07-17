@@ -131,7 +131,7 @@
   }
 }
 
-#let axiom(label: none, body) = {
+#let pt-axiom(label: none, body) = {
   // Check the type of `label`.
   assert(
     type(label) in (str, content, none-type),
@@ -168,7 +168,7 @@
   )
 }
 
-#let rule(
+#let pt-rule(
   n: 1,
   label: none,
   root

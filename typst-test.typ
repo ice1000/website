@@ -1,9 +1,15 @@
 #import "/book.typ": book-page
 #show: book-page.with(title: "Tesla Zhang")
+#import "@preview/theorion:0.6.0": *
+#show: show-theorion
 
 The purpose of this page is to test some random things.
 
 #let emsp = h(2em)
+
+#theorem[Test Theorem][
+  This is a test theorem.
+]
 
 $ (A:bb(I) → cal(U)_1 #emsp φ:bb(F) #emsp r, s : bb(I)
   #emsp u: (i:bb(I)) → "Partial"(φ ∨ i=r, A(i)))/(

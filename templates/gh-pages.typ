@@ -184,7 +184,7 @@
   )
 
   if show-title {
-    align(center)[ #block(text(weight: 700, 1.75em, title)) ]
+    block(text(weight: 700, 1.75em, title))
   }
 
   if authors.len() > 0 {
